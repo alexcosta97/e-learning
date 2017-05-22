@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Hello jQuery</title>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <h1 class="demo">Hello</h1>
+        <h1 id="h1Demo">hello other h1</h1>
+        <p custom="banner">Hello paragraph</p>
+        <p class="col-5">Hello 2nd paragraph</p>
+        <p class="col-md-3">Hello 3rd paragraph</p>
+        <script>
+            $(function(){
+                //find an element with class
+                $('.demo').text('Found class!');
+
+                //find an element with id
+                $('#h1Demo').text('Found id!');
+
+                //find an element with custom attribute
+                $('[custom="banner"]').text('Found a custom attribute!');
+
+                //find the beginning of a class
+                $('[class ^= "col"]').text('Found the beginning of a class');
+
+                //find the content of a class
+                $('[class *= "md"').text('Found the content of a class');
+            });
+        </script>
+    </body>
+</html>
