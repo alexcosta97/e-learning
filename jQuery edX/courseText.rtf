@@ -116,6 +116,26 @@ While the difference in syntax is subtle, it makes a big difference in regards t
 \tab <div>\par
 \tab\tab <a href="#">(Second) This will be selected</a>\par
 \tab </div>\par
-</nav\par
+</nav>\par
+\par
+\ul\b Siblings\ulnone\b0\par
+Many sections of an HTML page have a consistent structure. For example, most forms will have a label, followed by an input element, followed by a placeholder for an error message.\par
+\par
+<div>\par
+\tab <label for="name">Name: </label>\par
+\tab <input type="text" id="name" />\par
+\tab <div id="name-error"></div>\par
+</div>\par
+\par
+\par
+Imagine a bit of jQuery code where we had a reference to the input element, and we were performing a bit of validation. We would want to display any error message in the div element immediatly following the input tag. While we could explicitly get a reference to the div element by its id, that code wouldn't be reusable.\par
+If our site maintained that structure of label, input, div, we could create generic event handlers, and update the error message simply by using that consistent structure to our advantage.\par
+\par
+\b Prev and next\b0\par
+Here is an example of a jQuery code to grab an input element.\par
+\par
+var currentInput = $('name');\par
+\par
+To move to the prior element, jQuery provides the prev method. We can use prev() to access the prior element in the hierarchy\par
 }
  
