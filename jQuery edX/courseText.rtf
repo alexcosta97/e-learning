@@ -1,0 +1,121 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2057{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\ul\f0\fs28\lang9 jQuery Notes\ulnone\par
+\b\fs22 Options for adding jQuery\b0\par
+To add jQuery to a web page, it's a simple as adding a reference to the jQuery javaScript file. We always want to use the minified version, signified by min in thee name, as this will reduce the amount of data passed to the user, saving both bandwidth and loading time.\par
+It is possible to download from jQuery or to use a package manager such as NuGet or npm. Similarly, we have multiple options when it comes to sourcing the JavaScript file on our page.\par
+The first option is to serve the file from our own server, just as we would serve any other image or script file. Because we've already downloaded the file, it's easy to simply ensure it's part of our project, deployed to our server, and then referenced in a page. However, this is yet another file that our server has to send to the user, which increases both the number of requests that our server needs to handle and the amount of bandwidth required for the server to serve a page to the user.\par
+As an alternative, we can use a content delivery network, CDN. A CDN is a set of servers hosted by a third party, such as Microsoft or Google, that hosts and serves common files used for creating web pages. In fact, most common JS libraries, including Knockout, AngularJS and Bootstrap, are available on CDNs.\par
+By using a CDN we save our server from having to send down the file, the users will download the file from the CDN servers rather than ours. For heavily trafficked sites this can mean a large improvement in performance. When using popular CDN, such as the one from Microsoft, there's a good chance the user will have already downloaded the file. Browsers cache files based on path names, so if the user has visited a site that used the same file from the same CDN, the browser won't need to download that file again. As a result, the page will load that much faster.\par
+\par
+\b Updating our page to include a reference to jQuery\b0\par
+Below is the code we'll need to add jQuery to a page. We have to keep in mind that the URL of the JavaScript file will depend on where the file is located, and if we're using a CDN.\par
+
+\pard\sl240\slmult1 <html>\par
+\tab <head>\par
+\tab\tab <title>Demo page</title>\par
+\tab </head>\par
+\tab <body>\par
+\tab\tab <script src="[location of minified jQuery JavaScript file]"></script>\par
+\tab\tab <script>\par
+\tab\tab\tab //our custom scripts that use jQuery\par
+\tab\tab </script>\par
+\tab </body>\par
+</html>\par
+
+\pard\sa200\sl276\slmult1\par
+\ul\b Hello jQuery\ulnone\b0\par
+Now that we've obtained jQuery, and added the approptiate library to the page, it's time to actually do something with it. As per tradition, we'll do so by doing Hello World.\par
+\b The magic of the $\par
+\b0 In jQuery, the $ character is the shortcut of the jQuery factory, meaning that it provides access to the jQuery object and all of the power that jQuery offers. We can use $ to access global objects and functions, and, more commonly, elements and other components in the DOM.\par
+The first operation we'll typically perform in any page that uses jQuery is to register a document.ready event handler. The document.ready event handler executes after everything on the page has loaded, ensuring the entire DOM is now in memory, and the jQuery library is now available.\par
+There are a coupe of ways to register this event handler. The first is to access the document object in jQuery, and register an event handler with the jQuery ready event.\par
+We can use:\par
+
+\pard\sl240\slmult1 $(document).ready(function()\{\par
+\tab //code here\par
+\});\par
+\par
+Because registering an event handler with jQuery is so common, jQuery provides a shortcut. Simply passing a function into the constructor will register that function as the event handler for document.load\par
+\par
+$(function()\{\par
+\tab //code here\par
+\});\par
+\par
+Both of the code blocks above are semantically identical.\par
+\par
+\ul\b Common CSS selectors\ulnone\b0\par
+In order to start manipulating HTML page dynamically you first need to locate the desired items. One of the original goals jQuery was to use pre-existing syntax, in particular CSS selectors. CSS selectors are an expressive and powerful way of locating items based on several criteria, including element type, classes and position. By using CSS selectors we can locate any item we need on a page quickly and easily.\par
+\par
+jQuery offers a lot of different ways to find multiple items on an HTML page. We can use executing methods, or, more commonly, by utilising the same selector syntax that CSS offers.\par
+\par
+\ul Basic CSS selectors\ulnone\par
+The most basic CSS selector is to simply use the name of the element we're looking for. If we want all h1 elements, we can simply use h1 as our selector.\par
+\par
+$('h1') //selects all h1 elements\par
+\par
+We'll notice, just as we saw with with document.ready, we pass the appropriate text into the jQuery constructor to indicate the selector we wish to use. Because of the flexibility of JavaScript, and how jQuery was designed, this patter stays rather constant whenever we're looking to get started using jQuery in a page - we simply need to pass the appropriate text, item, or other component into the constructor and jQuery will handle it from there.\par
+\par
+If we go back to the CSS selectors, we can use a class and find all the particular elements of it by simply using the name of the class with a dot in front of it, just like we would when creating a CSS stylessheet.\par
+\par
+And, finally, if we want to find an element by its ID, we can simply use the same CSS syntax, prepending the ID with a hash.\par
+\par
+After selecting multiple elements, either by calling a type of element or a class, whatever method that we call after selecting them will apply to all of the elements. For example, if we want to set up a click event handler for a group of div elements, or if we want to disable all the buttons on a page, or update a set of textboxes, we can do very easily do that inside of jQuery by calling them all together.\par
+\par
+\ul\b Attribute based selectors\ulnone\b0\par
+The HTML specification defines many attributes, such as class and style as well as allowing developers to add their own attributes. By using CSS selector syntax, we can locate items both on custom and predifined attribtues. We can find items based on a quality for an attribute.\par
+\par
+To find elements in which an attribute is set to a specific value, we use the equality syntax. We must note that the value that we wish to compare must be in quotes, which means we need to use both single and double quotes to create the appropriate string. While the actual quotes we use are up to us, most JavaScript developers use single quotes for normal strings and then double quotes when they need to indicate a quoted value inside of a string.\par
+\par
+//select **all** elements with an attribute matching the specified value\par
+$('[demo-attribute="demo-value"]')\par
+\par
+//selects all **h1** elements with an attribute matching the specified value\par
+$('h1[demo-attribute="demo-value"]')\par
+\par
+\b Locating items by partial attribute values\b0\par
+Many frameworks, such as Bootstrap, make their magic happen by having developers add certain classes or other attributes to their HTML. Often, the values we'll be using for classes or attributes have consistent patterns or prefixes. jQuery allows us to select items by searching inside of attribute values for desired sub-strings.\par
+\par
+If we wish to find all elements where the value starts with a string, we use the ^= operator:\par
+$('[class^="col"]')\par
+\par
+If we wish to find all elements where the value contains a string, we use the *= operator:\par
+$('[class*="md"]')\par
+\par
+There are several more operators available. We can check the documentation for a full list of those.\par
+\par
+\ul\b Positional selectors\ulnone\b0\par
+Often we need to locate elements based on where they are on the page, or in relation to other elements in the DOM. For example, an a element inside of a nav section may need to be treated differently than a elements elsewhere on the page. CSS, and in turn jQuery, offer the ability to find items based on their location.\par
+\par
+\b Parent/child relationships\b0\par
+The simplest location selector is one for parent/child. The > between selectors indicates the parent/child relationship. With this relationship, the second item listed must be a direct child of the first item, with no other elements between the two.\par
+\par
+//Selects all a elements that are direct descendants from the nav element\par
+$('nav > a')\par
+\par
+In the following HTML, the first element would be selected, but not the second. This is because the first link is a direct child, but the second is inside of a div element.\par
+\par
+<nav>\par
+\tab <a href="#">(First) This will be selected</a>\par
+\tab <div>\par
+\tab\tab <a href="#">(Second) This will **not** be selected</a>\par
+\tab </div>\par
+</nav>\par
+\par
+\b Descendants\b0\par
+To select elements where the targeted element is a descendant of another element, regardless of how many levels exist between the two, simply put a space between the two selectors.\par
+\par
+//Selects all a elements that are descendants from the nav element\par
+//The elements can appeat anywhere inside of the element listed first\par
+$('nav a')\par
+\par
+While the difference in syntax is subtle, it makes a big difference in regards to the items selected. Using the same HTML from above, both a elements would be selected by using the syntax $('nav a')\par
+\par
+<nav>\par
+\tab <a href="#">(First) This will be selected</a>\par
+\tab <div>\par
+\tab\tab <a href="#">(Second) This will be selected</a>\par
+\tab </div>\par
+</nav\par
+}
+ 
