@@ -165,6 +165,37 @@ Here is an example of a jQuery code to grab an input element.\par
 \par
 var currentInput = $('name');\par
 \par
-To move to the prior element, jQuery provides the prev method. We can use prev() to access the prior element in the hierarchy\par
+To move to the prior element, jQuery provides the prev method. We can use prev() to access the prior element in the hierarchy (the label in the example). if we wanted the div element to update the error message, which follows the input element, we should use next()\par
+\par
+//text allows us to modify the text in an element\par
+currentInput.next().text('error message');\par
+\par
+As with most methods used inside jQuery, both prev and next support CSS selectors.\par
+\par
+\b prevAll and nextAll\par
+\b0 prev and next only look at the item immediately prior or after, respectively. prevAll and nextAll will select all siblings prior or after the element. Both methods also accept a CSS selector to limit the items.\par
+Imagine a form with a checkbox, where upon selection we need to enable the two textboxes and labels immediately following it.\par
+\par
+<label for="provide-address">Provide address?</label>\par
+<input type="checkbox" id="provide-address" />\par
+\par
+<label for="street">Street: </label>\par
+<input type="text" id="street" disabled="true" />\par
+\par
+<label for="country">Country: </label>\par
+<input type="text" id="country" disabled="true" />\par
+\par
+We could enable the textboxes by using the following jQuery:\par
+\par
+//The attr method is used ot set (or read) an attribute\par
+//The first parameter is the name of the attribute, the second is the value to set\par
+\par
+//Since we only need input elements, we'll use the name of the tag as the filter\par
+$('#provide-address').nextAll('input').attr('disabled', 'false');\par
+\par
+\ul Disabled attribute\ulnone : One interesting note about the disabled attribute is that it's one of the attributes that, according to the HTML specification, does not require a key/value pair. As a result, simply using <input disabled type="text"/> would disable the textbox. However, this wouldn't be a valid XML syntac. As a result, it is prefered to use either disabled="true" or disabled = "disabled" to ensure a key/value pair and well-formed XML.\par
+\par
+\b prevUntil and nextUntil\b0\par
+Finally, prevUntil and nextUntil select all prior or following elements up to, but not including the element that matches the selector.\par
 }
  
