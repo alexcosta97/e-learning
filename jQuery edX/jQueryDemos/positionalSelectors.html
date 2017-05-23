@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Positional Selectors</title>
+        <meta charset="utf-8"/>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <h1>Hello World</h1>
+
+        <header>
+            <div>
+                <h1>Inside inside header</h1>
+            </div>
+            <h1>Parent Child</h1>
+        </header>
+
+        <script>
+            $(function(){
+                //Will execute when the page is ready (onready event handler)
+
+                //parent/child
+                $('header > h1').text('Parent child');
+
+                //descendant (will also change direct children, unles parent child is afterwards)
+                $('header h1').text('Descendant');
+            });
+        </script>
+    </body>
+</html>
