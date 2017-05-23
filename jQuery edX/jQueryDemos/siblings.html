@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Siblings</title>
+        <meta charset="utf-8"/>
+        <style>
+            body{
+                font-size: 2em;
+            }
+            div{
+                margin-top: .1em;
+            }
+        </style>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <div style="color:black" class="stop">First</div>
+        <div style="color:black">Second</div>
+        <div style="color:black">Third</div>
+        <div id="target" style="color:black">Forth (Target)</div>
+        <div style="color:black">Fifth</div>
+        <div style="color:black">Sixth</div>
+        <div style="color:black" class="stop">Seventh</div>
+
+        <script>
+            $(function(){
+                //will execute when the page is ready
+
+                //update previous element
+                $('#target').prev().attr('style', 'color:red');
+
+                //update all previous elements
+                $('#target').prevAll().attr('style', 'color:blue');
+
+                //update all previous until (but not including) a certain element (in this case first)
+                $('#target').prevUntil('.stop').attr('style', 'color:green');
+
+                //update next element
+                $('#target').next().attr('style', 'color:red');
+
+                //update all next elements
+                $('#target').nextAll().attr('style', 'color:violet');
+
+                //update all next until (but not including) a certain element (in this case seventh)
+                $('#target').nextUntil('.stop').attr('style', 'color:coral');
+            });
+        </script>
+    </body>
+</html>

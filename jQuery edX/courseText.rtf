@@ -1,4 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2057{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.14393}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\ul\f0\fs28\lang9 jQuery Notes\ulnone\par
 \b\fs22 Options for adding jQuery\b0\par
@@ -133,8 +134,8 @@ As mentioned earlier, children only applies to direct descendants. If we need to
 Consider the following HTML:\par
 <nav id="navigation">\par
 \tab <ul>\par
-\tab\tab <li><a href="http://www.microsoft.com">Microsoft</a></li>\par
-\tab\tab <li><a href="http://www.adventure-works.com">AdventureWorks</a></li>\par
+\tab\tab <li><a href="{{\field{\*\fldinst{HYPERLINK http://www.microsoft.com }}{\fldrslt{http://www.microsoft.com\ul0\cf0}}}}\f0\fs22 ">Microsoft</a></li>\par
+\tab\tab <li><a href="{{\field{\*\fldinst{HYPERLINK http://www.adventure-works.com }}{\fldrslt{http://www.adventure-works.com\ul0\cf0}}}}\f0\fs22 ">AdventureWorks</a></li>\par
 \tab\tab <li><a href="register">Register</a></li>\par
 \tab </ul>\par
 </nav>\par
@@ -197,5 +198,49 @@ $('#provide-address').nextAll('input').attr('disabled', 'false');\par
 \par
 \b prevUntil and nextUntil\b0\par
 Finally, prevUntil and nextUntil select all prior or following elements up to, but not including the element that matches the selector.\par
+\par
+\ul\b Selecting items by position\ulnone\b0\par
+When creating a dynamic UI, we may not know anything else about an item other than its position. jQuery offers us the ability to both locate an item by its position in a collection, or to find out the index location of an item.\par
+\par
+\b Finding the index of an item\b0\par
+If we have a reference to an object, but need to know where it sits in a collection of items, we can use the index method. The index method will return the zero based (ordinal) location of the item, or -1 if the item isn't found.\par
+\par
+var currentElement = $('some selector');\par
+var parent = $('some selector');\par
+var index = parent.children().index(currentElement);\par
+\par
+\b Finding an item by its position\b0\par
+If we know the zero based (ordinal) location of an item in a collection, we can obtain a reference to that item by using the get method.\par
+\par
+var parent = $('some selector');\par
+var element = parent.children().get(index);\par
+\par
+\b get return type\b0\par
+One important note about get is it returns a JavaScript DOM object, not a jQuery object. This means the various jQuery methods, such as attr and text are not available. In order to call jQuery methods on the object, we must convert it to a jQuery object. Fortunately, this is just as easy as passing the object into the jQuery constructor. The above code would become:\par
+\par
+var parent = $('some selector');\par
+var element = parent.children.get(index);\par
+var jQueryObject = $(element);\par
+\par
+or we could just distill it into two lines:\par
+var parent = $('some selector');\par
+var element = $(parent.children(),get(index));\par
+\par
+or even to one line, if you feel like writing hateful code to your colleages:\par
+var element = $($('some selector').children.get(index));\tab\par
+\par
+\ul\b\fs28 Getting started with DOM manipulation\ulnone\b0\par
+\ul\b\fs22 Adding and removing classes\ulnone\b0\par
+As we've already seen, jQuery leans on CSS syntax for quite a bit of functionality. Keeping with that theme, jQuery also makes it very easy to manipulate classes an element is currently using. In fact, we'll notice most libraries that use jQuery to manipulate the UI will also come with a stylesheet that defines a set of classes their code will use to enable the functionality.\par
+\par
+\b Adding a class\b0\par
+Adding a class to an element is just as easy as calling addClass.\par
+\par
+currentElement.addClass('class-name');\par
+\par
+\b Removing a class\b0\par
+Removing a class from an element is just as easy as calling removeClass. If the element in question was not already decorated with the class you're trying to remove, the method will simply return.\par
+\par
+currentElement.removeClass('class-name');\par
 }
  

@@ -21,5 +21,39 @@
         </style>
     </head>
     <body>
+        <div id="target" style="color:black">
+            Grandparent
+            <div style="color:black" class="parent">
+                -Parent
+                <div style="color:black" class="child">-First child</div>
+                <div style="color:black" class="child" id="demo">-Second child</div>
+            </div>
+        </div>
+
+        <script>
+            $(function(){
+                //will execute when the page is ready
+
+                //changing attributes
+                $('#target').attr('style', 'color:blue');
+
+                //find direct children (id to locate element of which we want to change the children)
+                $('#target').children().attr('style', 'color:red');
+
+                //change all the children of the element (direct or not) using find, which always uses a selector
+                //no selector === no items found; all items to find === *
+                $('#target').find('.child').attr('style', 'color:green');
+
+                //Finding parent
+                //First method gives us the element with the id
+                //Second method gives us the direct parent
+                //attr updates attribute
+                $('#demo').parent().attr('style', 'color:yellow');
+
+                //Finding all the parents (even not direct)
+                //The parents method gives us the parents
+                $('#demo').parents().attr('style', 'color:violet');
+            });
+        </script>
     </body>
 </html>
