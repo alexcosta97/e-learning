@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2057{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2057{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
 {\colortbl ;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.14393}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\ul\f0\fs28\lang9 jQuery Notes\ulnone\par
@@ -335,5 +335,67 @@ As we've already discussed, we can add code to a click event by using the syntax
 var variableName = $(this);\par
 \par
 Obviously, that's not challenging, but it can be a bit confusing as to when the object is a jQuery object or a DOM object. More than anything, that comes with experience. The more we use jQuery, the more natural it will become. That said, one quick way to see if we have a reference to a jQuery object is to take advantage of some form of auto-complete, such as that provided thorugh IntellliSense in Visual Studio. We'd notice in Visual Studio the IntelliSense wouldn't show the different jQuery methods, which is a quick reminder that we don't have a jQuery object and need to perform the conversion.\par
+\par
+\ul\b jQuery's each function\ulnone\b0\par
+As powerful as the selectors are in jQuery, there will still be times when you need to loop through the collection of items returned. Fortunately, jQuery does support methods such as index and get, and each collection that is returned can be accessed as an array, meaning there is a length property available. However, rather than using a traditional loop, we may decide it's easier to loop through a collection of objects using for/each.\par
+\par
+For/each is a common construct available in most programming environments. In a nutshell, what for/each does is instructs the runtime to grab each item in the collection, assign it to a variable that we declare, and then allow us to operate on that variable. Consider the following code:\par
+\par
+$('.some-class').each(function(item)\{\par
+\tab //item will be a variable that will represent each object\par
+\});\par
+\par
+in the above code, the item variable will automatically be assigned to every item in the collection. The first time through it'll be the first item, the second time the second, etc. This can be much easier than programming with a for statement.\par
+The syntax for jQuery's each function is as follows:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 a collection (in the example we used a colledtion returned by a selector)\par
+{\pntext\f1\'B7\tab}the each function\par
+{\pntext\f1\'B7\tab}a callback function with a parameter. The name we use for the parameter will become the variable name assigned to each item in the collection\par
+
+\pard\sl240\slmult1\par
+\ul\b\fs28 Lab 1\ulnone\b0\par
+\fs22 For the module 1, we will create the initial interface for our review widget. The interface must meet the following goals:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Provide five circles for the user to select or click on\par
+{\pntext\f1\'B7\tab}When the user hovers their mouse over a circle, that circcle and all circles to the left must be filled with a color, such as yellow\par
+{\pntext\f1\'B7\tab}When the user clicks on a circle, that circle and all circles to the left must be filles with a different color, such as green. The color must remain, even after the user moves their mouse away from the widget. We do not need to remember the number for page refreshes\par
+{\pntext\f1\'B7\tab}HTML and CSS for the interface has been provided. This lab can be solved without using any additional HTML. We only need to provide the necessary jQuery\par
+
+\pard\sl240\slmult1\par
+\ul\b Tips and tricks\ulnone\b0\par
+A solution will not be provided for the lab. but, to try to help us out, here are some tips we might find helpful.\par
+\line First, break the requirements down to stepsm and then implement each step. For example, for the hover requirements:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 The user hovers over a circle. That circle, and all the ones to its left, must be highlighted\par
+{\pntext\f1\'B7\tab}To implement this, we must first discover what circle the user has moved their mouse over\par
+{\pntext\f1\'B7\tab}Then, we need to select that circle, and the ones to the left of it in the collection of circles\par
+{\pntext\f1\'B7\tab}We must highlight those circles. This can be done by adding a class to those circles. The class provided is highlight\par
+{\pntext\f1\'B7\tab}We must ensure the circles to the right aren't highlighted. We could do this by removing the highlight class\par
+
+\pard\sl240\slmult1\par
+\par
+Some methods we might find useful:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 get\par
+{\pntext\f1\'B7\tab}index\par
+{\pntext\f1\'B7\tab}addClass\par
+{\pntext\f1\'B7\tab}removeClass\par
+{\pntext\f1\'B7\tab}attr\par
+{\pntext\f1\'B7\tab}each\par
+{\pntext\f1\'B7\tab}children\par
+{\pntext\f1\'B7\tab}find\par
+
+\pard\sl240\slmult1\par
+Please note that not all of the methods listed above are needed for the answer.\par
+\par
+\ul\b\fs32 Module 2: Managing content, events and effects\ulnone\b0\par
+\ul\b\fs28 Commonly used event handlers\ulnone\b0\par
+\fs22 Web pages are typically built using an event based architecture. An event is something that occurs where we, as the developer, don't have direct control over its timing. Unlike the classic console application (god I miss those), where  we provide  a list of options to the user, in a time and order that we choose, a web page presents the user with a set of controls, such as buttons or textboxes, that the user can typically click around on whenever they see fit. As a result, being able to manage what happens when an event occurs is crucial.\par
+\par
+Fortunately, in case we hadn't already guessed, jQuery provides a robust API for registering and managing event handlers, which is the code that will be executed when an event is raised. Event handlers are, at the end of the day, simply JavaScript functions.\par
+\par
+\b Registering event handlers\b0\par
+jQuery provides several ways to register an event handler. As we saw in Module 1, the most common way of registering an event handler is to call the function on the jQuery object that corresponds to the event we wish to capture, such as click. We will notice that the jQuery API provides functions for almost any JavaScript or DOM event.\par
+\par
 }
  
