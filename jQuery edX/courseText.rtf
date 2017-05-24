@@ -295,5 +295,45 @@ $(item).hover(function()\{\par
 $(item).mouseout(function()\{\par
 \tab alert('mouse out');\par
 \});\par
+\par
+\ul\b What happens when something isn't found\ulnone\b0\par
+Imagine the following HTML:\par
+<html>\par
+\tab <head><title>Demo</title></head>\par
+\tab <body>\par
+\tab\tab <div class='blue'>Sample content</div>\par
+\tab\tab\par
+\tab\tab <!-- scripts go here-->\par
+\tab </body>\par
+</html>\par
+\par
+Now imagine we updated the page to add reference to jQuery, and then added the following script:\par
+\par
+$('blue').click(function()\{\par
+\tab alert('You clicked the div element!');\par
+\});\par
+\par
+If we ran the page and clicked on the div tag, nothing would happen.\par
+This was a very simple and subtle typo, which is basically just the "." missing. Since it isn't there, the CSS selector is instructing jQuery to look for an element named blue, rather than a class named blue. Leaving off a . or # is probably the number one mistake developers make when using jQuery.\par
+\par
+\b But, that seems like a bad thing\b0\line At first glance, that might seem like a design flaw for jQuery. However, this can be very advantageous. In fact, we'll see this as a common pattern throughout jQuery - if it can't find an item, it will simply move to the next line of code.\par
+\par
+removeClass, for example, doesn't throw an error if the element in question doesn't have the class. What's nice about this is that we don't have to remember if the class was there in the first place, or write code to check for it in advance.\par
+\par
+While we will certainly run into cases where leaving off a . causes an unexpected bug, that behaviour will help make our code a bit simpler when we're dealing with dynamic HTML, which is exactly what jQuery is all about.\par
+\par
+\ul\b jQuery and DOM objects\ulnone\b0\par
+When we get down to it, jQuery is a wrapper around the JavaScript DOM, both enhancing and simplifying it. One thing to remember, though, is that we are always writing JavaScript. As a result, depending on where we are in code, we might be switching back and forth between jQuery and JavaScript.\par
+Let's take the following code for example:\par
+\par
+$('#some-button').click(function()\{\par
+\tab //code here\par
+\});\par
+\par
+As we've already discussed, we can add code to a click event by using the syntax above. And, we can access the object that raised the event. But, this is a DOM object, not a jQuery object. As a result, any of the jQuery methods we'd like to use aren't available, unless we convert it to a jQuery object by using the code below.\par
+\par
+var variableName = $(this);\par
+\par
+Obviously, that's not challenging, but it can be a bit confusing as to when the object is a jQuery object or a DOM object. More than anything, that comes with experience. The more we use jQuery, the more natural it will become. That said, one quick way to see if we have a reference to a jQuery object is to take advantage of some form of auto-complete, such as that provided thorugh IntellliSense in Visual Studio. We'd notice in Visual Studio the IntelliSense wouldn't show the different jQuery methods, which is a quick reminder that we don't have a jQuery object and need to perform the conversion.\par
 }
  
