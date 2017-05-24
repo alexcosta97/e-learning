@@ -269,5 +269,31 @@ $(item).text('Hello, world!');\par
 \par
 //update the HTML\par
 $(item).html('<h1>Hellow World!!');\par
+\par
+\ul\b Basic event handlers\ulnone\b0\par
+Earlier we saw how to register an event handler for document.ready. jQuery allows us to access almost any other event that is raised via the JavaScript DOM, as well as several others. While a deeper discussion of event handlers will begin in module 2, let's take a look at a few to get us one step closer to creating real applications using JQuery.\par
+\par
+\b Registering event handlers\b0\par
+To register an event handler, we will call the jQuery method that matches the event handler we're looking for. For example, if we wanted the click event, we'd use the click method. Methods for wiring up event handlers allow us to pass either an exxisting function, or create an anonymous method. Most developers prefer to use an anonymous metho, as it makes it easier to keep the namespace clean and not have to name another item.\par
+\line Inside of the event handler code, we can access the object that raised the event by using this. One important note about this is it is not a jQuery object but rather a DOM object, we can convert it by using the jQuery constructor as we've seen before: $(this).\par
+\par
+\b Examples\b0\par
+//click event\par
+//raised when the item is clicked\par
+$(item).click(function()\{\par
+\tab alert('clicked!');\par
+\});\par
+\par
+//hover event\par
+//raised when the user moves their mouse over the item\par
+$(item).hover(function()\{\par
+\tab alert('hover!');\par
+\});\par
+\par
+//mouseout\par
+//raised when the user moves their mouse away from an item\par
+$(item).mouseout(function()\{\par
+\tab alert('mouse out');\par
+\});\par
 }
  

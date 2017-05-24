@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basic event handlers</title>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+        <style>
+            body{
+                font-size: 32px;
+            }
+            div{
+                margin-top: .1em;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="target">Demo Element</div>
+
+        <div id="display">Another demo</div>
+
+        <script>
+            $(function(){
+                //will execute on page load
+
+                //$('#target').click(function(){
+                    //will execute when the target div is clicked
+                    //$(this).attr('style', 'color:red');
+                    //$('#display').text('Div was clicked');
+                //});
+
+                //create an click event handler for all the divs
+                $('div').click(function(){
+                    //will execute each time a div is clicked
+                    $('#target').attr('style', 'color:red');
+                    $('#display').attr('style', 'color:blue');
+                    $(this).attr('style', 'color:green');
+                });
+            });
+        </script>
+    </body>
+</html>
