@@ -242,5 +242,18 @@ currentElement.addClass('class-name');\par
 Removing a class from an element is just as easy as calling removeClass. If the element in question was not already decorated with the class you're trying to remove, the method will simply return.\par
 \par
 currentElement.removeClass('class-name');\par
+\par
+\ul\b Working with attributes\ulnone\b0\par
+As we've discussed, HTML allows us to both work with existing attributes, as well as add our own attributes as needed. This allows us to decorate elements with various flags and notes that we can use to enable functionality we desire.\par
+\par
+\b Retrieve an attribute value\b0\par
+To retrieve an attribute value, simply use the attr method with one parameter, the name of the attribute we wish to receive\par
+\par
+alert($('selector').attr('attribute-name'));\par
+\par
+\b Modifying an attribute value\b0\par
+To update an attribute value, use the attr method with two parameters, the first being the name of the attribute and the second the new value we wish to use.\par
+\par
+$('selector').attr('attribute-name', 'value');\par
 }
  
