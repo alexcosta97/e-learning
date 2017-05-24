@@ -255,5 +255,19 @@ alert($('selector').attr('attribute-name'));\par
 To update an attribute value, use the attr method with two parameters, the first being the name of the attribute and the second the new value we wish to use.\par
 \par
 $('selector').attr('attribute-name', 'value');\par
+\par
+\ul\b Modifying content\ulnone\b0\par
+Beyond just working with classes and attributes, jQuery also allows us to modify the content of an element as well.\par
+\par
+\b Updating text and HTML\b0\par
+jQuery offres us the ability to update the text inside of an element by using the text method and the HTML inside of an element by using the html method. Both methods will replace the content of an element.\par
+\line The main difference between the two methods is html will update (and parse) the HTML that's passed into the method, while text will be text only. If we pass markup into the text method, it will be HTML encoded, meaning all tags will be converted into the appropriate syntax to just display text, rather than markup. In other words, < will become &lt; and and just display as < in the browser. By using text when we're only expecting text, we can mitigate cross-site scripting attacks.\par
+\par
+\b Examples\par
+\b0 //update the text\par
+$(item).text('Hello, world!');\par
+\par
+//update the HTML\par
+$(item).html('<h1>Hellow World!!');\par
 }
  

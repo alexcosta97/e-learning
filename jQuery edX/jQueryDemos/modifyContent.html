@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modifying Content</title>
+        <meta charset="utf-8"/>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+        <style>
+            body{
+                font-size: 32px;
+            }
+            div{
+                margin-top: .8em;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="target"></div>
+        <script>
+            $(function(){
+                //will execute when the page is ready
+
+                //Adding an html paragraph inside a div using the html method
+                $('#target').html('<p id="addText"></p>');
+
+                //adding text to the previously created paragraph using the text method
+                $('#addText').text('Just adding some random text');
+            });
+        </script>
+    </body>
+</html>
