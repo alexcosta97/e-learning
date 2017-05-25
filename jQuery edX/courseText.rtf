@@ -662,6 +662,42 @@ one shares a similar syntax with on, only there is no delegation option, We simp
 <button id="single">This only works once</button>\par
 <div id="output"></div>\par
 \par
-$\par
+$(function()\{\par
+\tab $('#single').one('click', function()\{\par
+\tab\tab $('#output').text('You clicked on the button');\par
+\tab\});\par
+\});\par
+\par
+\ul\b Triggering events\ulnone\b0\par
+Typically events are raised by the user performing the action themselves. But there may be scenarios where we may want to raise the event progamatically. For example, we may want to allow a user to click on a button to refresh data, or perform the operation on your own through code. jQuery allows us to raise events through one of three methods, either the registration method, such as click, or one or two trigger methods: trigger or triggerHandler.\par
+\par
+\b Helper method\b0\par
+The easiest method to use to trigger an event is simply call the registration function without any parameters. For example, $('#demo').mouseenter() will automatically perform the mouseenter event for the element with an id of demo.\par
+\par
+\b trigger and triggerHandler\b0\par
+Using a similar syntax to on, trigger and triggerHandler allow us to provode the name of the event as a parameter. The difference between the two is trigger will execute for all elements in the collection, while triggerHandler only executes the handler for the first element.\par
+\par
+<button type="button" id="first">First button</button>\par
+<button type="button" id="Second">Second button</button>\par
+<button type="button" id="trigger">trigger</button>\par
+<button type="button" id="trigger-handler">triggerHandler</button>\par
+\par
+$(function()\{\par
+\tab $('button').click(function()\{\par
+\tab\tab //display the id of the button\par
+\tab\tab alert(this.id);\par
+\tab\});\par
+\par
+\tab $('#trigger').click(function()\{\par
+\tab\tab //would alert every button's id\par
+\tab\tab //including the last two\par
+\tab\tab $('button').trigger('click');\par
+\tab\});\par
+\par
+\tab $('#trigger-handler').click(function()\{\par
+\tab\tab //would alert "first"\par
+\tab\tab $('button').triggerHandler('click');\par
+\tab\});\par
+\});\par
 }
  
