@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dynamic Event Handlers</title>
+        <meta charset="utf-8"/>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+        <style>
+            body{
+                font-size: 32px;
+            }
+            div{
+                margin-top: .1em;
+            }
+            .btn{
+                font-size: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <div><button type="button" class="btn validate">First button</button></div>
+            <div><button type="button" class="btn validate">Second button</button></div>
+            <div><button type="button" class="btn">Third button</button></div>
+        </form>
+
+        <div id="display"></div>
+
+        <script>
+            $(function(){
+                //will execute when the page is ready
+
+                $('form').on('click', 'button.validate', function(){
+                    //will execute when one of the two first buttons is clicked
+                    $('#display').text('Clicked!!');
+                });
+            });
+        </script>
+    </body>
+</html>

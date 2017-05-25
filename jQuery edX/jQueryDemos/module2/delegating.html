@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Delegating event handlers</title>
+        <meta charset="utf-8"/>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+        <style>
+            body{
+                font-size: 32px;
+            }
+            div{
+                margin-top: .1em;
+            }
+            .btn{
+                font-size: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <button type="button" class="btn validate">Click here!!!</button>
+            <div id="display"></div>
+        </form>
+
+        <script>
+            $(function(){
+                //will execute when the page is ready
+                //delegate function that will show that the button was clicked
+                $('form').delegate('.validate', 'click', function(){
+                    //will display an alert saying that the button was clicked
+                    alert('You have clicked a button');
+                });
+
+                $('#display').html('<button type="button" class="btn validate">Click me!</button>');
+            });
+        </script>
+    </body>
+</html>

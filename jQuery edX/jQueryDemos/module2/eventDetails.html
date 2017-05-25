@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event Details</title>
+        <meta charset="utf-8"/>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+        <style>
+            body{
+                font-size: 32px;
+            }
+            div{
+                margin-top: .1em;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="target">Demo Element</div>
+
+        <div id="display"></div>
+
+        <script>
+            $(function(){
+                //will execute when the page is ready
+                $('#target').click(function(event){
+                    //will execute when the user clicks the div
+                    output = "User clicked on " + event.pageX + ", " + event.pageY;
+                    $('#display').text(output);
+                });
+            });
+        </script>
+    </body>
+</html>

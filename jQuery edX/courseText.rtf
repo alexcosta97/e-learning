@@ -397,5 +397,271 @@ Fortunately, in case we hadn't already guessed, jQuery provides a robust API for
 \b Registering event handlers\b0\par
 jQuery provides several ways to register an event handler. As we saw in Module 1, the most common way of registering an event handler is to call the function on the jQuery object that corresponds to the event we wish to capture, such as click. We will notice that the jQuery API provides functions for almost any JavaScript or DOM event.\par
 \par
+We will discuss many of these event handlers as we continue on this course, but we won't cover every function available - that would take quite a while, and probably bore almost everyone. But we will cover the ones we'll use most frequently. In addtion, we'll also cover the various ways we can register an event handler, which will have an impact on the way we write our code in many scenarios.\par
+\par
+\ul\b Event object\ulnone\b0\par
+When we register an event handler from a location other than the object that will be raising the event, there's a disconnect between those two objects. If we're maintaining a 1:1 ratio between event handlers and events, meaning that each event that we're interested in has its own function, then generally there isn't an issue in assuming we know exactly what happened, and on what object it happened to.\par
+\par
+However, even if we are maintaining that 1:1 ratio, that can be a brittle relationship. if something changes on the object, the code might not work with the updates that have been made.\par
+\par
+In addition, we will often reuse a single event handler for multiple events. The power of the selector syntax supported in jQuery allows us to wire up event handlers for events raised by many controls in one line of code. The code below would register the anonymous function with every element decorated with the sample class. The number of elements with that class couls change over the course of the page's development, or even the execution of other scripts.\par
+$('.sample').click(function()\{alert('Hello!');\});\par
+\par
+When creating event handlers, it's often best not to make any assumptions about the object that raised the event, even its ID. Not only can things change that might break our code, if we avoid this link between the event handler and the object our code can become both more reusable and flexible.\par
+\par
+\b this\b0\par
+As we've already discussed, when we're inside of an event handler, this is automatically assigned to the object that raised the event.\par
+\par
+The most important thing to remember about this is it will be a DOM object and not a jQuery object. This means all of the power jQuery provides won't be available directly off this. in order to use jQuery with the object, it needs to be converted to a jQuery object. This is accomplished by simply calling $(this).\par
+\par
+The sample below would update the text of the button that was clicked to Clicked!!\par
+<button type="button">Click!</button>\par
+$('button').click(function()\{\par
+\tab //this is linked to button that was clicked, but it is a DOM object\par
+\tab //convert it to a jQuery object by using jQuery factory\par
+\tab $(this).text('Clicked!');\par
+\});\par
+\par
+\b event object\b0\par
+Beyond just the object that raised the event, jQuery (and JavaScript) also pass an event object to the event handler. This object can be used to determine additional information, such as where the mouse was when the user performed the operation. We might use the information to create hotspots on an element. The event object offers many properties we can query.\par
+//Write out the x/y coordinates of the mouse click\par
+$('button').click(function(e) \{\par
+\tab $('#output').text(e.pageX + ',' + e.pageY);\par
+\});\par
+\par
+\ul\b Click\ulnone\b0\par
+jQuery allows us to use functions to wire up event handlers to most every JavaScript or DOM event. Here are some of the most common ones we'll use when creating code using jQuery\par
+\par
+\b click\b0\par
+By far, the most common event handler is click. click, of course, is raised whenever the user clicks on an item, either by using their mouse or tapping on it with their finger. We can register click for nearly any HTML control, not just buttons. This allows us to "convert" other objects, such as div elements, into buttons. We can use this to provide the rich UI we want without being locked into using specific HTML controls, or essentially create our own controls.\par
+\par
+To register the click event, we simply have to use the click function.\par
+\par
+\b dblclick\b0\par
+As the name implies, dblclick is raised when the user double clicks on an element. The dblclick event can be helpful when creating an application that is designed to behave more like a locally installed app. However, if we're going to use the dblclick event, we have to ensure the user knows to double click on items.; that's not a common task on a web page.\par
+It is used the same way the click method is used.\par
+\par
+\ul\b Forms\ulnone\b0\par
+\par
+\b blur\b0\par
+The blur event is raised when a form element loses what's known as focus. This simply means the user has clicked elsewhere on the page or as tabbed away from the form control they were on. blur is often used for validation, as we know the user has left the form field. While this was originally designed for input fields, many modern browsers allow the blur event to be raised for any element type.\par
+\par
+To register a handler with the blur event, we can simply call the blur function:\par
+$('#target').blur(function()\{\par
+\tab //retrieve the value using val\par
+\tab var value = $('#target').val();\par
+\tab alert(value);\par
+\});\par
+\par
+\b change\b0\par
+The change event is raised whenever an element is modified. However, the change event is limite to input, textarea and select elements only.\par
+\par
+Besides just validation, the change event can be used to create interfaces such as cascading dropdown lists. If the list of available values for one dropdown list depends on the selected value of another, change is perfect for that. We would register the event handler on the parent, and when it changes update the child dropdown list. Using the following HTML:\par
+\par
+<style>\par
+\tab .form-control\{\par
+\tab\tab font-family: Verdana;\par
+\tab\tab font-size: 16px;\par
+\tab\}\par
+</style>\par
+\par
+<select id="parent" class="form-control">\par
+\tab <option>Select:</option>\par
+\tab <option>First</option>\par
+\tab <option>Second</option>\par
+</select>\par
+\par
+<select id="child" class="form-control">\par
+\tab <option>Choose a value from the left</option>\par
+</select>\par
+\par
+We will use the following code to update the child:\par
+$(function()\{\par
+\tab $('#parent').change(function()\{\par
+\tab\tab var value = $('#parent').val();\par
+\tab\tab $('#child').empty();\par
+\tab\tab $('#child').append('<option>1 - ' + value + '</option>');\par
+\tab\tab $('#child').append('<option>2 - ' + value + '</option>');\par
+\tab\});\par
+\});\par
+\par
+\b focus\b0\par
+focus is essentially the opposite of blur. focus is raised when the user clicks, taps, or tabs into a particular control, typically because they want to change its value. We can use focus to provide inline help for a form, such as letting the user know what format you expect for a phone number. This is demostrated below.\par
+\par
+One thing to note is we have the ability to "chain" registrations and other calls when using jQuery. Many jQuery functions return the object we originally accessed (the element with the id phone below). As a result, we can simply call blur right after calling focus.\par
+\par
+<!-- sample HTML -->\par
+<div>\par
+\tab <label for="phone">Phone</label>\par
+\tab <input type="text" id="phone" />\par
+\tab <span id="phone-help"></span>\par
+</div>\par
+\par
+//sample JavaScript\par
+$('#phone').focus(function()\{\par
+\tab //control has focus. Display help\par
+\tab $('#phone-help').text('Please enter your phone number as all digits');\par
+\}).blur(function()\{\par
+\tab //control lost focus. Clear help\par
+\tab $('#phone-help').attr('disabled', 'true');\par
+\});\par
+\par
+\ul\b Mouse mouvement\ulnone\b0\par
+\b mouseenter and mouseleave\b0\par
+mouseenter is raised whenever the user moves their mouse over an element, and mouseleave is raised when the user moves their mouse away from an element. We might use this to provide a tooltip or other contextual information.\par
+\par
+<!-- sample HTML -->\par
+<div>\par
+\tab <span id="target">Basic data</span>\par
+\tab <span id="target-help"></span>\par
+</div>\par
+\par
+//sample JavaScript\par
+$('#target').mouseenter(function()\{\par
+\tab $('#target-help').text('More data');\par
+\}).mouseleave(function()\{\par
+\tab $('#target-help').text('');\par
+\});\par
+\par
+\b hover\par
+\b0 The hover event is logically equivalent to both the mouseenter and mouseleave events. What makes hover special is you can actually register two event handlers in one call. The first parameter hover accepts is for mouseenter, or when the hover begins, and the second parameter is for mouseout. The code below is the equivalent of the one above:\par
+$('#target').hover(function()\{\par
+\tab $('#target-help').text('More data');\par
+\}, function()\{\par
+\tab $('#target-help').text('');\par
+\});\par
+\par
+\ul\b\fs28 Modifying elements\ulnone\b0\par
+\ul\b\fs22 Replacing element HTML and text\ulnone\b0\par
+We've always had the ability to modify the DOM using JavaScript. Where jQuery comes into play is in how it eases the process. As we've seen, jQuery makes it easier to select items, and handles cross browser support for us. This allows us to focus more attention on building the UI for our users, and implement the necessary logic, and less time on how to make the page behave the way we want.\par
+\par
+In this section, we'll talk about some of the functions jQuery offers for accessing and replacing the values of elements, attributes and CSS. Some of this was introduced in Module 1, but there are a few new features we'll introduce here.\par
+\par
+\b val\b0\par
+If we wish to retrieve the value of an input control, all we have to do is call val().\par
+\par
+var value = $('#some-input-control').val();\par
+If we wish to set the value, simply pass the new value in as a parameter to the val function. If we wish to set a textbox to a blank value, we simply have to use an empty string.\par
+\par
+\b html and text\b0\par
+The two must basic functions for working with the content of an element are text and html. Both functions will return the entire contents of the element (if called without a parameter), or replace the entire contents with the parameter we provide. The difference between the two is encoding.\par
+\par
+If we use text, all special HTML characters, such as < and >, will be replaced with their encoded equivalents. This can be helpful when working with data from an untrusted source as it will not be written out to the page as HTML.\par
+\par
+\ul\b Working with attribute and classes\ulnone\b0\par
+To work with an manipulate attributes, jQuery provides the attr function. Among the many overloads of the function, the two most common are the ones that take one or two parameters.\par
+\par
+If we need to retrieve the value of an attribute, we can do this by simply calling attr(name). To change the value of an attribute, we simply have to call attr('name', 'attributeValue').\par
+\par
+Even special attributes such as id, name and class are attributes, and can be both accessed and updated using the exact same syntax. However, certain attributes, like class and style have functions all of their own.\par
+\par
+\b Working with classes\b0\par
+When we're updating a UI the simplest, and most common, way of making changes is thorugh CSS classes. To assist us, jQuery provides addClass and removeClass. As we might expect, addClass will add the class we provide as a parameter and removeClass will remove it.\par
+\par
+One nice thing about removeClass is it will not throw an error if the class doesn't exist. As a result, if we know we don't want a class, but don't know if it's currently being applies, we can simply call removeClass knowing the code won't fail.\par
+\par
+\ul\b Working with styles\ulnone\b0\par
+As a general rule, if we want to adjust the style of an element the best way to do this is through classes. By working with classes, we gain the ability to reuse that style in other places. In addition, we separate the style from the code, which allows us to easily change the style as needed without having to update the JavaScript.\par
+\par
+But we may still find ourselves needing to modify the CSS of an element directly. If this is the case, we could manipulate an item's style by simply using attr.\par
+$('#target').attr('style', 'color: red');\par
+\par
+That would work, but it's not ideal. We also have to remember that attr is going to replace the style attribute, not update it, so any existing styles would be lost. Trying to add or remove styles using attr becomes a challenge.\par
+\par
+Setting styles is simply a matter of setting a bunch of property/value pairs. Because of that fact, jQuery exposes an item's style as these pairs through a special function, css.\par
+\par
+css will parse an item's style property as the set of key value pairs, allowing us to both read and write each property individually.\par
+If we want to retrieve the value of a CSS property, we call css(property)\par
+var color: $('#target').css('color');\par
+\par
+If we wish to set a property,  we have to call css(property, newValue)\par
+$('#target').css('color', 'red')\par
+\par
+If we want to set multiple properties, we can create a JavaScript object with the property/value pairs, and then pass the object into the css function. We can create an object like we would create a normal JavaScript object.\par
+\line The catch, of course, is properties like background-color. Obviously, JavaScript can't work with a hyphen in a name. We could create an object with that property by either using camel casing like \{backgroundColor: 'red'\} ,or set the property names as strings. The end result of the JavaScript would be an element with red text and a yellow background.\par
+\par
+var style = \{\par
+\tab color: 'red',\par
+\tab backgroundColor: yellow\par
+\};\par
+\par
+$('#target').css(style);\par
+\par
+\ul\b\fs28 Registering event handlers\ulnone\b0\par
+\ul\b\fs22 Dynamic Event handlers\ulnone\b0\par
+Chances are, when we're creating event handlers, we'll use the function that matches the event the vast majority of the time. After all, it's straight forward to type out, and later read, $('selector').click(function() \{\}); when we're comfortable with jQuery. But this approach does have only drawback: the only event we're going to register with that syntax is click. What happens if we want to be able to register the same event handler for multiple events? Or what about a scenario where we need to determine the event based on something else that happens on the screen - maybe changing mouseenter to click?\par
+\par
+With on and off, we can register and unregister event handlers, respectively, while passing in the name of the event, or events, as a string.\par
+\par
+\b on and off\b0\par
+Both on and off share the same syntax:\par
+$('selector').on/off('events', 'selector (optional)', function)\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 events: a space separated list of the events we wish to register such as 'click' or 'mouseenter click'\par
+{\pntext\f0 2.\tab}selector (optional): an optional selector. we will discuss this in the next unit\par
+{\pntext\f0 3.\tab}function: the function we wish to call. As per usual, this can be either a regular function or, typically, an anonymous function.\par
+
+\pard\sl240\slmult1\par
+\b Which on should we use?\par
+\b0 Often the choice between using click(function() \{\}) or on('click', function()\{\}) is a matter of personal preference. If we need, however, to dynamically choose the event, or if we need multiple events for the same event handler, using on is our only choice. In addition, on offers one more feature, known as delegation which we'll explore in the next chapter.\par
+\par
+\ul\b Delegation\b0\par
+\ulnone One of the concepts we'll explore later is the power jQuery offers developers for modifying the DOM programatically. We can easily add buttons, div elements, etc., as needed.\par
+\par
+The question then becomes, what would happen in the following scenario?\par
+\par
+<button>Click</button>\par
+<div id="placeholder"></div>\par
+\par
+$(function()\{\par
+\tab //document.ready (on load event)\par
+\par
+\tab //register a click event handler with all button elements\par
+\tab $('button').click(function() \{ alert('hello'); \});\par
+\par
+\tab //create a new button\par
+\tab $('#placeholder').html('<button>New button</button>');\par
+\});\par
+\par
+When the JavaScript code executes, a new button will be created after we registered an event handler for all buttons. Does the new button get the same click event handler?\par
+\par
+\b Introducing delegate\b0\par
+In order for click, or, in some cases, on, to work, the element must be already on the page. As a result, if we registered an event handler, and later created a new element that would match the selector we used, the event handler wouldn't apply.\par
+\par
+Enter delegate. Registering an event handler using delegate, as demosntrated, is similar to on, with one major difference: New elements, will automatically have the event handler applied.\par
+\par
+Using the above example, if we updated the click event handler registration to the new code below, both the existing button and new button would have the same event handler.\par
+\par
+$(document).delegate('button', 'click', function()\{ alert('hello'); \});\par
+The delegate syntax is $(selector).delegate(selector, events, eventHandler)\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 $(selector): in order to use delegate, the jQuery factory must return a parent of the object we wish to wire up\par
+{\pntext\f0 2.\tab}selector: From the parent, we need to provide a selector to retrieve the necessary elements\par
+{\pntext\f0 3.\tab}events: Same events string as before\par
+{\pntext\f0 4.\tab}eventHandler: Same event handler function as before\par
+
+\pard\sl240\slmult1\par
+One important note about using delegate is we are required to start at a parent object, rather than at the object itself. For example, in the scenario proposed above, we want to register the same click event handler for all buttons. Normally the selector would be 'button'. But, delegate requires we start at a parent, and then the selector we provide as the first parameter will locate the elements from that parent. Since we want all buttons, we can use document, which will give us the entire document.\par
+\par
+\b Delegating event handlers with on\b0\par
+With jQuery 1.7, delegate is superseded by on. As we've seen in the prior unit, on had a selector parameter as well. If we do not provide that selector, on behaves like a normal event handler registration. But, if we do provide a selector, it will use delegation to register the event handlers.\par
+\par
+One important thing to note is the order of parameters for on and delegate. With on, we list the events first and the selector second. With delegate, it's selector followed by events.\par
+\par
+\ul\b Single execution\ulnone\b0\par
+When we register an event handler with an object, that event handler will remain with that object until we unregister it, which we could do with a function such as off.\par
+\line However, what if we know in advance we only want the ecent to execute once? For instance, if we're creating a button that will submit a form, we only want the user to click the button once. With jQuery, we can avoid the user from submitting a form more than once by indicating that the event should only execute once.\par
+\par
+\b one\b0\par
+one shares a similar syntax with on, only there is no delegation option, We simply provide the name of the event, and the event handler.\par
+\par
+<button id="single">This only works once</button>\par
+<div id="output"></div>\par
+\par
+$\par
 }
  
