@@ -19,37 +19,35 @@
     </head>
     <body>
         <div id="container">
-            <button type="button" id="first">First button</button>
-            <button type="button" id="second">Second button</button>
-            <button type="button" id="trigger">Trigger</button>
-            <button type="button" id="triggerHandler">TriggerHandler</button>
+            <button type="button" class="btn updater">First</button>
+            <button type="button" class="btn updater">Second</button>
+            <button type="button" class="btn" id="target">Trigger</button>
         </div>
-        <div id="display"></div>
+        <div id="display">Hi</div>
 
         <script>
             $(function(){
                 //will execute when the page loads
-                //storing the content of display
-                var containerText = $('#display').text();
-
-                $('button').click(function(){
+                $('.updater').click(function(){
                     //will execute when a button is clicked
-                    //adding a 'You clicked a button' to the list
-                    $('#display').html(containerText + '<br/>You clicked a button');
-                    containerText = $('#display').text();
+                    //storing the content of display
+                    var existingText = $('#display').text();
+                    var buttonText = $(this).text();
+                    $('#display').text(existingText + ' - ' + buttonText);
                 });
 
-                $('#trigger').click(function(){
-                    //will execute when the trigger button is clicked
-                    //is going to trigger a click event in all of the buttons
-                    $('button').trigger('click');
-                });
+                $('#target').click(function(){
+                    //will execute when the target button is clicked
 
-                $('#triggerHandler').click(function(){
-                    //will execute when the triggerHandler button is clicked
-                    //is going to trigger a click event only on the first element
-                    $('button').triggerHandler('click');
-                })
+                    //perform a click on the buttons, actually makes the event occur
+                    //$('.updater').click();
+
+                    //just run the method of the event handler
+                    //$('.updater').trigger('click');
+
+                    //just execute the first click handler
+                    $('.updater').triggerHandler('click');
+                });
             });
         </script>
     </body>

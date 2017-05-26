@@ -18,20 +18,23 @@
     </head>
     <body>
         <form>
-            <button type="button" class="btn validate">Click here!!!</button>
-            <div id="display"></div>
+            <div><button type="button" class="btn" id="creator">Create button</button></div>
+            <div><button type="button" class="btn updater">Existing Button</button></div>
+            <div id="target"></div>
         </form>
+
+        <div id="display"></div>
 
         <script>
             $(function(){
-                //will execute when the page is ready
-                //delegate function that will show that the button was clicked
-                $('form').delegate('.validate', 'click', function(){
-                    //will display an alert saying that the button was clicked
-                    alert('You have clicked a button');
+                $('#creator').click(function(){
+                    $('#target').html('<button type="button" class="btn updater">New Button</button>');
                 });
 
-                $('#display').html('<button type="button" class="btn validate">Click me!</button>');
+                $('form').on('click', 'button.updater',  function(){
+                    //will display a message
+                    $('#display').text('You clicked a button!');
+                })
             });
         </script>
     </body>

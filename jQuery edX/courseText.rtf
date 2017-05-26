@@ -699,5 +699,175 @@ $(function()\{\par
 \tab\tab $('button').triggerHandler('click');\par
 \tab\});\par
 \});\par
+\par
+\ul\b\fs28 Adding new elements\ulnone\b0\par
+\ul\b\fs22 Manipulating the DOM\ulnone\b0\par
+As we've already seen, html and text can be used to update the page. The problem with those functions, however, is those functions replace the contents of the element they're called on, rather than modifying the content. We could keep appending text, but after a while our code would fall under its own weight. jQuery offers several functinos to easily manipulate the DOM.\par
+\par
+\b Internal DOM manipulation\b0\par
+If we wish to update the contents of an element by adding or removing elements, we can use append, appendTo, prepend and prependTo. We must however remember that the element we target will become the container for the new element. So using append will add a new element inside the target, not after the element.\par
+\par
+\b prepend and prependTo\b0\par
+prepend and prependo add new content to the begining of the contents of a target. The difference between them is the order in which the parameters and target are passed in. The lines of code below are semantically identical.\par
+\par
+//prepend is called on the target, and accepts the new content as a parameter\par
+$('#target#).prepend('<div>New content</div>');\par
+\par
+//prependTo is called on the new content, and acceepts the target as the parameter\par
+$('<div>New content</div>').prependTo('#target');\par
+\par
+If we had the following starting HTML:\par
+<div id="target">\par
+\tab <div>existing content</div>\par
+</div>\par
+\par
+And executed either of the lines of JavaScript above, the result would be as follows:\par
+<div id="target">\par
+\tab <div>New content</div>\par
+\tab <div>existing content</div>\par
+</div>\par
+\par
+\b append and appendTo\b0\par
+append and appendTo add new content to the end of the contents of a target. The difference between them is the order in which the parameters and target are passed in. The lines of code below are semantically identical.\par
+\par
+//append is called on the target, and accepts the new content as a parameter\par
+$('#target').append('<div>New content</div>');\par
+\par
+//appendTo is called on the new content, and accepts the target as a parameter\par
+$('<div>New content</div>').appendTo('#target');\par
+\par
+\ul\b External DOM manipulation\ulnone\b0\par
+Functions such as prependd add new content inside the target, using the target as a container for the new content. If we wish to add new content before or after an existing element, jQuery provides after, insertAfter, before and insertBefore.\par
+\par
+\b after and insertAfter\b0\par
+after and insertAfteer both add new content after the target, on the same level of the hierarchy, rather then inside the target. The difference between the two functions is the order of parameters and target. After id calles on the target, and accepts the new content as a parameter, whilst insertAfter is called on the new content, and accepts the target as a parameter. Using after to create some content:\par
+$('#target').after('New content');\par
+\par
+If we had the following HTML as the starting point:\par
+<div id="target">\par
+\tab <div>existing content</div>\par
+</div>\par
+\par
+After calling the function, the result would be the following:\par
+
+\pard\sl240\slmult1 <div id="target">\par
+\tab <div>existing content</div>\par
+</div>\par
+
+\pard\sl240\slmult1 <div>New content</div>\par
+\par
+\b before and insertBefore\b0\par
+before and insertBefore both add new content before the target, on the same level of the hierarchy, rather than inside the target, The difference between the two functions is the order of parameters and target. before is called on the target, and accepts the new content as a parameter, whilst insertBefore is called on the new content, and accepts the target as a parameter\par
+\par
+Using $('#target').before('New content'); on the previous starting HTML would result in:\par
+<div>New content</div>\par
+
+\pard\sl240\slmult1 <div id="target">\par
+\tab <div>existing content</div>\par
+</div>\par
+
+\pard\sl240\slmult1\par
+\ul\b Wrapping content\ulnone\b0\par
+The will be times we'll need to manipulate the DOM by surrounding existing content with a new element. jQuery provides several wrapping functions to perform that type of an operation.\par
+\par
+\b wrapping functions\b0\par
+For the wrap and wrapAll demonstrations below, we'll be using this HTML as the starting point:\par
+<div id="target">\par
+\tab <div class="demo">Item one</div>\par
+\tab <div class="demo">Item two</div>\par
+</div>\par
+\par
+\b wrap\b0\par
+The wrap function wraps each item with the element passed into the function. As a result, if we called $('#target').wrap('<section></section>'); the result would be:\par
+<section>\par
+\tab <div id="target">\par
+\tab\tab <div class="demo">Item one</div>\par
+\tab\tab <div class="demo">Item two</div>\par
+\tab </div>\par
+</section>\par
+\par
+Where things get a little more interesting is if we used a selector that returned multiple items. Imagine the following JavaScript:\par
+$('.demo').wrap('<section></section>');\par
+\par
+The result would be:\par
+<div id="target">\par
+\tab <section>\par
+\tab\tab <div class="demo">Item one</div>\par
+\tab </section>\par
+\tab <section>\par
+\tab\tab <div class="demo">Item two</div>\par
+\tab </section>\par
+</div>\par
+\par
+We have to notice that wrap will wrap each element returned by the selector with the new element.\par
+\par
+\b wrapAll\b0\par
+wrapAll behaves differently. Rather then wrapping each returned element, wrapAll wraps all returned content with one new element. As a result, the JavaScript $('#demo').wrapAll('<section></section>'); will result in:\par
+<div id="target">\par
+\tab <section>\par
+\tab\tab <div class="demo">Item one</div>\line\tab\tab <div class="demo">Item two</div>\par
+\tab </section>\par
+</div>\par
+\par
+\b wrapInner\b0\par
+wrapInner is different from both wrap and wrapAll in that wrapInner operates on the children of the target, rather than on the target itself. If we started with the following HTML:\par
+<div id="target">\par
+\tab <div>Item one</div>\par
+\tab <div>Item two</div>\par
+</div>\par
+\par
+and executed the JavaScript below:\par
+$('#target').wrapInner('<section></section>');\par
+\par
+the result would be:\par
+<div id="target">\par
+\tab <section>\par
+\tab\tab <div>Item one</div>\par
+\tab\tab <div>Item two</div>\par
+\tab </section>\par
+</div>\par
+\par
+\ul\b\fs28 Animations\ulnone\b0\par
+\ul\b\fs22 Introducing Animations\ulnone\b0\par
+Up until now, whenever we've manipulated the DOM the results have just appeared. While this is just fine, ir can sometimes be a bit jarring to the user. It would certainly be nice if we could have just a little animation, to either make our page look more professional, or to draw the user's attention to the new or updated content\par
+\par
+\b hide, show and toggle\b0\par
+jQuery offers many animations. The first two are hide and show. As we may suspect, hide causes something to disappear from the screen, while show causes something to appear. toggle, on the other hand, determines the current status of the item in question and changes it. So if the item was currently hidden, toggle would call show, and if the item was visible, toggle would call hide.\par
+\par
+Behind the scenes, jQuery controls visibility by using the display property in CSS. When we hide an item, jQuery will store the current value of display (such as inline or block) and then set the display to none. When we call show, jQuery resets the display CSS property back to the value it had stored before.\par
+\par
+hide, show and toggle all take several parameters, including a set of options that allow us to control things like "easing", which is how the animation is going to take place. Most commonly the only parameter we will provide is the duration we wish the animation to take place over, in milliseconds.\par
+\par
+<div id="target">Show or hide</div>\par
+<button type="button" id="btn-toggle">Toggle</button>\par
+\par
+$(function()\{\par
+\tab $('#btn-toggle').click(function()\{\par
+\tab\tab //animation wil take on second (slow af)\par
+\tab\tab $('#target').toggle(1000);\par
+\tab\});\par
+\});\par
+\par
+One final note about this, and all animations. Animations in jQuery return a promise object, which can be used to run code after an animation completes. We'll discusse promises in Module 3.\par
+\par
+\ul\b Animations in action\ulnone\b0\par
+In the prior demonstrations and videos, we saw how to use show, hide and toggle to easily modify the visibility of an item, while also adding a little bit of animation to the UI. While this is certainly a neat trick, there's a very good change we'll want to start a UI with a section already hidden.  Using the following scenarion:\par
+<form>\par
+\tab <div>\par
+\tab\tab <label>Name: </label>\par
+\tab\tab <input type="text"/>\par
+\tab </div>\par
+\tab <div>\par
+\tab\tab <label>Additional information:</label>\par
+\tab\tab <input type="text"/>\par
+\tab </div>\par
+</form>\par
+\par
+In the above form, we want to prompt the user for their name, and additional information. But what happens if that additional information is optional? It would be nice to provide some form of a button, checkbox, or otherwise, to enable the user to display the additional information section, rather than always displaying it.\par
+\par
+Or, imagine if we were building a page where we had additional details, maybe a user agreement, that many people will ignore. Displaying that on the page takes up unnecessary real estate.\par
+\par
+In both of those scenarions, it'd be great if we could hide the item, and only if the user indicates they want to see the extra data should we show it to them.\par
+We can accomplish this by starting with the following HTML, updated from before:\ul\b\par
 }
  
