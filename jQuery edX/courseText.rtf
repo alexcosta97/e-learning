@@ -1353,6 +1353,188 @@ The basic steps are as follows:\par
 \tab\});\par
 \tab\par
 \tab return deferred.promise();\par
-\}\ul\b\par
+\}\par
+\par
+\ul\b\fs28 JavaScript Object Notation\par
+\fs22 Overview of JSON\ulnone\b0\par
+One of the most powerful capabilities JavaScript offers is the ability to make calls to the server. This allows us as developers to create web pages that behave like locally installed applications, and access server-based resources, such as a database, without having to refresh the entire page.\par
+\par
+The catch, of course, is how do we take our in-memory data and send it to the server, and how do we convert the server's reponse into an in-memory object. This is where JSON comes into play. JSON, or JavaScript Object Notation, can be used to represent the object as a string. The process of converting an in memory object as a string representation, including JSON, is known as serialization.\par
+\par
+JSON is a language independant, an open standard and it stores data in very basic, key/value pairs. JavaScript provides built-in support for working with JSON by utilizing the JSON object. The JSON object has two main methods, stringify(convert to JSON) and parse(convert to object).\par
+\par
+\ul\b JSON Syntax\ulnone\b0\par
+A JSON object uses a notation that's similar to that of a JavaScript object. If we wanted to create a JavaScript object with two properties, firstName and lastName, we'd use the following code:\par
+var person = \{\par
+\tab firstName: 'Alex',\par
+\tab lastName: 'Costa'\par
+\}\par
+\par
+When using JSON, the property names are strings, rather than variable names. The only difference between the syntax above and below is the quotes around lastName and firstName.\par
+\par
+var person = \{\par
+\tab 'firstName': 'Alex',\par
+\tab 'lastName': 'Costa'\par
+\}\par
+\par
+If we wish to create a more complex object, one that contains another object, we simply contain the second object in a new set of curly braces.\par
+\par
+And, if we want an array, we will use square brackets\par
+\ul\b\par
+Serializing objects\ulnone\b0\par
+JavaScript provides a native utility for converting to JSON (serializing), and converting JSON strings to object (deserializing)\par
+\par
+To serialize an object, we use JSON.stringify.\par
+\par
+//Create an instance of Object, a basic JavaScript object\par
+var person = new Object();\par
+\par
+//add properties\par
+person.firstName = 'Alex';\par
+person.lastName = 'Costa';\par
+\par
+//serialize\par
+var jsonString = JSON.stringify(person);\par
+\par
+\b Deserializing an object\b0\par
+To deserialize JSON, we use JSON.parse. Because JavaScript manages objects dynamically, we don't need to worry about casting the returned object to a class, like we would in other programming languages.\par
+\par
+//Deserialize a JSON string\par
+var newPerson = JSON.parse(jsonString);\par
+\par
+//access properties as normal\par
+$('#first-name-display').text(newPerson.firstName);\par
+$('#last-name-display').text(newPerson.lastName);\par
+\par
+\ul\b\fs28 Calling the server\par
+\fs22 Introducing Ajax\ulnone\b0\par
+Typically, when we make a call to the server, we need to refresh the entire page. Not only can this impact performance, it can change our user's perception of our pages. In addition, as developers, we'd like to be able to incorporate server-side resources into our pages, allowing us to update individual portions of the page with data, rather than updating the entire page. This is where the XmlHttpRequest object comes into play and Ajax as well.\par
+\par
+\b Asynchronous JavaScript and XML (Ajax)\b0\par
+Ajax is a set of technologies that act together to make it easier for us as developers to make calls to server resources from JavaScript. Breaking down the three words that make up the acronym, we'll notice we have asynchronous (which jQuery simplifies through the use of promises), JavaScript and XML. XML is probably the one that doesn't fit, as XML is typically not a preferred mechanism for serialization. As we've seen, we typically want to use JSON, as it's more compact and native to JavaScript.\par
+\par
+\b Basic data retrieval\b0\par
+The most basic Ajax operation we can perform using jQuery is get. get contacts the URL we provide, and passes the string the server returns into the parameter we'll use for our event handler. get accepts multiple parameters, but the two we'll most commonly use are the URL we wish to call, and an event handler that will be executed on success.\par
+\par
+$.get(\par
+\tab 'some-url', //The URL to call\par
+\tab function(data)\{ //Success event handler\par
+\tab\tab //the data parameter contains the string\par
+\tab\tab $('#output').text(data);\par
+\par
+\tab\}\par
+);\par
+\par
+\b jQuery Ajax and promises\par
+\b0 All jQuery Ajax calls return a jQuery promise. This means we can use done for our success event handler and fail to catch any errors. The two code samples perform the same operations.\par
+\par
+//Option one (pass the success function as a parametere\par
+$.get('some-url', function(data)\{$('#output').text(data);\});\par
+\par
+//Option two (use the done function of the promise)\par
+$.get('some-url').done(function(data)\{$('#output').text(data);\});\par
+\par
+\ul\b Retrieving JSON objects\ulnone\b0\par
+As we've discussed, JavaScript offers native support for serialization to and from JSON. jQuery builds on top of that, allowing us to easily retrieve JSON objects from the server by using getJSON.\par
+\par
+\b getJSON\b0\par
+To retrieve a JSON object, we can use getJSON. getJSON accepts several parameters, but the most common two that we'll provide are the URL we need to call, and an event handler for success.\par
+Just as we discussed with get, getJSON returns a promise, meaning we can use done and fail as an alternative.\par
+\par
+Because getJSON is expecting JSON data,, it automatically deserializes the object, meaning we do not need to call JSON.parse.\par
+\line If we were calling a server that was going to return a Person object, with properties of firstName and lastName, we could use the sample code below:\par
+\par
+$.getJSON('/api/demo', function(person)\{\par
+\tab $('#first-name').val(person.firstName);\par
+\tab $('#last-name').val(person.lastName);\par
+\});\par
+\par
+Note: Uses HTTP Get to request data\par
+\par
+\b HTTP verbs\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Most common: GET and POST\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 PUT and DELETE also exist to comple all CRUD operations for a REST API\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 Remember: GET isn't just used to retrieve data, and POST isn't just used to upload data\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 Both GET and POST send and receive data\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 what GET and POST indicate is how the data will get to the server from the client\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 additionally, they may indicate the operation we wish to perform when using a REST API\ul\b\par
+
+\pard\sl240\slmult1\par
+\ulnone\b0\par
+\ul\b Making server calls\ulnone\b0\line At this point, if we're new to making server calls through JavaScript or other technologies, we might have a few questions about how we're supposed to know where the data is, what URLs we should use, etc. The answer is, well, it depends.\par
+\par
+\b Finding the right URL\b0\par
+Probably the most common question we get is "How do I know where to go find data?" Fortunately this is a much easier question to answer than it seems, and it's in the form of a question, "What do we want to do?"\par
+\par
+When we're trying to discover services that we can call, we should approach it like we would a user. For example, if we asked someone where to track a pacakge shipment or where to find sports scores, we would receive a couple of different answers.\par
+\par
+We start by determining what data we need, and then we start our investigation that way. When we find a service that offers the necessary data, they will provide documentation, containing the URLs we need to call to obtain specific types of data, what the data will look like, etc. They'll often provide a sandbox as well that we can use to practice and play.\par
+\par
+Most commonly we'll be calling our own server and accessing our own organization's data. Then the answer becomes even easier: we just have to talk with the developer who created the server side code that we need to call. They can provide all the information we need.\par
+\par
+\ul To get technical\par
+\ulnone When we start digging into making server calls, retrieving and uploading data, things can get a bit confusing pretty quickly. We may have some questions about how things work behind the scenes. Below we'll find some basic information about various standards and how to use them. However, a full discussion on REST and other APIs is beyond the scope of the course.\par
+\par
+\b Verbs\b0\par
+As we discussed in the prior module, HTTP offers several "verbs", with the two most common being GET and POST. Those two names can cause some confusion, as they both have meanings in English. Get of course means retrieving something, and post means to put something somewhere. Unfortunately, from a technical sense, that is not what GET and POST mean whenn they're related to HTTP.\par
+\par
+GET and POST in HTTP terms are about how to send data to the server, not a determination of the server sending us data. The server will always send us data, be it a status code, string data, or a JSON object. GET and POST determine how we as the caller are going to send data to the server.\par
+\par
+Get limits us to sending data in the URL only. Because the data can only be in the URL, we are not only restricted in the amount of data we're able to send, but in the data types. Large amounts of data cannot be sent in the URL.\par
+\par
+POST on the other hand allows us to send data both in the URL, but also in what's known as the header. The header is information that's sent behind the scenes from the client to the server, and can be used to send almost any type of data, including binary data.\par
+\par
+But, and we want to repeat this, both GET and POST return data. The difference between the two is how we're allowed to send data to the server.\par
+\par
+\b HTTP and REST APIs\b0\par
+As we discussed above, if we want to access data on a particular service, and need to figure out how to send data, what URLs to use, what data we're able to send, and what data will be sent to us, we'll want to check the documentation provided by the service.\par
+\par
+Needless to say, that can get a bit overwhelming, as anyone who is implementing a service can create their own API. Each API can be completely different than any other API that's been implemented. To try and provide some consistency, some standards have been set around HTTP calls.\par
+\par
+The most common set of rules in in working with data. HTTP provides several verbs, including GET, POST, PUT and DELETE. Many servers perform specific operations behind the scenes based on the verb that we use. GET will retrieve objects, POST will create a new object, PUT will update an existing object, and DELETE will delete an object.\par
+\par
+Building upon those common operations, the W3C has established a specification called REST. REST provides for various standards to provide event more consistency when making server calls.\par
+\par
+The big thing to remember is nobody is obligated to follow any of these standards. We will find that most services will make good faith efforts to abide by the guidelines set forth by REST, but there may be differences in their implementation.\par
+\par
+\ul\b Posting data\ulnone\b0\par
+If the service we're using follows the standard REST practices, we'll notice that we can create a new object by calling POST. Or, if we're trying to upload a binary object, such as an image, we're forced to use POST, as GET won't allow that type of data to be uploaded.\par
+\par
+\b post\b0\par
+jQuery's post function uploads the data we provide by using the HTTP POST verb. Like getJSON, it also passes the JSON object returned by the server into the parameter for the event handler. And, just like all of the Ajax calls we've seen, post also returns a promise.\par
+\par
+Because jQuery is aware of the fact we're probably going to use JSON, we'll notice there is no need to call JSON.stringify or JSON.parse; jQuery handles that automatically for us.\par
+\par
+//get the data we need to send\par
+var person = \{firstName: 'Alex', lastName: 'Costa'\};\par
+\par
+//Call POST\par
+$.post('URL', //pass the URL we need to access\par
+\tab person, //pass in the data to send via POST\par
+\tab function(data)\{\par
+\tab\tab //success event handler\par
+\tab\tab //parameter contains value returned by server\par
+\tab\}\par
+);\par
+\par
+\ul\b Ajax Events\ulnone\b0\par
+When making Ajax calls, we may need to update page content or change the availability of controls such as buttons when calls start or complete. jQuery Ajax offers several global events.\par
+\par
+\b Start events\b0\par
+The two starting events are ajaxStart and ajaxSend. ajaxStart is raised when the first Ajax call is being made. ajaxSend is raised each time an Ajax call is made.\par
+\par
+\b Completion events\par
+\b0 jQuery Ajax offers two main events when each Ajax call is finished, ajaxSuccess, which is raised when a call succeeds ,and ajaxError, which is raised when a call fails.\par
+\par
+ajaxComplete is raised when each Ajax calls completes, regardless of success or failure. ajaxStop is raised when all calls are completed.\par
+\par
+$(document).ajaxSend(function()\{\par
+\tab //raised when a call starts\par
+\tab $('#status').append('<div>Call started</div>');\par
+\}).ajaxComplete(function()\{\par
+\tab //raised when a call completes\par
+\tab $('#status').append('<div>Call completed</div>');\par
+\});\ul\b\par
 }
  
