@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deferred Introduction</title>
+        <meta charset="utf-8"/>
+        <style>
+            body{
+                font-size: 26px;
+                font-family: Verdana;
+            }
+            div{
+                margin-bottom: .3em;
+            }
+            .btn{
+                font-size: 1em;
+            }
+            .form-control{
+                font-size: 1em;
+            }
+        </style>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <button type="button" class="btn" id="start-worker">Send message</button>
+        </div>
+        <ul id="messages">
+        </ul>
+
+        <script>
+            $(function(){
+                //will execute when the page is ready
+                $('#start-worker').click(function(){
+                    //will execute when the start worker button is clicked
+                    //will start the worker with the deferred function
+                    //beginProcessing is going to give us back a promise
+                    var promise = beginProcessing();
+                    
+                    //Register our event handlers
+                    promise.progress(function (message){
+                        //will execute when there is a progress update
+                        //update the UI for progress
+                        $('#messages').append('<li>' + message + '</li>');
+                    }).done(function(message){
+                        //will execute when the operation has successfully finished its work
+                        //Update the UI for completion
+                        $('#messages').append('<li>' + message + '</li>');
+                    });
+                });
+            })
+
+            //worker implementation using our deferred
+            //create deferred object
+            //make sure it's going to be in scope
+            function beginProcessing(){
+                var deferred = new $.Deferred();
+
+                //Create our worker (just like before)
+                var worker = new Worker('./scripts/deferredWorker.js');
+
+                //Register the message event handler
+                worker.addEventListener('message', function(e){
+                    //sample messaging - if the worker is ready it'll send a message with READY
+                    if(e.data === 'READY'){
+                        //no UI code here
+                        //Progress notification
+                        deferred.notify('Worker started');
+                    }else if(e.data === 'COMPLETED'){
+                        //no UI code
+                        //completed notification
+                        //processing is done
+                        deferred.resolve('Worker completed');
+                        worker.terminate();
+                    }
+                });
+                return deferred.terminate();
+            }
+        </script>
+    </body>
+</html>

@@ -868,6 +868,491 @@ In the above form, we want to prompt the user for their name, and additional inf
 Or, imagine if we were building a page where we had additional details, maybe a user agreement, that many people will ignore. Displaying that on the page takes up unnecessary real estate.\par
 \par
 In both of those scenarions, it'd be great if we could hide the item, and only if the user indicates they want to see the extra data should we show it to them.\par
-We can accomplish this by starting with the following HTML, updated from before:\ul\b\par
+We can accomplish this by starting with the following HTML, updated from before:\par
+<style>\par
+\tab .hidden\{ display: none;\}\par
+</style>\par
+<form>\par
+\tab <div>\par
+\tab\tab <label>Name: </label>\par
+\tab\tab <input type= "text"/>\par
+\tab </div>\par
+\tab <button type="button" id="show-additional-information">Show additional information</button>\par
+\tab <div id="additional-information" class="hidden">\par
+\tab\tab <label>Additional information: </label>\par
+\tab\tab <input type="text"/>\par
+\tab </div>\par
+</form>\par
+\par
+and then we would add the following script to it:\par
+$(function()\{\par
+\tab $('#show-additional-information').click(function()\{\par
+\tab\tab $('#additional-information').show(750);\par
+\tab\});\par
+\});\par
+\par
+We'll notice that we're setting the div element wirh additional-information as its ID to display:none to start. This display property is what show will modify. We're then setting up the click event handler to call show, which will then cause the item to display.\par
+\par
+\ul\b Fading and sliding\ulnone\b0\par
+Both show and hide have a vertical animation. The new content sort of "rolls" onto the screen, or "rolls" up from the screen. If we don't want that additional animation, and just want the item to slowly appear or disappear, we can use fading.\par
+\par
+\b fadeIn, fadeOut and fadeToggle\b0\par
+Like their show/hdie counterparts, fadeIn and fadeOut will display and hide an item respectively. And, like toggle, fadeToggle will reverse the current state of the item.\par
+\par
+The fading functions perform their work by both  modifying the CSS display property, and animates the item by modifying its opacity. If we want an item to start as hidden by default, and display using fadeIn, we only need to set display: none; and there is no need to modify the starting opacity.\par
+\par
+Like all animation functoins, the fading functions accept various parameters with the most common being the length of time (in milliseconds). Also, the fading functions return a promise, which we'll explore in Module 3.\par
+\par
+\b Sliding\b0\par
+Unlike the other animations, the sliding functions cause the entire item to either slide down or slide up.\par
+Keeping with the conventions we've already seen, slideDown will cause the item to appear, slideUp will cause it to disappear, and slideToggle will cause change to its state.\par
+\par
+The sliding functoins perform their work by both modifying the CSS display property, and animates the item by modifying its position. If we want an item to start as hidden by default, and display it by using slideDown, we only need to set display:none; and there's no need to modify the starting position.\par
+\line Like all animation functions, the sliding functoins accept various parameters with the most common being the length of time. Also, these functions also return a promise.\par
+\par
+\ul\b\fs28 Removing , replacing and cloning\ulnone\par
+\ul\fs22 Removing and replacing items\ulnone\b0\par
+Besides just creating new content, there will be times when we want to remove existing content, or replace content with new content. As we might have guessed, jQuery offers us the power as well.\par
+\par
+\b remove and empty\b0\par
+Both remove and empty completely delete items from the DOM. The difference between the two is what they delete. In the case of remove, it will delete the item we target, while empty deletes the content of the item we target.\par
+\par
+Considering the following HTML:\par
+<div id="target">\par
+\tab <div>Some cool content</div>\par
+\tab <div>Some more cool content</div>\par
+</div>\par
+\line If we called $('#target').remove, the resulting HTML would be nothing. The entire contents of the sample are removed.\par
+\line Contrasting that will calling $('#target').empty(), empty would delete the contents of the target, so the resulting HTML would be:\par
+<div id="target">\par
+</div>\par
+\par
+\b replaceAll and replaceWith\b0\par
+If we wish to replace existing content with new content, jQuery offers replaceAll and replaceWith. In both cases, we'll provide what existing content we wish to replace, and what new content we wish to use. The difference between the two is the order in which we pass existing and new content.\par
+\par
+If we had the following starting HTML:\par
+<div id="target">\par
+\tab <div>Some cool content</div>\par
+\tab <div>Some more cool content</div>\par
+</div>\par
+\par
+and wanted to finish with the following HTML:\par
+<div>NEW content</div>\par
+then either method below would work:\par
+\par
+//replaceWith replaces the content on the left with the content in the parameter\par
+$('#target').replaceWith('<div>NEW content</div>');\par
+\par
+//replaceAll replaces the target in the parameter with the content on the left\par
+$('<div>NEW content</div>').replaceAll('#target');\par
+\par
+When using either replaceAll or replaceWith, the entire element is replaced, not just the contents of the element. This functions are to be used with caution.\par
+\par
+\ul\b Cloning\ulnone\b0\par
+The main reason to use jQuery is because it makes "day to day" programming in JavaScript much easier, offering functionality and capabilities common to other programming environments. Because the basic operations become that much easier, it allows us to focus our attention on the cooler features we wish to add to our pages, adding interactivity, and making our page seem more like a locally installed application.\par
+\par
+This is where the humble function clone comes into play. clone allows us to make a copy of jQuery objects.\par
+\par
+\b clone in the real world\b0\par
+There are several scenarios in which clone simplifies content creation. Let's say we're building a page to allow an administrator to create email addresses and passwords. We'd like to ensure the administrator can create as many accounts as they would like on one page, and be able to send up all the information to the server in one round trip, rather than using Ajax calls or submitting the form for each account.\par
+\line This requires the ability to dynamically add labels and textboxes. We could do that this way:\par
+<button type="button" id="add-line>Add new line</button>\par
+<div id="container">\par
+\tab <div class="user-entry">\par
+\tab\tab <label>Email: </label>\par
+\tab\tab <input type="email"/>\par
+\tab\tab <label>Password</label>\par
+\tab\tab <input type="password"/>\par
+\tab </div>\par
+</div>\par
+\par
+$(function()\{\par
+\tab $('#add-line').click(function()\{\par
+\tab\tab $('#container').append('<div class="user-entry"> <label>Email: </label> <input type="email"/> <label>Password: </label> <input type="password"/> </div>');\par
+\tab\});\par
+\});\par
+\par
+It would work. But we've got a large string literal in JavaScript, which can be tough to debug when we got to make changes. In addition, whatever tool we're using to create our page isn't going to be able to offer us any support for the HTML that's inside of the string literal. And finally, we have the same markup twice, both in the starting HTML and in the JavaScript. (Granted, we could clean that up by adding the first line in through JavaScript, but that's not really the best solution here).\par
+\par
+A better way to solve this problem would be to clone the starting HTML that makes up the user information form, and then use that clone to add the new content:\par
+$(function()\{\par
+\tab $userForm = $('.user-entry').clone;\par
+\tab $('#add-line').click(function() \{\par
+\tab\tab $('#container').append($userForm.clone());\par
+\tab\});\par
+\});\par
+\line Let's break down the code just a bit here. For starters, we'll notice on line 2 that we are grabbing a clone of the item with the class of user-entry. This contains the form for inputting the user. We'll also notice we use a variable that starts with $. This is common in jQuery to indicate the object is a jQuery object.\par
+\par
+On line 4, we'll notice we use the $userForm in append to add the markup (or jQuery object) we copied earlier. What we'll also notice is that we're calling clone a second time. The reason for this is how JavaScript passes parameters. When we're working with an object, JavaScript passes a reference to the object, not a copy of the object. This would mean that we've added in a pointer to the clone we created earlier, not a brand new copy. The end result is that if we did not call clone() a second time, we'd be trying to add the exact same object into the container again, not a brand new copy. By calling clone() again on line 4, we pass in a copy of our user form, rather than a pointer to one we already used.\par
+\par
+\ul\b Combining cloning and animations\ulnone\b0\par
+Now that we knwo how to clone items to simplify creation of dynamic content, and how to animate them to add some punch to our pages, let's see how we could bring it all together.\par
+In the cloning section, we had the following demo HTML:\par
+<button type="button" id="add-line">Add new line</button>\par
+<div id="container">\par
+\tab <div class="user-entry">\par
+\tab\tab <label>Email: </label>\par
+\tab\tab <input type="email"/>\par
+\tab\tab <label>Password: </label>\par
+\tab\tab <input type="password"/>\par
+\tab </div>\par
+</div>\par
+\par
+and the following JavaScript:\par
+$(function()\{\par
+\tab $userForm = $('.user-entry').clone();\par
+\tab $('#add-line').click(function()\{\par
+\tab\tab $('#container').append($userForm.clone());\par
+\tab\});\par
+\});\par
+\line Let's modify our code to provide animation to the new elements. We'll start making sure our cloned item is hidden by using the css function. Because $userForm is a jQuery object, we can manipulate it just like any other jQuery object.\par
+\par
+//insert after line 2\par
+$userForm.css('display', 'none');\par
+\par
+When we call append, we know that the new item is going to be the last element in the container. We can access container's children by using children and access the last one by calling last.\par
+\par
+We also know that the item is hidden, because we set it to be hidden. If we call show, it will then display, with the animation. We can accomplish this by cloning it into a variable, adding the new variable, and then calling show on the new variable.\par
+\par
+//Replace line 4\par
+var newUserForm = $userForm.clone();\par
+$('#container').append($newUserForm);\par
+newUserForm.show(750);\par
+\par
+\ul\b\fs28 Lab\ulnone\b0\par
+\b\fs22 Module 2\b0\par
+For module two, we will enhance the interface for our review widget. The updated interface must meet the following goals:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 Provide a configurable number of circles for the user to click on. This can be accomplished by adding a custom attribute to the outer div element that contains the circles\ul\b\par
+{\pntext\f0 2.\tab}\ulnone\b0 Allow the number of circles to be updated with a textbox. This is to simulate an administration widget; we will not be adding any form of security to the widget\ul\b\par
+{\pntext\f0 3.\tab}\ulnone\b0 The existing functionality of hovering and selection must still work\ul\b\par
+
+\pard\sl240\slmult1\par
+\ulnone\b0 The starting ratings widget will have 5 circles.\par
+When a user enters a new value into the textbox, the number of circles must contain the number provided.\par
+BTW, delegate does not support the hover event.\par
+\par
+\ul\b Tips and tricks\ulnone\b0\par
+A solution will not be provided to the lab. But here are some tips we might find helpful.\par
+First, we break the requirements down into steps, and then implement each step. For example. for the updated number of circles:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 The user enters a new maximum rating value. We need to add code to read this value when the button is clicked\ul\b\par
+{\pntext\f0 2.\tab}\ulnone\b0 Once we have the new maximum value, we need to remmove the existing circles, and then add in the appropriate number of new circles\ul\b\par
+{\pntext\f0 3.\tab}\ulnone\b0 We need to ensure that the new circles still work with the event handler for mousing over, clicking and mousing out of the circles\ul\b\par
+
+\pard\sl240\slmult1\par
+\ulnone\b0 Here are some methods that we may find useful:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 get\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 delegate\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 mouseenter\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 mouseleave\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 on\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 val\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 empty\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 after\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 append\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 prepend\ul\b\par
+
+\pard\sl240\slmult1\par
+\ulnone\b0 Please note that not all of the functions above are needed for the answer. We may also find other functions that can be used to create a solution.\par
+\par
+\ul\b\fs32 Module 3\ulnone\b0\par
+\ul\b\fs28 Using promises\ulnone\b0\par
+\ul\b\fs22 Asynchronous concepts in jQuery\ulnone\b0\par
+Many operations we perform both in JavaScript and jQuery can take a non-deterministic amount of time.\par
+Some operations, such as animations, take place over a specified amount of time. While we will frequently be responsible for specifying the amount of time an animation will take, there will be times when the length of time will be available.\par
+\par
+Also, when creating rich web applications, we'll frequently access server resources from our scripts. When we add such functionality, we don't know how long the server is going to take to process the request and return a value.\par
+\line When those types of operations take place, we don't necessarily care how long they're going to take, but we need to execute code when they complete. This is where promises come into play.\par
+\par
+A promise is an object returned by functions in jQuery that take a long or variable amount of time. By using a promise, we can ensure our code executes whenever the operation completes, be notified of its success or failure, or potentially receive update about an operation's progress.\par
+\par
+Besides the built-in functions that return promises, jQuery also offers us a deferred object. A deferred object allows us to create our own long running operations, allowing developers to use the same patterns provided by the promise object, and be updated when our operation completes.\par
+\par
+We're going to start out exploration of asynchronous programming in jQuery by introducing promises. We'll then see how we can create our own functions that return a promise through use of the deferred object. As part of this, we will also discuss the concept of a web worker, which is an HTML5 feature allowing web developers to simulate threads in a web browser.\par
+\par
+\ul\b Promises\ulnone\b0\par
+A promise is a programming pattern in which a long runnning operation "promises" to let us know when it has completed its work.\par
+\par
+\b Long running operations\b0\par
+Any jQuery function that runs over a long period of time, such as an animation, or communicates with a remote server, such as Ajax calls, returns a promise. The promise object offers several events that are raised when the operation is completed, or if there is a progress update.\par
+\par
+\b Three common Promise events\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 done (operation has completed successfully)\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 fail (operation completed unsuccessfully)\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 progress (operation has registered a progress update)\ul\b\par
+
+\pard\sl240\slmult1\par
+Promise events\ulnone\b0\par
+\b done\b0\par
+done is raised when the operation completes successfully. done accepts one or more event handler functions. The event handler can appect one or more parameters, which will contain whatever data the promise object has returned. For example, when making Ajax calls, we will be able to access the data returned by the server in the event handler's parameter. The data returned is determined by the operation.\par
+\par
+//code to obtain the promise object\par
+promise.done(function(data)\{\par
+\tab //data will contain the data returned by the operation\par
+\});\par
+\par
+\b fail\b0\par
+fail is raised when the operation has completed with an error.\par
+\par
+Like done, fail accepts one or more parameters. The parameters' values will be determined by the operation.\par
+//code to obtain promise object\par
+promise.fail(function(data)\{\par
+\tab //data will contain the data returned by the operation\par
+\});\par
+\par
+\b progress\b0\par
+progress is raised when the operation  raises an alert about its current state. Not all operators raise progress events.\par
+\par
+Like done and fail, progress allows us to specify one or more event handlers, each optionally accepting parameters. The parameter values are set by the operation.\par
+\par
+//code to obtain promise object\par
+promise.progress(function(data)\{\par
+\tab //data will contain the data returned by the operation\par
+\});\par
+\par
+\b chaining\b0\par
+We can add done and fail (and potentially progress) event handlers by chaining the method calls as demonstrated below\par
+//code to obtain promise object\par
+promise.done(function(data)\{\par
+\tab //success\par
+\}).fail(function(data)\{\par
+\tab //failure\par
+\});\par
+\par
+\b then\b0\par
+then is a single function allowing us to register done, fail, and progress event handlers in one call. The sample below is identical to the chaining demonstration above.\par
+promise.then(function(data)\{\par
+\tab //success\par
+\}, function(data)\{\par
+\tab //failure\par
+\});\par
+\par
+\ul\b\fs28 Web workers\ulnone\b0\par
+\ul\b\fs22 Introducing Web Workers\ulnone\b0\par
+This section introduces the concept of HTML5 web workers.\par
+\par
+\b threading\b0\par
+Threading is a basic programming concept that allows developpers to execute code on a separate process. Threading is extremely helpful when working with operations that either require additional processing power, or may take a long amount of time.\par
+\par
+Applications typically start with a single thread that is used to execute code and update the user interface. If an operation is long running, and it executes on that thread, the user interface isn't able to be updated, and thus freezes. This provides a bad experience for the user. By using separate threads, we can execute our long running code elsewhere, allowing the user interface to still be responsive to the user.\par
+\par
+As mentioned above, threading is an exremely powerful tool. Unfortunately, this tool can easily be mismanaged or abused, leading to degraded performance or potential security risks. This poses a challenge when working with web applications, in which users execute code (JavaScript) without knowing the developer of that code. Allowing threading in a browser could create an undesirable experience for the user. As a result, browsers don't allow JavaScript to use threads.\par
+\par
+This is where web workers come into play.\par
+\par
+Web workers simulate a thread. They kind of say "Hey, we have a script that is going to take a little bit of time and we'd like to run asynchronously on some separate thread."\par
+We don't actually get control over the thread itself. We implement this through a very simple messaging system.\par
+\par
+The worker also has limitations on what it's able to do. In particular, it isn't able to update the UI. It isn't also able to access certain objects, like the document object or the window object.\par
+\par
+The worker script is in another file and the original file refers to it when creating the worker. Both files have eventListeners to make sure that messages are received on both ends. The messages are passed as parameters for the EventListener. What the eventListener is looking for is 'message'. If we want to read what is sent in the message, we have to use parameterName.data. \par
+\par
+We can pass messages between the worker and the main JS using worker/self.postMessage('whatever message')\par
+\par
+\ul\b Creating a web worker\ulnone\b0\par
+A web worker is made up of two components, the parent or calling script, and the worker ot executing script. The worker runs in an environment similar to a separate thread, and does not have direct access to the calling environment or the UI. Web workers use a messaging system to pass information to and from the worker.\par
+\par
+\b Creating the worker script\b0\par
+To create a web worker, we create a separate JavaScript file. This file will contain the code that will execute in the worker environment. The code in the file will execute immediately when the worker object is created from the callling script. As a result, if we wish to defer execution in a worker, the code will need to be contained inside of a function.\par
+\par
+\b self\b0\par
+The web worker environment provides an object named self, which represents the worker. self has one function and one event.\par
+\par
+The worker provides a function named postMessage that is used to send data to the calling environment. postMessage accepts most data types, including JavaScript objects.\par
+//send a signal back to the calling script\par
+self.postMessage('hello from the worker!');\par
+\par
+The worker offers one event, message. message is raised when the calling script has sent a message to the worker. message is raised when the calling environment calls postMessage, and this almost any type of object can be received. The data passed into postMessage is available by using the data property of the event object.\par
+\par
+//Receive a message from the calling environment\par
+self.addEventListener('message', function(e) \{\par
+\tab //the data property will contain the data passed from the calling script\par
+\});\par
+\par
+Web workers can pass any JSON object. Don't have events for start and end\par
+Stop a worker:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 From page: worker.Terminate()\ul\b\par
+{\pntext\f1\'B7\tab}\ulnone\b0 From worker: self.close()\ul\b\par
+
+\pard\sl240\slmult1\par
+Calling a web worker\b0\par
+\ulnone To call a web worker, we create an instance of the HTML5 worker object. Because web workers are a relatively new development, it is a best practice to first check to see if the browser supports web workers. This can be done by testing if Worker is equal to null, meaning it doesn't exist. If worker is null, we know the browser doesn't support web workers.\par
+\par
+//Test if the browser supports web workers\par
+if(Worker == null)\{\par
+\tab alert('You need to upgrade your browser!');\par
+\}else\{\par
+\tab //do your work here\par
+\}\par
+\par
+\b Creating an instance of the Worker object\b0\par
+The constructor for Worker accepts one parameter, the location of the script it will load into the worker space. We have to remember that the script will execute immediately, so unless we're uncertain it's been built to allow us to start it manually, we shouldn't create the instance until the last possible moment.\par
+\par
+var worker = new Worker('script-location.js');\par
+\par
+Similar to what we've seen already, the worker object offers a postMessage method to send data to the worker space, and an event message that is raised when the worker sends a message back to the calling page. The parameter we pass to postMessage is retrieved by using the data property of the event object in the message event handler.\par
+\par
+//Register event handler\par
+worker.addEventListener('message', function(e)\{\par
+\tab $('#output').append('<li>' + e.data + '</li>');\par
+\});\par
+\par
+worker.postMessage('Started!');\par
+\par
+\ul\b Web worker design practices\ulnone\b0\par
+\b Creating a web worker that accepts status messages\b0\par
+As we may have noticed, the web worker doesn't provide a built-in structure for handling common events, such as start and finish. However, the worker's simple messaging system allows us to easily build our workers to perform the operations we need, and add our own system to manage start and stop events.\par
+\par
+Quite frequently, we will want to delay the execution of the worker script until the caller sends a signal to start. We must remember, when our worker script is loaded, the script is run immediately. We can change this behavious by adding a simple check to the worker for a start message.\par
+\par
+Because JavaScript is weakly typed, the data property of the event object passed by the workers doesn't need to be set in advanced. We can set it to our status strings, such as START and STOP when we're sending those types of messages, and use a JavaScript object in data when we need to send other payloads.\par
+\par
+The script below is one simple implementation of the behaviour described, using simple strings for event management. We can use other objects as we see fit, depending on the complexity of our needs.\par
+\par
+//worker.js\par
+\par
+self.addEventListener('message', function(e)\{\par
+\tab if(e.data === 'START')\{\par
+\tab\tab //start message received\par
+\tab\tab //begin work\par
+\tab\tab startWork();\par
+\tab\}else if(e.data === 'STOP')\{\par
+\tab\tab //stop message received\par
+\tab\tab //perform cleanup and terminate\par
+\tab\tab stopWork();\par
+\tab\}else\{\par
+\tab\tab //A different message has been received\par
+\tab\tab //This is data that needs to be acted upon\par
+\tab\tab processData(e.data);\par
+\tab\}\par
+\});\par
+function startWork()\{\par
+\tab //code to start performing work here\par
+\tab //send a message to the calling page\par
+\tab //worker has started\par
+\tab self.postMessage('STARTED');\par
+\}\par
+\par
+function stopWork()\{\par
+\tab //cleanup code here\par
+\tab //stop the worker\par
+\tab self.postMessage('STOPPED');\par
+\tab self.close();\par
+\}\par
+\par
+function processData(data)\{\par
+\tab //perform the work on the data\par
+\tab self.postMessage('Processed ' + data);\par
+\}\par
+\par
+\b Calling a web worker that accepts messages\b0\par
+One of the great advantages of having a worker that's been built to accept status messages, such as start and stop, is it makes it very easy to get everything set up, and then start the worker process when we're ready to have it run.\par
+\par
+If we were using the worker that's been designed above, we would use it by following a couple of basic steps:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 Create an instance of Worker, passing in the script\ul\b\par
+{\pntext\f0 2.\tab}\ulnone\b0 Add the event handler for the message event. Ensure the event handler can respond to the status messages and normal data.\ul\b\par
+{\pntext\f0 3.\tab}\ulnone\b0 When we're ready to start the worker's work, call postMessage('START');\ul\b\par
+{\pntext\f0 4.\tab}\ulnone\b0 When we're done, send the stop message by calling postMessage('STOP');\ul\b\par
+
+\pard\sl240\slmult1\par
+\ulnone\b0 //inside of the HTML\par
+var worker = new worker('worker.js');\par
+worker.addEventListener('message', function(e)\{\par
+\tab if(e.data === 'STARTED')\{\par
+\tab\tab //worker has started\par
+\tab\tab //sample: update the screen to display the worker started\par
+\tab\tab $('#output').append('<div>Worker started</div>');\par
+\tab\}else if(e.data === 'STOPPED')\{\par
+\tab\tab //worker has been stopped\par
+\tab\tab //cleanup work (if needed)\par
+\tab\tab //sample: display data on screen\par
+\tab\tab $('#output').append('<div>Worker stopped</div>');\par
+\tab\}else\{\par
+\tab\tab //Normal message. Act upon data as needed\par
+\tab\tab //Sample: display data on screen\par
+\tab\tab $('#output').append('<div>' + e.data + '</div>');\par
+\tab\}\par
+\});\par
+\par
+//When we're ready, we can send the start message\par
+worker.postMessage('START');\par
+\par
+//Send data as needed\par
+worker.postMessage('sample data');\par
+\par
+//Stop the worker when we're done\par
+worker.postMessage('STOP');\par
+\par
+\ul\b\fs28 Using deferred\par
+\fs22 Returning promises\ulnone\b0\par
+If we are creating a long running function, we can return a promise, allowing the caller to be alerted to your operations status, or when it complets. We return, and manage, a promise by creating an instance Deferred\par
+\b\par
+Deferred\b0\par
+Deferred and promise seem very similar, and they are. The difference between the two is who uses which. Deferres is used to create, and manage, a promise object. A promise object is returned by a long running operation, and only allows us to register event handlers.\par
+\par
+To put this another way, Deferred is the server side. When create a long running function that will be called by other developers, we'll use Deferred to return a promise. We'll use the Deferred object to update clients when our function completes (or when we want to send a progress signal).\par
+\par
+Continuing the analogy, promise is the client side. When we call a long running function, it will return a promise. We will use the promise to be alerted, and execute code, when that long running function completes (or sends a progress signal).\par
+\par
+\ul\b Using deferred\ulnone\b0\par
+If we are creating a function that may take a long time to execute, it's best to return a promise. That makes it easier for developers who call our function, as they can use the promise events.\par
+\par
+One nice thiing about jQuery is the developers of the API follow their own best practices. As a result, if we execute an operation, such as an Ajax call, the function will return a promise. If we are creating a function that will be wrapping such a call, we can simply return the promise returned by the function.\par
+\par
+For example, considering the following jQuery. We create a function that calls slideToggle. slideToggle can take a couple of seconds to execute, depending on how long we tell the operation to take. As a result, it returns a promise, as we saw in an earlier section. Because slideToggle returns a promise object already, we can just use that, rather than creating a Deferred object on our own.\par
+\par
+function displayMenu()\{\line\tab //just return the promise object\par
+\tab return $('#menu').slideToggle(500);\par
+\}\par
+However, if we are creating a function that will take an unusual amount of time, say one that will be working with graphics, we will want to use Deferred to return a promise to the caller.\par
+\par
+\b Breaking down using Deferred\b0\par
+The basic steps are as follows:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 Create an instance of deferred: var deferred = $.Deferred();\ul\b\par
+{\pntext\f0 2.\tab}\ulnone\b0 Start our asynchronous operation, typically using a worker\ul\b\par
+{\pntext\f0 3.\tab}\ulnone\b0 Add the appropriate code to detect success and send the success signal: deferred.resolve()\ul\b\par
+{\pntext\f0 4.\tab}\ulnone\b0 Add the appropriate code to detect failure and send the failure signal: deferred.reject()\ul\b\par
+{\pntext\f0 5.\tab}\ulnone\b0 Return the promise: return deferred.promise();\ul\b\par
+
+\pard\sl240\slmult1\par
+\ulnone\b0 function beginProcessing()\{\par
+\tab //Create deferred object and make sure it's going to be in scope\par
+\tab var deferred = new $.Deferred();\par
+\par
+\tab //Create our worker(just like before)\par
+\tab var worker = new Worker('./Scripts/deferred.js');\par
+\par
+\tab //Register the message event handler\par
+\tab worker.addEventListener('message', function(e)\{\par
+\tab\tab //simple messaging - if the worker is ready it'll send a message with READY as the text\par
+\tab\tab if(e.data === 'READY')\{\par
+\tab\tab\tab //no UI code\par
+\tab\tab\tab //Progress notification\par
+\tab\tab\tab deferred.notify('Worker started');\par
+\tab\tab\}else if(e.data === 'COMPLETED')\{\par
+\tab\tab\tab //processing is done\par
+\tab\tab\tab //No UI code\par
+\tab\tab\tab //Completed notification\par
+\tab\tab\tab deferred.resolve('Worker completed');\par
+\tab\tab\tab worker.terminate();\par
+\tab\tab\}\par
+\tab\});\par
+\tab\par
+\tab return deferred.promise();\par
+\}\ul\b\par
 }
  
