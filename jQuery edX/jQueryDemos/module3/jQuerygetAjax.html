@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ajax request intro</title>
+        <meta charset="utf-8"/>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <input type="text" id="data"/>
+            <button type="button" class="btn" id="execute">Load data</button>
+        </div>
+        <div id="output"></div>
+
+        <script>
+            $(function(){
+                $('#execute').click(function(){
+                    var link = '/api/demo/' + $('#data').val();
+                    $.get(link).done(function(data){
+                        $('#output').text(data);
+                    });
+                });
+            })
+        </script>
+    </body>
+</html>
