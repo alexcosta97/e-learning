@@ -1,0 +1,99 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\ul\b\f0\fs28\lang9 1.2 What is CSS\ulnone\b0\par
+
+\pard\sl240\slmult1\fs22 As steward of global Web standards, W3C's mission is to safeguard the openness, accessibility, and freedom of the World Wide Web from a technical perspective.\par
+W3C's primary activity is to develop protocols and guidelines that wnsure long-term growth for the Web. This includes the development and maintenance of CSS. The widely adopted Web standards define key parts of what actually makes the World Wide Web work.\par
+\par
+\b A few history bits\b0\par
+Tim Berners-Lee wrote a proposal in 1989 for a system called the World Wide Web. He then created the first Web browser, server, and Web page. He wrote the first specifications for URLs, HTTP and HTML.\par
+\par
+In october 1994, Tim Berners-Lee founded the World Wide Web Consortium (W3C) at the MIT Laboratory for Computer Science in collaboration with CERN, where the Web originated.\par
+\par
+In April 1995, Inria became the first European W3C host, followed by Keio University of Japan in Asia in 1996. In 2003, ERCIM took over the role of European W3C Host from Inria. In 2013, W3C announced Beihang University as the forth host.\par
+\par
+In addition to these four host locations that employ W3C staff, there are W3C offices around the globe that support the developer communities in their regions and organize local events. As of May 2017, W3C is:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 A member-driven organization composed of over 400 companies, universities, start-ups etc from all over the world\par
+{\pntext\f1\'B7\tab}42 technical groups, including Working, Interest Groups where technical specifications are discussed and developed\par
+{\pntext\f1\'B7\tab}Over 5777 published technical reports, including 379 Web standards since January 1st, 1995\par
+{\pntext\f1\'B7\tab}About 281 Community and Business Gruops, where developers, designers and anyone passionate about the Web have a place to hold discussions and publish ideas\par
+{\pntext\f1\'B7\tab}Near 10369 active participants constituting the W3C community\par
+{\pntext\f1\'B7\tab}A technical staff composed of about 66 people, spread on all five continents.\par
+
+\pard\sl240\slmult1\par
+\ul\b The History of CSS\ulnone\b0\par
+In the following video, we will hear from Bert Bos, the co-creator of CSS, about how he and Hakon Lie developed CSS.\par
+\par
+Before CSS, the appearance of a Web page was dictated by HTML, which had very few visual styling tools, meaning most Web pages were looking simple.\par
+\par
+\b Before CSS\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 all documents looked very similar - it was difficult for different companies to express their brand identities in documents\par
+{\pntext\f1\'B7\tab}possibilities for styling were very limited and style was difficult to control and maintain - style had to be applied to content directly, so we couldn't update style without having to touch content and vice versa.\par
+
+\pard\sl240\slmult1\par
+\b After CSS\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b0 Content authors didn't have to worry about style, they could just focus on content\par
+{\pntext\f1\'B7\tab}Content authors didn't have to worry about what device users would view their document on, those considerations could be handled by the CSS\par
+{\pntext\f1\'B7\tab}Style became much more efficient - a single rule could apply to multiple elements and a single style sheet could apply to multiple documents.\par
+
+\pard\sl240\slmult1\par
+\ul\b Definitions\ulnone\b0\par
+CSS, or Cascading Style Sheets, is a style sheet language used to describe the way an HTML or XML document should look to a user. CSS us where you specify the color, size, spacing, font and other visual aspects of the content that we create in our markup language document.\par
+\par
+Most often we will see CSS used alongside HTML to describe a way a Web page looks and feels. We can have a Web page without CSS, but it would be very difficult to make it look the way we want with just HTML. This is why almost every Web page is a combination of HTML and CSS.\par
+\par
+\b CSS\b0\par
+Stands for Cascading Style Sheets. A style sheet language for describing how to display an HTML document.\par
+\par
+\b HTML\b0\par
+Stands for HyperText Markup Language, and it is the primary document format on the web. It is a standardized system for tagging content on a web page so that a web browser knows how to present it properly to the viewer. It is a standardized way to describe a document's structure and the roles of the different parts of that document.\par
+\par
+\b Web page\b0\par
+A hypertext document connected to the World Wide Web\par
+\par
+\b Internet\b0\par
+A global system of computer networks that connect to one another so that billions of different devices all over the world can share data. The internet is a collection of smaller networks that all combined create one large, all-inclusive global network.\par
+\par
+\b World Wide Web\b0\par
+A collection of documents linked together by hypertext links, addressed using Uniform Resource Locators accessible on the Internet. The World Wide Web is an application of the internet.\par
+\par
+\b Web browser\b0\par
+A software application for retrieving, presenting and traversing information resources on the World Wide Web\par
+\par
+\b HTTP\b0\par
+Stands for Hypertext Transfer Protocol. It is a protocol managed by the W3C to dictate the manner in which Web pages share data on the World Wide Web. We might recognize this from the start of many Web addresses.\par
+\par
+\b HTTPS\b0\par
+Stands for Hypertext Transder Protocol Secure. It is the secure version of HTTP, the protocol over which data is sent between our browser and the Web site that we are connected to. It means all communications between our browser and the Web site are encrypted. Some examples of sites that use HTTPS include the W3C and Microsoft Web sites.\par
+\par
+\ul\b\fs28 Separating content from presentation\ulnone\b0\par
+\fs22 Up until now, we have been discussing CSS's role within a Web site as the "presentation" component, but what is that and why is it so important?\par
+\par
+From the history of CSS, we learned why CSS came about, but the short answer is simply because HTML was never designed to describe the way a Web page was supposed to look. When we use HTML for what it was intended to do, describe content, it leaves space for CSS to properly control a page's visuals. This makes it very easy to update or add content without having to even touch the style.\par
+\par
+\b Some benefits of CSS:\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 CSS has a host of specialized tools to give us powerful control over the look and feel of our web site, much more powerful than the tools provided by HTML\par
+{\pntext\f1\'B7\tab}Designers can style many HTML pages with a single CSS document for consistent look and feel across an entire Web page and less code to maintain\par
+{\pntext\f1\'B7\tab}Separation of content and presentation makes Web site maintenance much simpler as we can address updates in isolation\par
+{\pntext\f1\'B7\tab}Over time more and more devices have become internet-capable, and now there are so many different orientations in which our user can view our content. With CSS, we can specifically cater the style to each device to ensure an optimal experience\par
+{\pntext\f1\'B7\tab}Some users have specific presentation needs based on personal or technological limitations or preferences. Separating content from presentation allows these users the option to control how they view content\par
+{\pntext\f1\'B7\tab}Before CSS visual elements were almost always achieved with static images, which can have a big affect on network performance. CSS provides an optimized way to style our page so it can load complex visuals quickly.\par
+
+\pard\sl240\slmult1\par
+\ul\b Meet CSS Zen Garden\ulnone\par
+\b0 CSS Zen Garden is a demonstration of what can be accomplished through CSS-based design. Littering a dark and dreary road lay the past relics of browser-specific tags, incompatible DOMs, broken CSS support, and abandoned browsers. We must clear the mind of the past. Web enlightment has been achieved thanks to the tireless efforts of folk like W3C, WASP, and the major browser creators. There is a continuing need to show the power of CSS. The Zen Garden aims to excite, inspire and encourage participation. - Words of Dave Shea, Creator of CSS Zen Garden\par
+\par
+\b View source and browser tools\b0\par
+In the above demo, we saw the developer tool being used withing the Edge Web Browser to inspect and real-time change the style of a page's CSS. We can actually right click on any site and choose to look at the code that creates it. This feature exists in both Chrome and Firefox.\par
+\par
+In the right click menu, there are two options: "Inspect element" and "View source". When we select view source, we can see the HTML and CSS powering that Web page.\par
+\par
+\ul\b\fs28 1.4 Project - your first CSS\ulnone\b0\par
+\ul\b\fs22 "Hello beautiful world"\ulnone\b0\par
+Write HTML and CSS in order to make ir appear beautiful on a browser.\par
+}
+ 
