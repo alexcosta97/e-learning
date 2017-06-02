@@ -287,5 +287,148 @@ text-decoration: underline;\par
 \}\par
 \par
 In this activity we need to give the right selectors to the right rules so that the end result looks like the one in the course picture.\par
+\par
+\ul\b\fs28 2.5 Applying styles using CSS properties\ulnone\b0\par
+\ul\b\fs22 What is a property\ulnone\b0\par
+In unit 2.3, we briefly introduced "properties", the part of the CSS rule that tells the browser how to style specific aspects of the selected HTML element.\par
+\par
+There is a huge array of different aspects we can style: color, font, size, spacing and much more! We can find the complete list of CSS properties at the official W3C site, or check out Meiert's list.\par
+\par
+Every property has its own collection of possible values. Some require text input, some specific keywords, some numerical input, etc.\par
+\par
+Here are some examples of properties that each accept different style of value:\par
+body\{\par
+\tab background-color: purple; /*key word*/\par
+\tab color: #FFFFFF; /*HEX code*/\par
+\tab width: 60%; /*percentage*/\par
+\tab font-size: 20pt; /*numerical value*/\par
+\}\par
+\par
+We have to make sure to look up what the available values are before using a property, because if the browser doesn't understanf our value, it will typically just skip applying any style. This is where programs like Visual Studio Code come in handy because as we type a property, the program will automatically suggest possible values to us.\par
+\par
+Sometimes, the easiest way to learn about different properties is to explore the style of one of our favorite web sites. We can use our browser tool to inspect an HTML element.\par
+\par
+If we're not sure of how to do this, we can go back to the demo on 1.3\par
+\par
+As we can see, the browser tools display the value of the properties and if we click into that space it will even give us some of the different value options and we can even change them and watch the Web site update dynamically.\par
+\par
+\ul\b Color properties\ulnone\b0\line Color is one of the first things we'll want to explore when designing our Web site. Thankfully, CSS provides a wide array of tools for us to control the color of different HTML elements. There are basic color properties:\par
+\b color\b0\par
+This property sets the foreground color of an element's text content. By default, all text content will be set to black. If we set the color on one HTML element it will be inherited by all HTML elements within that. For example, if we set the color of the body tag to blue, all text on our web page will be changed to blue, unless that text has a more specific color property that will override it.\par
+\par
+\b background-color:\b0\par
+This property sets the background color of an element. This color then represents the exact space the element takes up, which is always a rectangular area. The default value is 'transparent' which means whatever is behind the element will shine through. We should also note that background-color is one example of a property that is \i not\i0  inherited, so we will have to directly set the background-color on each element. To se the overall color of our page, we apply the background-color to the body tag, and since all other element's background colors will be transparent by default, it will appear as if everything has that same background color.\par
+\par
+\b color as a value\b0\par
+These color properties take in a color as their value, and there are three different ways we can define that color: Keyword, HEX code or an rgb value.\par
+\par
+\b keyword\b0\par
+Probably the simplest and least flexible way to set colors is using a keyword. A keyword is one of the predefined colors like "blue" or "green".\par
+\par
+There are 16 predefined colors based on keywords: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, yellow, white and orange. We can read more about these keywords here: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/TR/CSS22/syndata.html#value-def-color }}{\fldrslt{https://www.w3.org/TR/CSS22/syndata.html#value-def-color\ul0\cf0}}}}\f0\fs22\par
+\par
+\b HEX\b0\par
+A HEX code is a 6 character code to represent the color, giving us a lot more options. The 6 characters of the code are broken into 3 sets of 2, where each set represents the amount of either, red, green or blue that makes up the color. These sets are hexadecimal numbers, which means that each ranges between 00 and FF where 00 means no color and FF means all of that color. Thus #000000 represents pure black and #FFFFFF represents pure white.\par
+\par
+When using a hex code in CSS we must put a hash character in front of the 6 characters like so:\par
+body\{\par
+\tab background-color: #00CC00; /*green*/\par
+\}\par
+\par
+\b decimal\b0\par
+We can also specify colors using rgb in decimal form like so:\par
+body\{\par
+\tab background-color: rgb(0, 204, 0); /*same green as above*/\par
+\}\par
+This will give us the same range as HEX values. This method is less common, but it's up to us which method of specifying colors we prefer.\par
+\par
+\ul\b Font properties\ulnone\b0\par
+Font is an extremely important part of how we communicate content to the user. As we are likely aware there are many different aspects to font, and with CSS we can explicitly style each aspect.\par
+\par
+\b font-family\b0\par
+p\{\par
+\tab font-family: Helvetica, Verdana, sans-serif;\par
+\}\par
+\par
+The property sets the font face. There are a collection of Web safe fonts that generally each browser has agreed to support, but there is an infinite number of different fonts. The problem is they might not all look the way we want them to on different browsers.\par
+\par
+That is why this property "font-family" allows a list of fonts in the order of our preference. This comma-separated list orders our font preference from left to right. In our above example, our first choice is Helvetica, if the browser doesn't support that it will just pick any sans-serif font it does support. We should always end our font family with fonts that are likely to be supported by the browser, this way we are guaranteed to have control over the font-family.\par
+\par
+Something to keep in mind: some fonts have names with multiple words like "Times New Roman" or "Century Gothic". Whe using these fonts we'll need to surround the entire name with quotes so the browser understands that is a single font name.\par
+\par
+\b font-size\b0\par
+h1\{\par
+\tab font-size: 2.5em;\par
+\}\par
+\par
+Font-size sets the overall scale of our text. We can use a lot of different units to set the font size. Some of these units we are probably familiar with if we have used text editors before such as pt size or px size. However, these methods are not advised because they are static and will not adapt based on the screen size.\par
+\par
+The ideal way to set text size is to use "em". Em is a way to set our text size based on the system setting of the device in which we are viewing this font. This becomes especially important for users who have special font preferences due to accessibility requirements. To use em do not set font-size on the body tag, but instead set the size for each element in relation to the user's default. For example, 1em is the user's default, 2em is twice as bit, 0.5em is half as big etc.\par
+\par
+\b font-weight\b0\par
+p\{\par
+\tab font-weight: bold;\par
+\}\par
+\par
+The weight of a font is the thickness of the letters. We can set this property using keywords with which we may be familiar: bold, normal or lighter. We can also set this property more specifically using numerical values 100, 200, 300, 400. Normal is represented as 400, whereas bold is 700.\par
+\par
+Note that few fonts have settings for all values. If the value is not available, the browser will display 700.\par
+\par
+\b font-style\par
+\b0 p\{\par
+\tab font-style: italic;\par
+\}\par
+The font style property adjusts the angle of the letters in relation to the horizontal plane. Italic forms are generallt cursive in nature while oblique faces are typically sloped versions of the regular face.\par
+\par
+\b text-decoration\b0\par
+p\{\par
+\tab text-decoration: underline;\par
+\}\par
+\par
+Text-decoration adds a line across our text. We can set this line to be underneath our text, underline, through our text, line-through, or on top, overline.\par
+\par
+There are other resources available to learn more about fonts:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 {{\field{\*\fldinst{HYPERLINK https://www.w3.org/TR/css-fonts/ }}{\fldrslt{https://www.w3.org/TR/css-fonts/\ul0\cf0}}}}\f0\fs22\par
+{\pntext\f1\'B7\tab}{{\field{\*\fldinst{HYPERLINK http://www.w3.org/TR/css-text-decor/ }}{\fldrslt{http://www.w3.org/TR/css-text-decor/\ul0\cf0}}}}\f0\fs22\par
+
+\pard\sl240\slmult1\par
+\ul\b Spacing properties\ulnone\b0\par
+CSS provides a great set of tools to help us position the HTML elements on our page, and we will cover that in depth in Module 4. For now we will talk about how to apply white space around individual HTML elements.\par
+\par
+There are two different ways we can define white space:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 in absolute terms: using an exact number of pixels\par
+{\pntext\f1\'B7\tab}and in relative terms: using percentages or ems\par
+
+\pard\sl240\slmult1\par
+For now, we'll use pixels because that's easier to learn. However, ultimately we will want to use percentages and ems so our content adapts to different screens. We will discuss how to use percentages in module 4.\par
+\par
+When we view an element in our browser tools we can see the white space around it. What is shown to us then is what is called the "box model", which we will get into more detail about in Module 4. For now, we can see that the space around the content is broken into three distinct regions.\par
+\par
+\b padding\b0\par
+p\{\par
+\tab padding: 20px;\par
+\}\par
+\par
+"Padding" is the white space that sits closest to an HTML element. Many elements already have a default padding defined. For example, ul elements by default are indented to the left a bit because they have a left padding.\par
+\par
+We can set the padding on an element's four sides independently using padding-top, padding-right, padding-bottom and padding-left. Or we can use the more compact padding: topVal rightVal bottomVal leftVal. If we only insert one value, it means it is the same for all four sides.\par
+\par
+\b Border\b0\par
+p\{\par
+\tab border: 1px black solid;\par
+\}\par
+\par
+The "border" is the area outside the padding of an HTML element. By default, borders are set to be empty, but we can set their width, color, pattern even an image. Like padding, we can event adjust the four sides of a border independent of one another using border-top, border-right, border-bottom or border-left. We can also adjust different aspects of a border with border-width, border-color and border-style. In the above example, all of that was collapsed into a single property and value set.\par
+\par
+\b Margin\b0\par
+p\{\par
+\tab margin-bottom: 50ox;\par
+\}\par
+\par
+An HTML element's margin is the white space that sits outside the border. Margins of HTML elements interact with other another on the page to determine how they are arranged on the page. A lot of elements have default margins applied.\par
+\par
+For example, the body tag typically has a margin that causes any content to not extend all the way to the extreme edge of the page. We must be careful with those, since they can be tricky.\par
 }
  
