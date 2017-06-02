@@ -429,6 +429,255 @@ p\{\par
 \par
 An HTML element's margin is the white space that sits outside the border. Margins of HTML elements interact with other another on the page to determine how they are arranged on the page. A lot of elements have default margins applied.\par
 \par
-For example, the body tag typically has a margin that causes any content to not extend all the way to the extreme edge of the page. We must be careful with those, since they can be tricky.\par
+For example, the body tag typically has a margin that causes any content to not extend all the way to the extreme edge of the page. We must be careful with those, since they can be tricky. When two margins touch they "collapse" such that space between the elements is equivalent to the larger of the two margins.\par
+\par
+Like the above properties. we can also set the margins on each side independently using margin-top, margin-right, margin-bottom and margin-left.\par
+\par
+An element's background color extends over its padding but not over its margin.\par
+\par
+\ul\b Activity 2.5 - Adding your own properties\ulnone\b0\par
+Now that we have a few properties in our CSS toolbox, let's practice using them.\par
+Here is some HTML and CSS, but as we can see the CSS rules have selectors but no properties.\par
+\par
+<!DOCTYPE html>\par
+<html lang="en">\par
+  <head>\par
+    <meta charset="utf-8"/>\par
+    <title>My HTML page</title>\par
+    <link rel="stylesheet" type="text/css" href="activity2.5.css"/>\par
+  </head>\par
+  <body>\par
+    <h1>Adding Properties</h1>\par
+    <h2>Using colors, fonts and spacing</h2>\par
+    <p>There is a huge array of different aspects we can style: color, font, size\par
+      spacing and much more! For a complete list of official CSS properties look\par
+      here: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/Style/CSS/all-properties#list }}{\fldrslt{https://www.w3.org/Style/CSS/all-properties#list\ul0\cf0}}}}\f0\fs22  or {{\field{\*\fldinst{HYPERLINK http://meiert.com/en/indices/css-properties/ }}{\fldrslt{http://meiert.com/en/indices/css-properties/\ul0\cf0}}}}\f0\fs22\par
+    </p>\par
+    <ol>\par
+      <li>Make sure to look up what the available values are before using a property</li>\par
+      <li>because if the browser doesn't understand your value it will typically just skip applying any style</li>\par
+      <li>This is where programs like Visual Studio Code come in handy</li>\par
+      <li>Because as you type out the property the program will automatically suggest possible values for you</li>\par
+      <li>Sometimes the easiest way to learn about different properties is to explore the style of one of your favourite websites</li>\par
+    </ol>\par
+    <p>\par
+      If you aren't sure how to do this refer to the demo in unit 1.3 to see this in action while inspecting\par
+      CSS Zen Garden designs. As you can see, the browser tools display the value of the properties,\par
+      and if you click into that space it will even give you some of the different value options\par
+      and you can even change them and watch the website update dynamically.\par
+    </p>\par
+  </body>\par
+ </html>\par
+\par
+body\{\par
+\par
+\}\par
+\par
+h1\{\par
+\par
+\}\par
+\par
+h2\{\par
+\par
+\}\par
+\par
+ol\{\par
+\par
+\}\par
+\par
+li\{\par
+\par
+\}\par
+\par
+p\{\par
+\par
+\}\par
+\par
+As we can see, these CSS rules have selectors, but no properties. For this activity, it is up to us to add the correct properties and set their values appropriately to get the result in the course page image.\par
+\par
+Here are the color HEX code used:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 light yellow: #ffff99\par
+{\pntext\f1\'B7\tab}medium yellow: #ffcc00\par
+{\pntext\f1\'B7\tab}orange: #ff6600\par
+
+\pard\sl240\slmult1\par
+Here are the fonts used above:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Helvetica\par
+{\pntext\f1\'B7\tab}Impact\par
+{\pntext\f1\'B7\tab}Courier New\par
+
+\pard\sl240\slmult1\par
+\ul\b\fs28 2.6 Style studies\ulnone\b0\par
+\ul\b\fs22 Titles\ulnone\b0\par
+There are a couple different categories of text on a web page: titles, body text, links, captions, etc.\par
+\par
+We'll want to style each of these differently to help our user understand the proper context for our text. One of the most important categories of text to stand out are our titles.\par
+\par
+There are different aspects of text we can alter to make it stand out:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 size\par
+{\pntext\f1\'B7\tab}font\par
+{\pntext\f1\'B7\tab}capitalization\par
+{\pntext\f1\'B7\tab}color\par
+{\pntext\f1\'B7\tab}emphasis\par
+{\pntext\f1\'B7\tab}weight\par
+
+\pard\sl240\slmult1\par
+However, we should only alter a few of these following aspects at a time to prevent our titles from being too distracting. The below is an example of using too many different aspects of font for emphasis (italic, different color, underlined, different background color, capatilization, size, all at the same time).\par
+\par
+\b Title 1\b0\par
+This title uses soft clean colors based on print media, so we chose a serif font. We also increased the size and color to help the title appear more prominent than the body text.\par
+Code for the example:\par
+#design1 \{\par
+    background-color: #F4F4F4;\par
+    font-family: "Lucidia Sans Unicode", sans-serif;\par
+\}\par
+ \par
+#design1 h1 \{\par
+    color: #C0B283;\par
+    font-size: 4em;\par
+    font-weight: 700;\par
+    font-family: Garamond;\par
+    width: 300px;\par
+\}\par
+ \par
+#design1 p \{\par
+    color: #373737;\par
+    font-size: 1.2em;\par
+\}\par
+\par
+\b Title 2\b0\par
+This design is intended to look futuristic, so it only uses sans-serif, thin font with high contrast colors.\par
+Code for the example:\par
+#design2 \{\par
+    font-family: Century Gothic, sans-serif;\par
+    background-color: #0E0B16;\par
+\}\par
+ \par
+#design2 h1 \{\par
+    font-weight: 400;\par
+    font-size: 2.3em;\par
+    color: #A239CA;\par
+    font-style: italic;\par
+\}\par
+ \par
+#design2 p \{\par
+    color: #E7DFDD;\par
+\}\par
+\par
+\b Title 3\b0\par
+This design is based on pastel primary colors and uses color as a highlight the default white background. We have achieved the separation between title and body text by setting its background color separately and giving it a bottom border.\par
+Code for the example:\par
+#design3 \{\par
+    color: #DF744A;\par
+    font-family: Arial, sans-serif;\par
+\}\par
+ \par
+#design3 h1 \{\par
+    background-color: #BFD8D2;\par
+    text-align: center;\par
+    font-size: 4em;\par
+    font-weight: 100;\par
+    padding: 30px;\par
+    border-bottom: 5px #DCB239 solid;\par
+    font-family: Helvetica, sans-serif;\par
+\}\par
+ \par
+#design3 p \{\par
+    background-color: #FEDCD2;\par
+    padding: 50px;\par
+\}\par
+\par
+\ul\b Buttons\ulnone\b0\par
+Buttons are a key way that our users will interact with our page. Often buttons are a call to action for our user - so will will want them to stand out.\par
+\par
+When styling a button we aren't just styling the text, but also the area around it, including the border. By giving them a distics background color or border we make it clear that this whole area is clickable.\par
+\par
+Typically our user will expect our button to be wider than it is tall, to accomplish this we'll want to set the left and right padding to be greater than the top and bottom paddings.\par
+\par
+\b Button 1\b0\par
+This design is a pretty traditional button where it has a distinct background-color to help it stand out from both the background and the body text.\par
+\par
+Here is the code for that example:\par
+#design1 \{\par
+    background-color: #94618E;\par
+    color: #F8EEE7;\par
+    font-family: Corbel;\par
+\}\par
+#design1 button \{\par
+    background-color: #F4DECB;\par
+    padding: 10px 25px;\par
+    border: 5px solid #F8EEE7;\par
+    color: #49274A;\par
+    font-weight: bold;\par
+    font-size: 1.2em;\par
+ \}\par
+\par
+\b Button 2\par
+\b0 This is a more modern button design where there is no distict border, but just a flat color background:\par
+#design2 \{\par
+    background-color: #D9D9D9;\par
+    color: white;\par
+    font-family: "Century Gothic", sans-serif;\par
+\}\par
+#design2 button \{\par
+    background-color: #4484CE;\par
+    border: 0px;\par
+    color: white;\par
+    padding: 10px 50px;\par
+    font-family: Impact, sans-serif;\par
+    font-size: 1.3em;\par
+\}\par
+\par
+\b Button 3\b0\par
+This is a big graphic button that uses border-radius to give the button rounded corners:\par
+#design3 \{\par
+    font-family: Impact, sans-serif;\par
+    font-size: 2em;\par
+\}\par
+ \par
+#design3 button \{\par
+    font-family: Impact, sans-serif;\par
+    font-weight: 100;\par
+    background-color: white;\par
+    border: 7px #EC576B solid;\par
+    border-radius: 20px;\par
+    font-size: 0.8em;\par
+\}\par
+\par
+\ul\b Effective titles and buttons\ulnone\b0\par
+Now that we know a bit more about how CSS is written, we will start to understand and notice more of the design elements as we navigate around the Web.\par
+\par
+In this module's style studies section, we learned some effective ways to style titles and buttons. We also learned about some design choices that make our titles and buttons not as effective...\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Titles shouldn't be overly stylesd They should only have a few properties set to help them stand out from body text, but not too many otherwise they would be too busy.\par
+{\pntext\f1\'B7\tab}Buttons should send a clear message that they need to be interacted with. If a button doesn't show up as a rectangle, a user typically won't understand that it's a button.\par
+
+\pard\sl240\slmult1\par
+\ul\b Module 2 project - About me page\ulnone\b0\par
+Now that we have played around with applying selectors and properties, we have the tools to make a much more sophisticated Web page than "Hello Beautiful World"\par
+\par
+For this module's project, we are going to create a page describing ourselves using our favourite colors. Our web page must have the following content:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 an h1 title with our name\par
+{\pntext\f1\'B7\tab}an h2 title with our favourite quote\par
+{\pntext\f1\'B7\tab}a paragraph describing our favorite hobbies\par
+{\pntext\f1\'B7\tab}an ordered list of our favorite foods\par
+{\pntext\f1\'B7\tab}an unordered list of our favorite websites, including links to them.\par
+
+\pard\sl240\slmult1\par
+And in addition, we must employ the following styles:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 3 different font colors\par
+{\pntext\f1\'B7\tab}2 different background colors\par
+{\pntext\f1\'B7\tab}a serif font\par
+{\pntext\f1\'B7\tab}a sans-serif font\par
+{\pntext\f1\'B7\tab}italic text\par
+{\pntext\f1\'B7\tab}bold text\par
+{\pntext\f1\'B7\tab}1 border\par
+{\pntext\f1\'B7\tab}extra margin between the edge of the screen and our content\par
+{\pntext\f1\'B7\tab}extra padding around our list items\par
 }
  
