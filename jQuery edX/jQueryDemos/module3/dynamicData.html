@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynamically loading data</title>
+    <meta charset="utf-8"/>
+    <style>
+      body{
+        font-size: 26px;
+        font-family: Verdana;
+      }
+      .btn{
+        font-size: 1em;
+      }
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <button type="button" class="btn" id="execute">Load script</button>
+    </div>
+    <script>
+      $(function(){
+        //will execute when the page loads
+        $('#execute').click(function(){
+          //will execute when the execute button is clicked
+          //load external script
+          $.getScript('scripts/Dynamic.js');
+        });
+      });
+      </script>
+</html>

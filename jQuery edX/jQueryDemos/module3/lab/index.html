@@ -1,0 +1,114 @@
+<html>
+<head>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <style>
+  body {
+   font-family: Verdana;
+  }
+  h1, h2, h3 {
+   color: darkblue;
+  }
+  .rating-circle {
+   height: 2em;
+   width: 2em;
+   border: .1em solid black;
+   border-radius: 1.1em;
+   display: inline-block;
+   margin: 0;
+   padding: .1em;
+  }
+
+  .rating-hover {
+   background-color: yellow;
+  }
+
+  .rating-chosen {
+   background-color: green;
+  }
+ </style>
+</head>
+<body>
+ <h1>Contoso Web Developer Conference</h1>
+ <h2>Finding elements using jQuery</h2>
+ <div>This session is about identifying elements using jQuery methods and selectors.</div>
+ <h3>Rate this session</h3>
+ <div id="rating-container" max-value="5"></div>
+
+<div>
+  <label for="max-value">Enter max value:</label>
+  <input type="text" id="max-value" />
+  <button type="button" id="update-max-value">Update max value</button>
+</div>
+<div>
+  <button type="button" id="save-rating">Save rating</button>
+  <div id="output"></div>
+</div>
+
+
+ <script>
+        $(function(){
+            //will execute when the page is ready
+            //display initial 5 circles
+            display();
+
+            $('#update-max-value').click(function(){
+                //will execute when the user clicks on the updating button
+                //retrieve the input
+                var newValue = $('#max-value').val();
+                //set the new value as the max-value attribtue
+                $('#rating-container').attr('max-value', newValue);
+                //display the circles with the new value
+                display();
+            });
+
+            $('#rating-container').delegate('.rating-circle', 'mouseenter', function(){
+                //will execute when the pointer enters a circle, remove rating-chosen if previously set and add rating-hover
+                $('.rating-circle').removeClass('rating-chosen');
+                $(this).addClass('rating-hover').prevAll().addClass('rating-hover');
+            });
+
+            $('#rating-container').delegate('.rating-circle', 'mouseleave', function(){
+                //will execute when the pointer leaves a circle
+                //will remove rating-hover if it was applied to the element
+                $(this).removeClass('rating-hover').prevAll().removeClass('rating-hover');
+            });
+
+            $('#rating-container').delegate('.rating-circle', 'click', function(){
+                //will execute when the user clicks on a circle
+                //will add the rating-chosen to the all the elements before the chosen
+                $(this).addClass('rating-chosen').prevAll().addClass('rating-chosen');
+            });
+
+            $('#save-rating').click(function(){
+              //will execute when the user clicks on the save rating button
+              //set object to send
+              var sendObject = {
+                value: 0,
+                maxValue: 5
+              };
+
+              //get the index of the last circle with the chosen class
+              sendObject.value = $('.rating-chosen').last().index() + 1;
+
+              //get the number of circles
+              sendObject.maxValue = $('#rating-container').attr('max-value');
+
+              //send the request
+              $.post('http://jquery-edx.azurewebsites.net/api/Rating', sendObject).done(function(received){
+                $('#output').text(received.message);
+              });
+            });
+
+        });
+
+        function display(){
+            $('#rating-container').empty();
+            var reps = $('#rating-container').attr('max-value');
+            for(i = 0; i < reps; i++){
+                $('#rating-container').append('<div class="rating-circle"></div>');
+            };
+        };
+ </script>
+</body>
+</html>

@@ -46,10 +46,12 @@
                 });
 
                 $(document).ajaxSend(function(){
+                    //when the request is sent, the button is disabled
                     $('#execute').attr('disabled', 'disabled');
                 }).ajaxComplete(function(){
+                    //when the request is complete, the button is displayed again.
                     $('#execute').removeAttr('disabled');
-                })
+                });
             })
         </script>
     </body>
