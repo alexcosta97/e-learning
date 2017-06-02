@@ -1,0 +1,291 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\ul\b\f0\fs32\lang9 Module 2\ulnone\b0\par
+\ul\b\fs28 2.2 HTML review\ulnone\b0\par
+
+\pard\sl240\slmult1\ul\b\fs22 HTML to get you started\ulnone\b0\par
+\b HTML 101\b0\par
+HTML (Hyper Text Markup Language) documetns are made up of content and tags. These tags describe the content so that the web browser understands the structure of the page. HTML tags typically come in pairs, an opening tag before and a closing tag after content like so:\par
+<tagname>My content</tagname>\par
+\par
+When these three pieces are combined (start tag, content, and end tag), we have what is called an HTML element.\par
+\line Tags can be nested inside of other tags. This creates a parent/child relationship between HTML elements and forms the overall structure of our HTML document into a tree. This structure has a big affect on our CSS as styles are typically inherited from parent to child. We will take a closer look at style inheritance later in this unit.\par
+\par
+There are other types of tags that are called "self-closing", meaning they don't come in an open/close pair. Typically self-closing tags insert content into our page as opposed to surround content. They look like this:\par
+<img src="images/pic1.png" alt="pic1"/>\par
+\par
+As we can see these types of tags rely on "attributes", these are added modifiers on the tad that have their own values. In the above example, we use the src attribute to set the source for the image. We will also see attributes on the start tags of tag pairs and they can include a wide variety of added functionality for a tag.\par
+\par
+\ul\b Common HTML tags\par
+\ulnone\b0 There are many HTML tags to choose from depending on what elements we want to structure on our page. We can always look up HTML tags at the official HTML documentation. However, here is a short list of some of the most common HTML tags, one we'll see a lot thorughout the course.\par
+\par
+\b <html>\b0\par
+The root element of a document is <html>, and this is the first tag we'll need in our document (after the DOCTYPE, of course). All our other HTML tags should go inside this one, meaning all HTML documents should start with <html> at the top and end with </html> at the bottom.\par
+\par
+We'll notice in the below code that we set the language to English (lang="en"). We can set another language of the text in our page using language attributes.\par
+\par
+It is important that we take care to use the lang attribute to indicate the actual language of text in our page because many CSS features will function differently, depending on what language it is declared.\par
+\par
+\b <head>\b0\par
+This is the element that contains all the metadata for our site, such as our link to the CSS, the page's title and links to other files. This should be the first tag in our document, and there should only be one per document.\par
+\par
+This will also serve to set the charset. This shows that we saved the makup using the UTF-8 character encoding, which has many characters outside English, so it should be able to display characters not in the English alphabet.\par
+\par
+\b <body>\par
+\b0 The section element that contains all visible content for our site like our text, images, links etc. There should only be one body tag per document and it should come after the head tag.\par
+\par
+\b <p>\b0\par
+p stands for paragraph which is a block of text that is physically separated from adjacent blocks through blank lines. This is the most basic way to group text content.\par
+\par
+\b <a>\b0\par
+By surrounding text with an <a> tag we turn it into a hyperlink. We will want to use the href attribute to indicate to which target the link should take the user when clicked. The default style of the a tag is to turn the text blue and underlined, and then change the color to purple after we have clicked the link. We can adjust all these styles with CSS.\par
+\par
+\b <img />\b0\par
+The tag will insert an image based on the source we provide via the "src" attribute. If the source is inaccessible, we can also specify "fall back" options via the "alt" attribute. We will always want to specify the "alt" attribute with a short phrase describing the image. The text is what will be read aloud if the user is using a screen reader, or will be displayed if the user's browser will not load images. Not that this is an example of a "self-closing" taf meaning there is no closing tag. we just end the opening tag with a forward slash.\par
+\par
+\b <ul>\b0\par
+The UL tag creates an "unordered list" element, meaning a collection of elements in which the order is meaningless. This is a tag that sets the framework for us to add list elements inside it. We will want to add our elements within the ul tag each surrounded with list item or <li> tags.\par
+\par
+\b <ol>\b0\par
+The OL tag works exactly like the UL tag, except that the list element order matters. OL stands for "ordered list" and by default, the list element items are displayed with a number preceding them.\par
+\par
+\b <br/>\b0\par
+The br element is a self-closing tag that inserts a line break. This is most evident when placed in a block of text as it essentially represents a carriage return or hitting the "enter" key\par
+\par
+\b <header>\b0\par
+The header tag is one of the section elements it's role is to group other HTML elements according to their role on their page. The header element contains all the introductory content on the page typically a title and tagline or navigational elements\par
+\par
+\b <section>\b0\par
+Another sectioning element, the "section" tag is a general-purpose grouping element. It most often should include a header tag at the top. This typically will come after a header tag and before a footer tag.\par
+\par
+\b <footer>\b0\par
+Another sectioning element, the "footer" tag is supposed to organize the final content on the page such as the credits and contact info.\par
+\par
+Example of the last tags:\par
+<body>\par
+\tab <header>\par
+\tab\tab <h1>My page</h1>\par
+\tab </header>\par
+\tab <section>\par
+\tab\tab <h2>My blog</h2>\par
+\tab </section>\par
+\tab <footer>\par
+\tab\tab <p>copyright 2016</p>\par
+\tab </footer>\par
+</body>\par
+\par
+\b <div>\b0\par
+The div element is a generic element to hold content. It is considered a last resort, for when no other element is suitable but is often used to collect together large portions of a site that contain multiple different types of content.\par
+\par
+\ul\b Practice with HTML Validator\ulnone\b0\par
+HTML has been available to public since 1991, but since then a lot has changed. One of the ways to make sure our HTML is well structured and up to date is to use the W3C HTML Validator. As we are developing our pages, it's a good idea to regularly check if our HTML is written according to W3C standards.\par
+\line We can find the validator at: {{\field{\*\fldinst{HYPERLINK https://validator.w3.org/ }}{\fldrslt{https://validator.w3.org/\ul0\cf0}}}}\f0\fs22\par
+We can pass any URL on the Web into the validator, and it will tell us how the HTML for that page stacks up against Web Standards. \par
+\par
+\ul\b\fs28 2.3 Building a CSS rule\ulnone\b0\par
+\ul\b\fs22 The anatomy of a CSS rule\ulnone\b0\par
+CSS rules have the following structure:\par
+\par
+selector\{\par
+\tab property: value;\par
+\}\par
+\par
+\ul\b Constructing your CSS rules\ulnone\b0\par
+Here is an example CSS "rule":\par
+p\{\par
+\tab color: blue;\par
+\}\par
+\par
+The rule tells the browser to make all text within a paragraph tag blue. A CSS rule is broken into two parts: the selector and the property.\par
+\par
+\b Selector\b0\line This is the portion of the rule before that first open curly brace. This is what tells the browser what HTML tags this rule applies to. Often, we'll just see a selector that matches an HTML tag, like in this instance - our selector is just p. However, as we get further into this course, we'll find that there are many ways to target specific HTML elements and many different ways to structure selectors so that we are targeting exactly the part of our site we want to style.\par
+\par
+\b Property\b0\par
+This is the portion of the rule between the two curly braces. This is what tells the browser how to style the HTML tag that has been selected. This can be as many lines of code as we choose, each of which has two parts - the property and the value we want that property to be. For our example, "color" is the  property and "blue" is the value, but we could also have had a value of "black" or "#FFFFFF" (which is HEX code for white).\par
+\par
+The style for our page will consist of a list of many CSS rules put together. As we move through this course we will learn how to build up these rules to style our entire page.\par
+\par
+\ul\b\fs28 Activity 2.3 - Building our first CSS rule set\ulnone\b0\par
+\fs22 Now that we have a basic understanding of how to put the pieces of a CSS rule together, let's do some practce. Here is some HTML for a page we will style:\par
+\par
+<!DOCTYPE html>\par
+<html lang="en">\par
+  <head>\par
+    <meta charset="utf-8"/>\par
+    <title>My HTML Page</title>\par
+    <link rel="stylesheet" type="text/css" href="activity2.3.css"/>\par
+  </head>\par
+  <body>\par
+    <h1>My H1 header</h1>\par
+    <p>This is a block of text to represent a paragraph that we will want to style. This might be an explanation of\par
+      of the list that follows, it is all contained within a single paragraph tag.</p>\par
+    <ul>\par
+      <li>This is the list item 1</li>\par
+      <li>item 2 in the list</li>\par
+      <li>The third item in the list</li>\par
+      <li>Item 4 completes the list</li>\par
+    </ul>\par
+  </body>\par
+</html>\par
+\par
+We will need to write 4 CSS rules. We will need to use the following 4 selectors:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 body\par
+{\pntext\f1\'B7\tab}h1\par
+{\pntext\f1\'B7\tab}p\par
+{\pntext\f1\'B7\tab}ul\par
+
+\pard\sl240\slmult1\par
+And we will need the following properties:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 background-color: silver\par
+{\pntext\f1\'B7\tab}background-color: purple\par
+{\pntext\f1\'B7\tab}color: white\par
+{\pntext\f1\'B7\tab}color: fuchsia\par
+
+\pard\sl240\slmult1\par
+\ul\b\fs28 2.4 Attaching CSS to HTML using selectors\ulnone\b0\par
+\ul\b\fs22 What is a selector?\ulnone\b0\par
+In unit 2.3, we defined a CSS selector as the portion of the CSS rule that tells the browser on which HTML element to apply the defined style.\par
+\par
+When our HTML is simple, the selectors can be simple as well. The most basic selectors simply mirror the HTML tag. For example, p attaches to all o tags, img will attach to all img tags and so on. As we can imagine, there will often be times when we don't want every single HTML element of a particular type to have identical style. In Module 3, we will discuss a variety of ways to use selectors to attach to specific HTML elements.\par
+\par
+In unit 2.2, we briefly mentioned the fact that properties apply to the entire hierarchy of HTML elements to which they are attached. This means that we will have to be very careful which selectors we choose to use in combination with our chosen style. When choosing our selector we might want to keep the following aspects of an HTML element in mind:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 How many of these HTML elements are on my page? Do we want this style to apply to every one of these elements?\par
+{\pntext\f1\'B7\tab}What are this HTML element's children, and do we want this style to apply to them as well?\par
+{\pntext\f1\'B7\tab}Is this element a block element or an inline element, and does this style make sense in that context?\par
+
+\pard\sl240\slmult1\par
+It is possible to independently target every HTML element on the page using selectors, but for this module we are going to stick to basics and only use selectors that match the HTML tag name. For example, here are some example selectors we'll use in this module:\par
+p\{\par
+\tab /*style for p tags*/\par
+\}\par
+\par
+body\{\par
+\tab /*style for all elements in the body*/\par
+\}\par
+\par
+\ul\b Inheriting style\ulnone\b0\par
+Part of the reason a well structured HTML document is so important is because HTML elements inherit stylistic properties.\par
+\par
+Let's say we have an HTML document:\par
+<!DOCTYPE html>\par
+<html lang="en">\par
+\tab <head>\par
+\tab\tab <meta charset="utf-8">\par
+\tab\tab <title>My HTML page</title>\par
+\tab\tab <link rel="stylesheet" href="style.css">\par
+\tab </head>\par
+\tab <body>\par
+\tab\tab <header>\par
+\tab\tab\tab <h1>Title</h1>\par
+\tab\tab\tab <h2>subtitle</h2>\par
+\tab\tab </header>\par
+\tab\tab <section>\par
+\tab\tab\tab <p>This is a paragraph text</p>\par
+\tab\tab\tab <ul>\par
+\tab\tab\tab\tab <li>List item 1</li>\par
+\tab\tab\tab\tab <li>List item 2</li>\par
+\tab\tab\tab\tab <li>List item 3</li>\par
+\tab\tab\tab\tab <li>List item 4</li>\par
+\tab\tab\tab </ul>\par
+\tab\tab </section>\par
+\tab </body>\par
+</html>\par
+\par
+We can see its basic structure from the way we have formatted the tags with tabbing, but here is a more visual representation of the hierarchy of tags. Tags that contain other tags are parents, and the tags inside of them are their children.\par
+\par
+Through inheritance, CSS property values set on one element will be transferred down the tree to the element's children. In this example, every element gets the same font because we applied it to the body tag. Since the body element is a common parent for all visible elements it is a convenient selector for when we want to set stylistic rules for the entire document.\par
+\par
+Then, we applied different styles at different levels of the tree so that the "li" tag ends up with three different styles (font, underline and green) without us actually applying any style directly to that tag:\par
+body\{\par
+\tab font-family: "Century Gothic", sans-serif;\par
+\}\par
+\par
+header\{\par
+\tab font-style: italic;\par
+\}\par
+section\{\par
+\tab text-decoration: underline;\par
+\}\par
+ul\{\par
+\tab color: green;\par
+\}\par
+\par
+Not every property is inherited, but many are. The CSS specification tells us, for each property, whether it's inheritable. It's a good idea to keep in ming the structure of our HTML document when choosing our selectors so we can use inheritance to our advantage by applying styles to the top most element and save ourselves extra CSS code.\par
+\par
+\ul\b Combining multiple selectors\ulnone\b0\par
+We can imagine that multiple HTML elements on our page will have similar style. If we write a separate CSS rule with the same properties for each of these elements, our CSS file can get very large and hard to manage. When designing CSS, the authors wanted to help make it as easy as possible to write and edit style sheets "by hand", so there are a number of features that help keep our styles succint.\par
+\par
+For example, what if we wanted to change the font that is consistent accross many elements? We would have to change it in many places. Instead, we can combine multiple selectors on the same rule like:\par
+p, ul, ol\{\par
+\tab color: blue;\par
+\tab background-color: pink;\par
+\}\par
+\par
+The comma means that each of these elements should have the same, duplicated style. No need to have repeated style! Of course, we could simply apply this style to an element that contains all of these, say the body element, but not all properties are inherited, so using the comma is a direct way to apply consistent style across multiple categories of HTML elements.\par
+\par
+\ul\b Activity 2.4 - Apply our own selectors\ulnone\b0\par
+Now it's our turn to practice with some selectors of our own.\par
+\par
+Let's use the following HTML:\par
+<!DOCTYPE html>\par
+<html lang="en">\par
+  <head>\par
+    <meta charset="utf-8"/>\par
+    <title>My HTML page</title>\par
+    <link rel="stylesheet" href="activity2.4.css"/>\par
+  </head>\par
+  <body>\par
+    <h1>Main Title</h1>\par
+    <p>In unit 2.3, we defined CSS selectors as the portion of the CSS rule that\par
+      tells the browser on which HTML element to apply the defined style. When\par
+      our HTML is simple, the selectors can be simple as well. The most basic\par
+      selectors simply mirror the HTML tag. For example, "p" attaches to all &lt;\par
+      p&gt; tags, "img" will attach to all &lt;image&gt; tags and so on. As we\par
+      can imagine, there will often be times when we don't want every single\par
+      HTML element of a particular tag to have identical style.\par
+    </p>\par
+    <h2>Sub Title 1</h2>\par
+    <ul>\par
+      <li>How many of these HTML elements are on my page?</li>\par
+      <li>Do I want this style to apply to every one of these elements</li>\par
+      <li>What are this element's children?</li>\par
+    </ul>\par
+    <h2>Sub Title 2</h2>\par
+    <ol>\par
+      <li>and do I want this style to apply to them as well?</li>\par
+      <li>Is this element a block element or an inline element</li>\par
+      <li>and does this style make sense in that context</li>\par
+    </ol>\par
+  </body>\par
+</html>\par
+\par
+and the following CSS:\par
+/*selector here*/\{\par
+background-color: #ccffcc;\par
+color: #336600;\par
+\}\par
+\par
+/*selector here*/\{\par
+background-color: #336600;\par
+color: #ccffcc;\par
+\}\par
+\par
+/*selector here*/\{\par
+border: 3px solid;\par
+\}\par
+\par
+/*selector here*/\{\par
+background-color: #ffff99;\par
+\}\par
+\par
+/*selector here*/\{\par
+text-decoration: underline;\par
+\}\par
+\par
+In this activity we need to give the right selectors to the right rules so that the end result looks like the one in the course picture.\par
+}
+ 
