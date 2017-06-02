@@ -1535,6 +1535,47 @@ $(document).ajaxSend(function()\{\par
 \}).ajaxComplete(function()\{\par
 \tab //raised when a call completes\par
 \tab $('#status').append('<div>Call completed</div>');\par
-\});\ul\b\par
+\});\par
+\par
+\ul\b Dynamically loading data\ulnone\b0\par
+Up until now, everything that we've seen has been about sending and retrieving objects, or basic strings. If we want to load up HTML or JavaScript dynamically, we're fortunate because jQuery provides those capabilities as well.\par
+\par
+\b Loading HTML\b0\par
+load will call the URL provided, obtain the HTML, and place it in the targeted item\par
+$('#target').load('some-url.html');\par
+\par
+\b Loading and executing JavaScript\b0\par
+If we need to load a JavaScript file dynamically, we can use getScript. One important note about getScript is it downloads and executes the script when it's called.\par
+\par
+$.getScript('some-url.js');\par
+\par
+\ul\b Lab 3\ulnone\b0\par
+For module 3, we'll add the final feature to our rating widget: the ability to send the rating to a service. The service has already been created. It will act as a simple echo serice, taking the rating we submit inside a JSON object, and then sending back a JSON containning a message. The structure of the expected JSON, and the JSON object the service will return, are documented below.\par
+\par
+To complete the lab, we have to follow these steps:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 Update the HTML we used to complete lab two\ul\b\par
+{\pntext\f0 2.\tab}\ulnone\b0 Add a button. We will use the new button to submit the rating to the Rating service. We can use the HTML below:\ul\b\line\ulnone\b0 <button type="button" id="save-rating">Save rating</button>\ul\b\par
+{\pntext\f0 3.\tab}\ulnone\b0 Add a div element. We will use the new dic element to output the message.We can use the HTML below:\ul\b\line\ulnone\b0 <div id="output"></div>\ul\b\par
+{\pntext\f0 4.\tab}\ulnone\b0 Add a click event handler for the button we created. Add the code necessary to call the Rating service. The information about the rating service, including the URL, the verd, and the JSON objects, is below.\ul\b\par
+{\pntext\f0 5.\tab}\ulnone\b0 When the server returns the object, we should display the message inside the output div\ul\b\par
+
+\pard\sl240\slmult1\par
+\ulnone\b0 URL: {{\field{\*\fldinst{HYPERLINK http://jquery-edx.azurewebsites.net/api/Rating }}{\fldrslt{http://jquery-edx.azurewebsites.net/api/Rating\ul0\cf0}}}}\f0\fs22\par
+Verb: POST\par
+\par
+Parameter(object to upload): The server expects a JSON object with two properties, value, which contains the current rating, and maxValue, which contains the maximum allowed value.\par
+Example: \{value: 4, maxValue: 5\}\par
+\par
+Return (object returned by the server): the server will return a JSON object with one property, message, which will contain the message returned by the server.\par
+\par
+\b Tips and tricks\b0\par
+jQuery offers several methdos for working with Ajax calls. Three of them are get, getJson, and post.\par
+\par
+All Ajax calls return a promis object. The promise object has a done event. The event handler for done can accept a parameter, which will include the data the Ajax Call returned.\par
+\par
+Please note that not all objects or functions above are needed for the answer. We may also find other functions can be used to create a solution.\ul\b\par
 }
  

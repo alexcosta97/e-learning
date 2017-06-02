@@ -1,4 +1,4 @@
-{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
 {\*\generator Riched20 10.0.14393}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\ul\b\f0\fs28\lang9 1.2 What is CSS\ulnone\b0\par
 
@@ -95,5 +95,34 @@ In the right click menu, there are two options: "Inspect element" and "View sour
 \ul\b\fs28 1.4 Project - your first CSS\ulnone\b0\par
 \ul\b\fs22 "Hello beautiful world"\ulnone\b0\par
 Write HTML and CSS in order to make ir appear beautiful on a browser.\par
+\par
+\ul\b Comments\ulnone\b0\par
+As we write our CSS, we might end up with a pretty large document that can be hard to manage, or we might find ourselves working on a team and having to read CSS someone else has written. In these cases, it helps to leave "notes" for the humans that read the file.\par
+\par
+There is a way to leave notes that the Web browser will ignore when it is reading our CSS code. They're called comments. In fact, leaving comments in our code is considered a best practice and is a highly recommended habit to develop right from the start.\par
+\par
+To add comments to our CSS file, we need to surrond any text we want the computer to ignore with a set of slashes and asterisks like so:\par
+/*those two symbols start a comment block\par
+I can have more comment text here\par
+and the following two symbols end the comment*/\par
+\par
+As we can see, we can put as much text between the open and close symbols as we need, we can even have multiple lines. If we are working with an editor like Visual Studio code, we will notice that when we turn text into a comment, it turns green to indicate the computer ignores that code.\par
+\par
+Generally, it is a good idea to put a comment at the top of each CSS rule, or at the very least at the top of sets of rules that apply to a single category or section of our web page.\par
+\par
+\ul\b Module 1 project - Hello your world\ulnone\b0\par
+It is finally time to write our own CSS. We will open the code editor of our choice and save the following code as a new HTML document.\par
+\par
+To do this, we will need to give it a .html file extension when we are saving it. For example, we could call it index.html\par
+\par
+We use a basic HTML file with a paragraph saying Hello Beautiful World\par
+\par
+Here in the CSS we wrote on the "Hello Beautiful World" demo. We will make a new file with this CSS and save it with a .css file extension. For example, we can call it style.css\par
+\par
+To link the CSS:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 we must remember it should be placed in the header, this is between the two head tags.\par
+{\pntext\f1\'B7\tab}place the HTML and CSS in the same folder\par
+{\pntext\f1\'B7\tab}Add the linking code to the HTML header (that means after the <head> tag and the </head> tag. If our CSS is called style.css it would look like this:\line <link rel="stylesheet" type="text/css" href="style.css"/>\par
 }
  
