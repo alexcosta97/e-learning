@@ -32,7 +32,6 @@ p{
 }
 
 ul, ol{
-  margin: 10px;
-  width: 90%;
+  margin: 20px;
   border: 3px #f2ba59 solid;
 }
