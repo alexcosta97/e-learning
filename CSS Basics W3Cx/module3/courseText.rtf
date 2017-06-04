@@ -160,5 +160,89 @@ The example displayed on the page shows that:\par
 \ul\b Activity 3.4.2 - Cascading order\ulnone\b0\par
 Cascading order can be difficult to manage.\par
 For this activity, we cannot change any of the HTML (meaning we cannot add any IDs), but we'll need to change the CSS to make some of the rules more specific so that we achieve the final result displayed on the page.\par
+\par
+\ul\b\fs28 3.5 - Images\ulnone\b0\par
+\ul\b\fs22 Images\ulnone\b0\par
+Images are an extremely important part of our page, not only as part of our content but as a key way to help style our page. Before we even get to styling them we need to put considerable thought into what type of images to include in our page. One of the easiest ways to slow down our site's performance is to include lots of large, high-quality images. There are two general things to consider when picking our images: what format and how large are them?\par
+\par
+\b Formats\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 JPEG - possibly the most common image format used on the web, because it does a good job of compressing colourful, complex images into reasonably sized files. JPEG is often used for photos because, otherwise, photos can take a very long time to load\par
+{\pntext\f1\'B7\tab}PNG - Provides a higher quality image, but we pay for it with a larger file size. PNG also has the ability to have transparent backgrounds, so we'll often see this used for graphics as part of the page's layout.\par
+{\pntext\f1\'B7\tab}GIF - Supports moving images and transparent backgrounds. These can be especially large files so we should try to use them sparingly\par
+
+\pard\sl240\slmult1\par
+\b Sizing\b0\par
+It's important to format and size our image before uploading it to our site, because while we can use CSS to resize it, the browser will download the full image even if we've chosen to display it smaller than it is.\par
+We can resize images using the width or height properties of CSS like so:\par
+\par
+img\{\par
+\tab width: 100px;\par
+\tab height: 100px;\par
+\}\par
+\par
+In module 4, we will discuss width and height in detail, but for the purpose of images, we only need to know that if we only set one of these properties the image will scale according to its original dimensions. If we set both width and height, CSS will stretch our image to fit whatever we specify.\par
+\par
+\b Spacing\b0\par
+Rarely does it look nice when our content images touch our text content. We'll often want to give our images a good amount of white space surrounding them, and we can do this with padding and/or margin. In the examples below, we can see how we can even use padding and margin to achieve some interesting stylistic effects with our images.\par
+\par
+\b Border radius\b0\par
+In module 2, we saw how we can use the "border-radius" property to make a button with rounded corners. We can do the same to images. We might even notice that it has become popular to turn square images into perfect circles, especially for icons or profile photos.\par
+\par
+\b Images as Design Elements\b0\par
+When we see complicated styles as part of a Web page's design, chances are there are images as a foundational element. For example, we will often see images set as backgrounds or as a link. We need to remember that we can put an <img> tag within an anchor tag to turn it into a link. We can also use the background-image CSS property to set an image as a background instead of just using a solid color. We can read more about background images here: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/wiki/CSS_background_images }}{\fldrslt{https://www.w3.org/wiki/CSS_background_images\ul0\cf0}}}}\f0\fs22\par
+\par
+\ul\b Text in images\ulnone\b0\par
+It is best to overlay real text rather than use pixelated text. This makes it possible to search, copy and style the text, as well as making translation much easier. It also has accessibility benefits and makes translation much easier.\par
+As we can see, there are a lot of things to consider, and if we do not plan out our images carefully they can end up looking very disruptive, like on the example in the page.\par
+\par
+\b Images 1\b0\par
+The design shows some of the basics in properly incorporating images. It uses the colors from the image in the design of the overall page to help the image look as if it belongs. It also uses padding to give the image a "polaroid-style" border.\par
+\par
+\b Images 2\b0\par
+This design is an example of an image gallery design. This gives all the images the same size and alignment while including plenty of white space to help the page not look too overwhelming despite having multiple photos.\par
+\par
+\b Images 3\b0\line This design demonstrates the use of an image both as a background and as a link. When using images as design elements it's best to use simple images to let our content still be easily consumable.\par
+\par
+\ul\b Forms\ulnone\b0\par
+Forms can be a surprisingly tricky element to style because we are asking a lot of interaction from the user, and the burden is on us as the designer to make it clear what exactly we are asking them to do. However, with a few simple design changes we can make it much easier for the user to navigate our form. Here are some key design elements to keep in mind when designing forms.\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b white space\b0  - It is important to separate our form elements from our other content, otherwise it can be easily skipped over. It is also important to use white space surrounding each of our input elements to help draw our user's eye from the start and the end of the form. White space can also give the impression of simplicity and ease, an overcrowded form can seem daunting and tiring to fill out.\par
+{\pntext\f1\'B7\tab}\b borders\b0  - Possibly one of the most important design elements of our forms are borders. Borders give our user a visual clue that they should enter text, or select something from a drop down. When we eliminate all borders it is impossible to tell what is a form and what is just static text.\par
+{\pntext\f1\'B7\tab}\b labels\b0  - Each input should have a label communicating to the user what information we are asking them to submit. We will want to make sure the text is aligned and flows with the input element so it is clear what label is associated with which input. One of the easiest ways to make sure there is to put the label inside the input text box as demonstrated in some of our sample designs\par
+{\pntext\f1\'B7\tab}\b input sizes\b0  - We can help the user quickly assess how much text we are asking them to provide by how big our input element is. A very small input element will infer that we are only asking for a small number of characters, and a very large text box with multiple lines can infer that we are asking a lot more from our user. It is also important to try and gauge the input size accordingly so our user doesn't run out of space as they are entering text\par
+{\pntext\f1\'B7\tab}\b pseudo-classes\b0  - Perhaps one of the best uses of pseudo-classes is with forms. Pseudo-classes can help provide extra feedback as our user interacts with each of our form elements. We'll often see hover used to expose more information, active used to help a user understand which element they are currently interacting with, and more.\par
+{\pntext\f1\'B7\tab}\b submit button\b0  - We shouldn't some of the lessons learned in Module 2: it is important to make our button look like a button. We will want to make sure that our submit button is placed so that it is obvious after a user has entered in all the requested info.\par
+
+\pard\sl240\slmult1\par
+By stripping the elements of their styles we can see how important it is to add visual cues for our user.\par
+\par
+\b Form 1\b0\par
+The first form design uses basic layout to give each input element a clear label, space and area for input followed by a clear submit buttom. This design also used pseudo classes to engage the user, which we can see in action in the Code Pen.\par
+\par
+\b Form 2\b0\par
+This form design is more minimalist, using the clear and consistent design and layout to help the user feel like the form is extra short.\par
+\par
+\b Form 3\b0\par
+This form design leaves a lot of white space to help it feel clean and simple.\par
+\par
+\ul\b Module 3 project - My profile\ulnone\b0\par
+Now that we have a host of new selectors available, we can style much more complicated HTML. If we take our about me page from Module 2, and add to it so that it becomes more of a "profile". Our page must have the following elements:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 header and footer tags\par
+{\pntext\f1\'B7\tab}an education, work experience and favourite things sections\par
+{\pntext\f1\'B7\tab}at least two subsections within each main section. We could use either the <section> tag, the <article> tag or the <div> tag for this\par
+{\pntext\f1\'B7\tab}Each subsection should have its own title and two inner subsections\par
+
+\pard\sl240\slmult1\par
+Once we have all these elements, we should style them to look nice, but we must have each of the following:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 1 ID\par
+{\pntext\f1\'B7\tab}2 different classes, each with at least 2 members\par
+{\pntext\f1\'B7\tab}1 special style applied when an element is hovered by the user's cursor\par
+{\pntext\f1\'B7\tab}1 special style applied when the user clicks an element\par
+{\pntext\f1\'B7\tab}3 uses of contextual selectors\par
+
+\pard\sl240\slmult1\par
 }
  
