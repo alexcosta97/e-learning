@@ -79,5 +79,48 @@ To do this we will need to:\par
 {\pntext\f1\'B7\tab}give the #leftP article a margin of 10% of the section\par
 {\pntext\f1\'B7\tab}give the #rightP article a left margin of 50% of the section\par
 {\pntext\f1\'B7\tab}limit the footer height to 10% of the page, but no more than 50px and no less than 10px. It should have a padding of 10px and a margin between it and the section of 30px\par
+
+\pard\sl240\slmult1\par
+\ul\b\fs28 4.3 - Floating elements\par
+\fs22 Meet the float property\ulnone\b0\par
+If our elements are still not exactly where we want them to be after adjusting the padding, margins and alignment, then we can try out the float property. The "float" property is one of the most powerful tools that we can master when learning CSS.\par
+\par
+Up until now, we haven't moved elements very far from wherever the web browser automatically places them, but as we've probably noticed this has left our page very left side heavy. This is because, by default, elements are stacked one on top of the other, and they don't share horizontal space. With the float property, we can change this.\par
+\par
+The float property liberates an element from its automatic position and lifts it up to "float" on top of other elements in the direction we specify. We can specify float either right, left, or the default none.\par
+Elements underneath a floating object will automatically wrap themselves around the content. For example, if we float an image, the text underneath will wrap around it so that none of it is actually obscured underneath the image, but now both text and an image can share horizontal space.\par
+\par
+We'll often want to set the width of a floating object so that we have tighter control over the space that object occupies. We should also remember than, by default, block HTML elements occupy the entire width of the page, even if there isn't actual content that extends that far. In that case, we'll want to set the width so that our element's size more accurately represents its content and we don't have unnecessary white space.\par
+\par
+\b The clear property\b0\par
+Once we have some elements floating things can get a little messy. It's easy for floating objects to overlap, and to prevent this we can use the "clear" property. Uses the same parameters as float.\par
+\par
+\ul\b Activity 4.3 - Practice with float\ulnone\b0\par
+One of the toughest parts of layouts with CSS is figuring out which elements to apply a float property to.\par
+\par
+As observable on the activity page, the layout is pretty messy. Our job in this activity is to decide which elements deserve a float property. We might also need to adjust some widths, margins and paddings to get everything looking like the final image on the page. We should pay close attention to the IDs applied to the HTML elements.\par
+\par
+\ul\b\fs28 4.4 Relative positioning\par
+\fs22 Meet relative positioning\ulnone\b0\par
+The "position" property sets the algorithm from how the Web browser will compute the way the HTML elements are placed on the page. There are four different value options for the position property:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b relative\b0  - This is the position setting we will be discussing in detail as it is the best way to build on the dynamic layout methods we have learned thus far. This lets us specify where an HTML element should be relative to where it would be by default.\par
+{\pntext\f1\'B7\tab}\b static\b0  - This is the default setting and will place an element wherever the web browser computes it should be\par
+{\pntext\f1\'B7\tab}\b fixed\b0  - This places an element in a specific location within the window. We can use this to set an element to remain where it is regardless of scrolling. This was used heavily when "frames" were popular, however it now should be used very sparingly.\par
+{\pntext\f1\'B7\tab}\b absolute\b0  - This allows us to position elements relative to their containing box. This removes an element from it's normal flow (just like a floating element) so it can be difficult to control and make a layout that is truly dynamic.\par
+
+\pard\sl240\slmult1\par
+Once we've set the position to "relative" that frees us up to set the top, right, bottom and left properties - otherwise known as the "box offsets". These properties specify the distance between this object and its normal static position and the corner of the box that we are specifying.\par
+\par
+For example, if we set the "left" to be "30px", it will move the element 30px to the right away from the left of where it was placed by default.\par
+\par
+Note that position is not an inherited property so we will have to apply it individually to each element. Because of this it is best to use this approach to designing our layout sparingly and should only be used after we cannot achieve our desired layout with alignment or floating.\par
+\par
+\ul\b Activity 4.4 - Practice with relative positioning\ulnone\b0\par
+For this activity, we are going to focus on using relative positioning to adjust how items sit on the page.\par
+\par
+Our task is to add CSS so that we can achieve the final layout displayed on the course page.\par
+\par
+We can do this with padding and margins, but we should limit ourselves to only add position, top and left properties. We should then try to resize our browser window, and if we've implemented everything correctly all the elements will stay in the same position relative to one another.\par
 }
  
