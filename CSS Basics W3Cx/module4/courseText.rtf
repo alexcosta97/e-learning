@@ -122,5 +122,66 @@ For this activity, we are going to focus on using relative positioning to adjust
 Our task is to add CSS so that we can achieve the final layout displayed on the course page.\par
 \par
 We can do this with padding and margins, but we should limit ourselves to only add position, top and left properties. We should then try to resize our browser window, and if we've implemented everything correctly all the elements will stay in the same position relative to one another.\par
+\par
+\ul\b\fs28 4.5 - Style studies\par
+\fs22 Menus\ulnone\b0\par
+One of the most important aspects of any Web site is the navigation menu. Over time, top level navigation has become fairly standardizes so our user will be looking for some key elements that help them find their way around our site:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 a small group of descriptive links in a rectangular arrangement, often horizontally\par
+{\pntext\f1\'B7\tab}A hover style to give our user some amount of responsiveness\par
+{\pntext\f1\'B7\tab}a special style indicating the link for the page we are currently on\par
+
+\pard\sl240\slmult1\par
+\b Menu 1\b0\par
+This is a very basic menu design. It floats the list elements to the left and gives them each a simple hover property (underline) and a new background color for the link representing the page we are currently viewing.\par
+\par
+\b Menu 2\b0\par
+This menu design uses a vertical arrangement but still floats the overall menu object so it can sit level with our content. We can also see a tabbed format here where the page we are currently viewing directly connects to the menu item representing it.\par
+\par
+\b Menu 3\b0\par
+This third design employs hover a way to expose secondary links. This lets us have the top level clen and simple but gives the user the power of more specific options when they interact with our header.\par
+\par
+\ul\b Footers\ulnone\b0\line The footer of our page is typically the last thing our user will see, so it's important that we provide them any essential information. Typically, we will see footers that just contain contact info, but they often can also include navigation links, search bars or other calls to action.\par
+\par
+We will want our footer to flow with our overall page design, but to be distinct from our content.\par
+\par
+\b Footer 1\b0\par
+This is a basic footer that uses background color to help it stand out from the rest of the content. It contains contact links and a subtle referene to the designer of the page.\par
+\par
+\b Footer 2\b0\par
+This footer provides navigation links. Because the footer is at the bottom of the page, we can get away with more links being exposed because limiting area isn't as important as in the top level header.\par
+\par
+\b Footer 3\b0\par
+This final design flows with the overall structure of the page, but limits the content to a single simple contact link.\par
+\par
+\ul\b\fs28 4.6 Project 4 - My resume\ulnone\b0\par
+\ul\b\fs22 When to use what?\ulnone\b0\par
+Now that we are at the end of Module 4, we have a long list of different ways to move HTML elements around our page using CSS. With so many tools come choices, as we can now accomplish the same task multiple ways. Here are some guidelines on how to decide when to use which tool, in the order in which we should use them when positioning an element.\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 Use padding and margin whenever we can. This will keep things simple in relation to the box model and the overall flow of elements in relation to one another\par
+{\pntext\f0 2.\tab}The float property is necessary when we want two block elements to share horizontal space. It can be easy to overuse the float property, and we should keep in mind that if elements aren't floating the way we want them to we might want to adjust their order in the HTML instead of applying float to more and more elements\par
+{\pntext\f0 3.\tab}If the above tools aren't getting our element where it should be, we can use relative positioning and directly set the box offsets. This makes things a bit more complicated especially when we try to inspect the box model around our element, but sometimes this is unavoidable because of collapsing margins\par
+{\pntext\f0 4.\tab}If all that is not enough, there are advanced CSS features such as flexbox, table layout, absolute positioning and grid layout. These will be taught in an advanced CSS course.\par
+
+\pard\sl240\slmult1\par
+\ul\b Module 4 project - My resume\ulnone\b0\par
+In Modules 2 and 3, we've been building on a Web page that displays personal information about us. For this module project, we are going to continue to build on that work and turn our profile into a "resume" or "CV". It's almost a requirement these days to have a professional online presence, so this is a good way to start building that online portfolio.\par
+\par
+Traditional printed resumes typically are required to fit on a single piece of paper (A4 or Letter sizes), which means they need to make effective use of the space available. For this project, we are going to try to reproduce a typical resume layout but with HTML and CSS.\par
+\par
+To more closely simulate a paper resume, our entire page's content must be centered in the middle 75% of the page. All our content should remain centered, and in the same posiiton relative to the other elements on the page when we resize the browser window.\par
+\par
+For this project we must at least:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Use percentages to set the width of 3 elements\par
+{\pntext\f1\'B7\tab}Change the text-alignment property to something other than "left" on at least 1 element\par
+{\pntext\f1\'B7\tab}Have 4 floating elements\par
+{\pntext\f1\'B7\tab}Use the clear proeprty once\par
+{\pntext\f1\'B7\tab}Use the posiiton property and box offsets to position at least 2 elements\par
+
+\pard\sl240\slmult1\par
+\par
 }
  

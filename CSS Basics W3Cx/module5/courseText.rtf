@@ -1,0 +1,282 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\ul\b\f0\fs28\lang9 5.1 - Introduction\par
+\fs22 CSS best practices\ulnone\b0\par
+We will find below an excerpt of CSS best practices that were written by Elika J. Etemad (also known as fantasai). Elika is an expert on the W3C CSS Working Group (since 2004) and a longtime contributor on the Mozilla Proejct. In addition to editing many of the CSS3 specifications, she's worked on layout engine testing and development for Gecko and managing the CSS test suites at W3C.\par
+\par
+\b Executive Summary\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b Logical source order\b0 : The order of the HTML content should make sense even without CSS: for accessibility, mobile optimization, device adaptability and long-term maintainability\par
+{\pntext\f1\'B7\tab}\b Liquid layouts and relativity:\b0  Use smart relative sizing: to optimize layouts while minimizing media query code forks.\par
+{\pntext\f1\'B7\tab}\b Media queries:\b0  Adapt to screen size changes; get font size adaptation free by using ems\par
+{\pntext\f1\'B7\tab}\b Prevent zombie code:\b0  Dead code may come alive as CSS changes. It should be deleted before it does and ruins the layout.\par
+{\pntext\f1\'B7\tab}\b Test in multiple browsers:\b0  Our favourite browser isn't always right\par
+{\pntext\f1\'B7\tab}\b Do not use proprietary features:\b0  We should keep the web open to everyone and not rely and the latest -WebKit- invention\par
+{\pntext\f1\'B7\tab}\b Turn off CSS:\b0  A well-coded page will be understandable without it\par
+
+\pard\sl240\slmult1\par
+\par
+\b Foundations\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Indent our code for readability ease\par
+{\pntext\f1\'B7\tab}Learn how to code CSS before relying on frameworks such as Bootstrap etc.\par
+{\pntext\f1\'B7\tab}Separate content and style\par
+{\pntext\f1\'B7\tab}\tab Use semantic markup, i.e., "classes for meaning, not for show"\line\tab The following article is helpful to understand the concept (Meaningful CSS: {{\field{\*\fldinst{HYPERLINK http://alistapart.com/article/meaningful-css-style-like-you-mean-it }}{\fldrslt{http://alistapart.com/article/meaningful-css-style-like-you-mean-it\ul0\cf0}}}}\f0\fs22 ) it is also fully described on the HTML5 and CSS Fundamentals course\par
+{\pntext\f1\'B7\tab}\tab Use <table> for tabular data: not for layout, but if our content is tabular like a catalog, a calendar, or a price list, then the table element is the correct markup\par
+{\pntext\f1\'B7\tab}\b Linearized logical source order\b0\line The order of the HTML content should make sense even without CSS. Benefits are numerous as it works best\par
+{\pntext\f1\'B7\tab}for long-term site maintainability\par
+{\pntext\f1\'B7\tab}for mobile\par
+{\pntext\f1\'B7\tab}for accessibility\par
+{\pntext\f1\'B7\tab}as a foundation for device adaptation (media queries)\par
+{\pntext\f1\'B7\tab}\b Linguistic variations:\b0  set the language correctly for better typography\par
+
+\pard\sl240\slmult1\par
+\par
+\b Testing\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b Test without CSS:\b0  turn off CSS, and if the page makes no sense, fix our markup\par
+{\pntext\f1\'B7\tab}\b Test in multiple environments:\b0\par
+{\pntext\f1\'B7\tab}\tab Resize the window\par
+{\pntext\f1\'B7\tab}\tab Zoom the text\par
+{\pntext\f1\'B7\tab}\tab Try a mobile browser\par
+{\pntext\f1\'B7\tab}\tab Navigate by keyboard\par
+{\pntext\f1\'B7\tab}\b Test in multiple browsers:\b0  remember that just testing in Chrome does not work for everyone\par
+
+\pard\sl240\slmult1\par
+\b Adaptability\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b Media queries:\b0  set media query breakpoints such in em or ch, not always in px\par
+{\pntext\f1\'B7\tab}\b Liquid layouts and relativity:\b0  what is our sizing based on?\par
+{\pntext\f1\'B7\tab}\tab Containing block size -> Use percents\par
+{\pntext\f1\'B7\tab}\tab Viewport size -> Use viewport units: vw, vh, vmin, vmax\par
+{\pntext\f1\'B7\tab}\tab Font height -> em or rem\par
+{\pntext\f1\'B7\tab}\tab Font pitch -> em or ch\par
+{\pntext\f1\'B7\tab}\tab Content size -> Use auto or min-content/max-content\par
+{\pntext\f1\'B7\tab}\tab Combination of the above -> Use the appropriate layout formulas: flex, min-width, max-width, etc\par
+
+\pard\sl240\slmult1\par
+Absolute units are usually the wrong answer\par
+\par
+\b Defensive coding\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 !important means never override - to use with caution\par
+{\pntext\f1\'B7\tab}\tab Use !important to define overriding rules, not for fixups\par
+{\pntext\f1\'B7\tab}\tab Duplicate selectors if we need to increase specificity, or\par
+{\pntext\f1\'B7\tab}\tab Simplify selectors if we need to decrease specificity\par
+{\pntext\f1\'B7\tab}\b Don't over-escalate:\b0  understand your code, and don't overkill\par
+{\pntext\f1\'B7\tab}\b Drop dead code:\b0  If something doesn't work delete it right away\par
+{\pntext\f1\'B7\tab}Code to Standard\par
+{\pntext\f1\'B7\tab}Don't rely on proprietary extensions\par
+{\pntext\f1\'B7\tab}Don't use experimental features in production or commit to keeping up-to-date\par
+{\pntext\f1\'B7\tab}Provide fallbacks/ use @supports\par
+
+\pard\sl240\slmult1\par
+Set the initial code with shorthands (a.k.a the long expressions, all settings in a rule) and then tweak with the longhands (a.k.a the small expressions, one property at a time).\par
+\par
+\ul\b The W3C CSS WG\ulnone\b0\par
+The CSS Working Group is a working group created by W3C in 1997 to tackle issues that had not been addressed with CSS level 1. The number of members reaches 125 in April 2017.\par
+\par
+The CSS WG members are working on a whole range of specifications, but their core document is CSS snapshot 2017. This document collects together into one definition all the specs that together form the current state of Cascading Style Sheets as of 2017. The primary audience is CSS implementers, not CSS authors, as this definition includes modules by specification stability, not Web browser adoption rate.\par
+\par
+\ul\b\fs28 5.2 - The basics of design\ulnone\b0\par
+\ul\b\fs22 Applying basic design principals\ulnone\b0\par
+Often it's hard to pull apart the pieces of a design that are "good" or "bad", most of that is subjective. Instead, it's better to think of indivitual pieces of a design as "effective" or "ineffective" according to the demographic and the task they are trying to achieve.\par
+\par
+Web sites can become pretty complicated if we add many design elements, and it can be intimidating to figure out how to get started when thinking about how to present our Web page. One of the best ways to get started is to think about each individual HTML elements we've learned how to style so far, and how to style according to our specific goals.\par
+\par
+In this module, we'll discuss how to style the three most fundamental design aspects of a Web page: typography, color, and white space.\par
+\par
+\ul\b Typography\ulnone\b0\par
+A good rule of thumb when designing our Web site is to use no more than two different typefaces per page. Typically this means that we select 1 bold typeface for titles or other eye-catching pieces of text, and a neutral typeface for large blocks or body text of our page.\par
+\par
+There is no official taxonomy of fonts, and not all browsers support all fonts, so it can be difficult to get our font looking exactly the way we want on all platforms. While we're starting out, it's best to stick to the most popular and commonly used fonts. In the link between the parens is a good list of fonts for English pages and the appropriate fall-backs to get us started ({{\field{\*\fldinst{HYPERLINK https://www.w3.org/Style/Examples/007/fonts.en.html }}{\fldrslt{https://www.w3.org/Style/Examples/007/fonts.en.html\ul0\cf0}}}}\f0\fs22 ). On the Web, we can find other lists of available system fonts for non-Latin scripts.\par
+\par
+As we get more comfortable, we can branch out to more exotic fonts. We should remember that, when we are building our font-family set, we will want to always include a Web safe font alternative for an exotic font in case the user's device doesn't support it.\par
+\par
+When choosing our font, probably the biggest choice we'll make is the category of font to use. There are 5 basic categories of font:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b sans-serif:\b0  These are the most popular fonts for Web pages. This means the letters do not have added flourishes, so the typefaces are simpler. Their simplicity makes them easier to display on computer screens as their resolution is much lower than a printed document. It is often suggested we choose a sans-serif font for large blocks of digital text\b\par
+{\pntext\f1\'B7\tab}serif:\b0  These fonts are the second most popular typefaces. "Serif" refers to the small flourish lines at the edges of letters and symbols. "Serifs" make each character more distinct, making text easier to read in print. This is why these fonts might remind us of a text from a typewriter, or of the fonts we see in printed books, newspapers or magazines. These typefaces can often be used effectively for titles or emphasis.\b\par
+{\pntext\f1\'B7\tab}monospace:\b0  These fonts guarantee that all letters have the same fixed width. This is similar to a manual typewriter, or how computer code appears in editors.  These fonts were designed for the ease of the technology, not humans, so they should be used sparingly. The most effective time to use these is when showing snippets of code\b\par
+{\pntext\f1\'B7\tab}cursive:\b0  These fonts mimic human handwriting often by joining letter or having an italic slant. For some languages, these fonts are extra effective such as Arabic. Often than for specific languages, these fonts in English can be rather complex so they are best use extremely sparingly\b\par
+{\pntext\f1\'B7\tab}fantasy:\b0  This is the most diverse category of fonts and includes all of those that are particularly decorative. These can really great top headers as they can give our Web page a very distinct visual identity. Rarely will we want ot use these for anything other than titles. It is also good to note that few of these are widely supported, so to use these we'll probably want to download them from a font service to make them available for our user\b\par
+
+\pard\sl240\slmult1\par
+External resource\b0\par
+W3C documentation for all of CSS's font properties: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/TR/css-fonts-3/ }}{\fldrslt{https://www.w3.org/TR/css-fonts-3/\ul0\cf0}}}}\f0\fs22\par
+\par
+\ul\b Color\ulnone\b0\par
+One of the most important design decisions we can make is our Web site's color palette. We should choose a palette before we begin designing to keep a cohesive visual identity. A common mistake is to use too many colors on a page. As we are starting out, it is best to limit ourselves to just a few colors per page.\par
+\par
+For a consistent look and feel our users will recognize, we will want ot limit ourselves to around 4 colors for all non-graphic content like text, backgrounds, borders, etc. There are different color palette tools on the Web we can play around with, but one of the best ways is to find a site we like the look and feel and see if we can identify what color palette they are using.\par
+\par
+When getting into design, it's good idea to brush up on the basics of color theory, but just in case here's a short refresher.\par
+\par
+\b Colors make other colors\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 The historical color wheel is organized around the three primary colors: red, yellow and blue\b\par
+{\pntext\f1\'B7\tab}\b0 The secondary colors are the combinations of these primary colors: orange, green and purple\b\par
+{\pntext\f1\'B7\tab}\b0 We can follow this pattern of varying the amount if each primary color to create infinite intermediary colors\b\par
+{\pntext\f1\'B7\tab}\b0 However, as we've seen for the web, we define all colors as combinations of red, green and blue. The short answer for this is because that is how the human eye perceives color, something that was unknown when the historical color wheel was made\b\par
+
+\pard\sl240\slmult1\par
+Build a palette based on the color wheel\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Colors that are across the wheel are called "complementary", blue and orange, red and green, etc\b\par
+{\pntext\f1\'B7\tab}\b0 Colors that are next to one another are considered "analogous" like navy, blue and teal, or lime, green and hunter\b\par
+{\pntext\f1\'B7\tab}\b0 When picking a color palette, we should generally pick between one that is comprised mostly of analogous colors, or mostly complementary colors. Thankfully, there are lots of wonderful tools to help us do this. One very good is paletton.com, where we can choose a starting color. It will generate for us a set of other colors that according to color theory will look pleasing together.\b\par
+
+\pard\sl240\slmult1\par
+\b0 In our 4 colors, we'll want to keep a consistent tone so that our colors look good together. We'll want at least 1 very light color and 1 dark color. Avoid having all dark color or all light, as often having contrast is important for readibility. Also keep in mind not all users have full-color vision, so we should try ot avoid too many similar colors. We will discuss how to choose inclusive color in more detail in a later section.\par
+\par
+\b External resource\b0\par
+Here is a good article that goes into detail about color theory: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/wiki/Colour_theory }}{\fldrslt{https://www.w3.org/wiki/Colour_theory\ul0\cf0}}}}\f0\fs22\par
+\par
+\ul\b White space\ulnone\b0\par
+It can be difficult to strike a good balance of white space. The most common mistake beginner Web designers make it to not leave enough white space or empty space between HTML elements.\par
+\par
+We will want to make liberal use of paddings and margins to make sure that our site has plenty of empty space. Empty space makes it easier for a user's eyes to move around our page. We will want to ensure there is space between our HTML elements as well as between our elements and the edge of the page.\par
+\par
+Good balance between content and white space prevents our user from becoming fatigued while looking at our site. For example, when lines of text are very long, it is difficult to read without losing track of where we are. It is also fatiguing when the lines of text are too short because the user has to read vertically too much. There is considerable research on the topic, but a good rule of thumb is to limit lines of text to 50-75 characters wide.\par
+\par
+\ul\b Activity 5.2 - Breaking design guidelines\ulnone\b0\par
+For this activity, we'll need to find a Web site that violates one of the following design guidelines:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 uses more than 2 different font-faces within a single page\b\par
+{\pntext\f1\'B7\tab}\b0 Uses more than 4 different colors within the same page\b\par
+{\pntext\f1\'B7\tab}\b0 Displays text wider than 50 -75 characters across\b\par
+
+\pard\sl240\slmult1\par
+\b0 Once we've found a site, we should share it in the discussion and answer the following questions:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Which of the 3 design guidelines are violated? More than 1 guideline?\b\par
+{\pntext\f1\'B7\tab}\b0 Do we think that violation is a problem in this design?\b\par
+{\pntext\f1\'B7\tab}\b0 How would we improve the design overall?\b\par
+
+\pard\sl240\slmult1\par
+\ul\fs28 5.3 - Designing for our audience\ulnone\b0\par
+\ul\b\fs22 Intro to Web accessibility\ulnone\b0\par
+\i The power of the Web is in its universality.\par
+Access by everyone regardless of disability is an essential aspect.\i0\par
+\b Tim Berners-Lee\b0\par
+\par
+The Web has become an essential aspect of our daily lives, and everyone should have access to this technology. Web accessibility focuses on ensuring equivalent access for people with disabilities. It is increasingly important to many organizations and governments from around the world, and has many business benefits. Access to information, including on the Web, is also recognized by the UN Convention on the Rights of Persons with Disabilities.\par
+\par
+\b Who is impacted?\b0\par
+Web accessibility addresses all dissabilities, including hearing, learning and cognitive, neurological, physical, speech, and visual disabilities. Some examples of Web accessibility features include:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Captions on audio and multimedia content for people who are hard of hearing\b\par
+{\pntext\f1\'B7\tab}\b0 Clear and consistent layout for people with learning and cognitive disabilities\b\par
+{\pntext\f1\'B7\tab}\b0 Keyboard support for people with physical disabilities and do not use a mouse\b\par
+{\pntext\f1\'B7\tab}\b0 Text alternatives for people with visual disabilities and using screen readers\b\par
+
+\pard\sl240\slmult1\par
+Web accessibility benefits people with and without disabilities\b0\line Web accessibility features also benefit many more users, such as:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 People with temporal situational limitations, such as a broken arm\b\par
+{\pntext\f1\'B7\tab}\b0 People using mobile devices, televisions and other access channels\b\par
+{\pntext\f1\'B7\tab}\b0 People using older computers, with low bandwidth and other limitations\b\par
+{\pntext\f1\'B7\tab}\b0 People who are new to computers, to the Web, or to our own website\b\par
+{\pntext\f1\'B7\tab}\b0 People who are not fluent in the language of our particular website\b\par
+
+\pard\sl240\slmult1\par
+\b0 The Web is an increasingly important resource in many aspects of life: education, employment, government, commerce, health care, recreation and many more. When Web pages, Web technologies, Web tools, or Web applications are badly designed, they can create barriers that exclude people from using the Web. More information is available in the W3C Accessibility overview( {{\field{\*\fldinst{HYPERLINK https://www.w3.org/standards/webdesign/accessibility }}{\fldrslt{https://www.w3.org/standards/webdesign/accessibility\ul0\cf0}}}}\f0\fs22 )\par
+\b\par
+\par
+First steps in Web accessibility\b0\par
+There are many simple Web accessibility improvements that we can implement and check right away, even when we're new to this topic. Two example excerpts are provided below on this page but we can find more tips and information from W3C/WAI:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Tips for Getting Started with Web Accessibility ( {{\field{\*\fldinst{HYPERLINK https://www.w3.org/WAI/gettingstarted/tips/ }}{\fldrslt{https://www.w3.org/WAI/gettingstarted/tips/\ul0\cf0}}}}\f0\fs22 )\b\par
+{\pntext\f1\'B7\tab}\b0 Easy Checks - A First Review of Web Accessibility ( {{\field{\*\fldinst{HYPERLINK https://www.w3.org/WAI/eval/preliminary }}{\fldrslt{https://www.w3.org/WAI/eval/preliminary\ul0\cf0}}}}\f0\fs22 )\b\par
+
+\pard\sl240\slmult1\par
+Example 1: page title\b0\par
+Good page titles are particularly important for orientation - to help people know where they are and move between pages open in their browser. The first thing screen readers say when the user goes to a different web page is the page title. In the Web page markup, they are the <title> within the <head>\par
+\par
+Check #1: There is a title that adequately and briefly describes the content of a page, and that it distinguishes the page from other Web pages\par
+\par
+<head>\par
+\tab <title>Web Accessibility Initiative (WAI) - home page</title>\par
+</head>\par
+\par
+\b Example 2: image text alternatives ("ALT TEXT")\b0\par
+Text alternatives are a primary way of making visual information accessible, because they can be rendered through any sensory modality (for example, visual, auditory or tactile) to match the needs of the user. Providing text alternatives allows the information to be rendered in a variety of ways by a variety of user agents. For example, a person who cannot see a picture can have the text alternative read aloud using synthesized speech.\par
+\par
+Check #2: Every image has alt with appropriate alternative text.\par
+On the W3C logo below, it contains a link that points to the W3C web site. The text alternative is going to be a brief description of the link target.\par
+\par
+<a href="{{\field{\*\fldinst{HYPERLINK http://w3.org }}{\fldrslt{http://w3.org\ul0\cf0}}}}\f0\fs22 "><img src="images/w3c_home.png" width="72" height="48" alt"W3C Web site"></a>\par
+\par
+\ul\b Inclusive design\ulnone\b0\par
+As we are designing our site, it is critical that we keep in mind the range of users who might be viewing the page. There are some simple design choices we can make to ensure that our web page is as inclusive as possible.\par
+\par
+Typically a good approach is to keep our designs on the simpler side. Not only is this in line with current trends, but when there are fewer elements and styles, it is easier for everyone to consume the information we are trying to convoy.\par
+\par
+\b color-blind\b0\par
+When a user is color-blind, it typically means there is a category of colors that are difficult for them to distinguish between. So, by picking diverse colors that contrast well, we can ensure that these users can still read our page. To do this:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 Pick a base color (example: blue)\b\par
+{\pntext\f0 2.\tab}\b0 Choose one or two shades of the same color as supplementary colors. Make sure these colors contrast with the base color, meaning that if one was placed on top of the other, it is still legible. Also, if we are choosing multiple supplementary colors, we should try to pick one from the yellows group (warmer colors) and one from the blues group (cooler colors). This way, a color-blind user is likely to only have difficulty seeing one of these, not both\b\par
+{\pntext\f0 3.\tab}\b0 Select an accent color that is a totally different color from the previously chosen colors\b\par
+
+\pard\sl240\slmult1\par
+\b0 Even with a carefully chosen palette, it might still be difficult for a user to distinguish between colors. In addition to using color to indicate something, we'll also want to use shape. For example, if we have two buttons, one that is green for "agree" and one that is red for "disagree", it can be almost impossible for some users to decide which to click. In this case, we'll want to make sure they are both clearly labeled, or the shapes of the buttons are distinctly different.\par
+\par
+Thankfully, the Paciello Group has created a tool we can download to check if our chosen colors provide enough contrast for color blind users. We can find out more about this free tool here: {{\field{\*\fldinst{HYPERLINK https://www.paciellogroup,con/resources/contrastanalyser/ }}{\fldrslt{https://www.paciellogroup,con/resources/contrastanalyser/\ul0\cf0}}}}\f0\fs22\par
+\par
+\b low-vision\b0\par
+It is extremely common (as many as 20% of users over 45) for a user to have difficulty reading small text. These users often will have their Web browser set to magnify text to a size that is more comfortable for them, which can make all carefully designed layouts look very different. These users will typically do one of two things:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sl240\slmult1 zoom in on the entire page: we can test to see what this experience will be like with our own Web browser, typically with the Ctrl + shortcut\b\par
+{\pntext\f0 2.\tab}\b0 use a text-only zoom: to see what it looks like, we might want to text our layout with larger fonts, like 24pt or 32pt, to make sure our layout can grow to accomodate the overflow text. Also, we should note that long lines of text (over 50 characters wide) can be especially difficult to scroll through to read\b\par
+
+\pard\sl240\slmult1\par
+\b0 In general, we will want to make sure our font size is at least 1em. By using em we can let the text size grow based on the user's browser settings.\par
+\par
+\ul\b What is internationalization?\ulnone\b0\par
+Access to the Web for all has been a fundamental concern and goal of the W3C since the beginning. It is easy to overlook the needs of people from cultures different to our own, or who use different languages or writing systems, but we have to ensure that any content or application that we design or develop is ready to support the international features that they will need.\par
+\line Internationalization is sometimes abbreviated to 'i18n' in English, because there are 18 characters between the 'i' and the 'n'..\par
+\line The W3C Internationalizaiton Activity works with W3C working groups and liases with other organizations to make it possible to use Web technologies with different languages, scripts, and cultures.\par
+\par
+People who use non-Latin writing systems or use the Latin script for certain languages, often have specific typographic needs that differ from text in, say, English. As we learn more about CSS, we will find that it provides many features to support those needs.\par
+\par
+Whereas HTML markup provides structure for the content of our page, CSS brings the expressive power to make the page look the way a person from particular culture would expect.\par
+\par
+\b Examples\b0\par
+Here are some examples of things that can be done with CSS.\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 It is already possible to make text run vertically in CSS for languages such as Chinese, Japanese, Korean and Mongolian. For more information, we can consult the following page: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/International/articles/vertical-text/ }}{\fldrslt{https://www.w3.org/International/articles/vertical-text/\ul0\cf0}}}}\b\f0\fs22\line\b0 We can also style conters for lists or chapter headings and such like according to local preferences.\b\par
+{\pntext\f1\'B7\tab}\b0 When we want to justify text so that lines are straight on both sides of our column, different strategies are used for different scripts. Most Western typography pust an emphasis on adjusting inter-word spaces, but Chinese don't use spaces between words, so we generally do inter-character spacing. In text written using the arabic script it is common to stretch the baseline that joins letters, or use other techniques to balance the line.\b\line\b0 Some scripts allow words to be hyphenated in order to improve the visual effect of a paragraph\b\par
+{\pntext\f1\'B7\tab}\b0 Text decoration and text style features can vary in applicability from script to script. For example, Japanese characters are fairly complicated so, rather than italicise their text for emphasis, which can make it harder to read at small sizes, they have a tradition of placing special marks alongside the emphasised text. Also, it may be important to avoid underlines running over descenders in some scripts, since itg can obscure important marks attached to a base character, so CSS allows us to skip "ink" as shown in the Burmese example on the page.\b\par
+
+\pard\sl240\slmult1\par
+CSS & Language\b0\par
+An important point to bear in mind is that for many of these features to work as expected, we need to declare the language of the content. For example:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Hyphenation won't work unless the content is labelled for language. This is becuase the way hyphenation works, and the dictionaries it uses, are language-specific\b\par
+{\pntext\f1\'B7\tab}\b0 If we cant to convert Turkish or Azeri text to uppercase or vice versa, we will get incorrect results unless the browser knows that the text is in that language, because they have a dotted i and a non-dotted i which do case conversion differently form European languages\b\par
+{\pntext\f1\'B7\tab}\b0 If text wraps to a new line, by default it does so differently dependent on whether we are dealing with Chinese or Japanese\b\par
+{\pntext\f1\'B7\tab}\b0 And we could continue...\b\par
+
+\pard\sl240\slmult1\par
+\b0 Therefore, we should always ensure that the correct language is specified in the lang attribute on the html tag, to indicate the default language of the page. And if we have passages in another language inside the page, we should put a lang attribute on markup that surrounds them, too.\par
+\par
+\b Localization\b0\par
+In addition, CSS provides tremendous help if we have to translate content from one language to another. Being able to change a single line in a style sheet to apply a change to all pages being translated, rather than having to edit every page, saves a massive amonut of time. However, this works best when we keep the distinction between semantics (markup) and presentation (styling) clear.\par
+\par
+We shouldn't use CSS to apply direction for bidirectoinal or right-to-left scripts, such as content in Arabic, Hebrew, Persian, Urdu, Divehi, etc. We should use HTML markup instead.\par
+\par
+\ul\b\fs28 5.6 Project 5 - Apply good design\ulnone\b0\par
+\fs22 Now that we've discussed so many deisn guidelines, it's our turn to try some out. We should take the resume we created on Module 4 and make sure that it conforms to all the following rules:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 4 total colors that are color-blind inclusive\b\par
+{\pntext\f1\'B7\tab}\b0 2 total typefaces that can grow if a user is employing a text-zoom\b\par
+{\pntext\f1\'B7\tab}\b0 each element has a good amount of white space aronud it\b\par
+{\pntext\f1\'B7\tab}\b0 no line of text is longer than 75 characters wide.\b\par
+}
+ 

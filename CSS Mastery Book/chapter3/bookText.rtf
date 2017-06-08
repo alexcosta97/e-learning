@@ -1,0 +1,137 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\ul\b\f0\fs32\lang9 Box model recap\ulnone\b0\par
+\fs22 The box model is one of the cornerstones of CSS and dictates how elements are displayed and, to a certain extent, how they interact with each other. Every element on the page is considered to be a rectangular box made up of the element's content, padding, border and margin.\par
+\par
+Padding is applied around the content area. If we add a background to the element, it will be applied to the are formed by the content and padding. As such, padding is often used to create a gutter around content so that it does not appear flush to the side of the background. Adding a border applies a line to the outside of the padded area. These lines come in various styles such as solid, dashed or dotted. Outside the border is the margin. Margins are transparent and cannot be seen. THey are generally used ot control the spacing between elements.\par
+\par
+
+\pard\li720\sl240\slmult1 CSS 2.1 also contains the outline property. Unlike the border property, outlines are drawn over the top of an element's box, so they don't affect its size and positioning. Because of this, outlines can be useful when fixing bugs, because they don't alter the layout of the page. Outlines are supported by most modern browsers including IE8 but are not supported in IE7 and below.\par
+
+\pard\sl240\slmult1\par
+Padding, borders, and margins are optional and default to zero. However, many elements will be given margins and padding by the user-agent style sheet. We can override these browser styles by setting the element's margin or padding back to 0. We can do this on a case-by-case basis or for every element by using the universal selector.\par
+\par
+We just have to remember that this technique (universal selector) is fairly indiscriminant, so it can have adverse effect on elements like the option element. As such it's probably safer to zero down the padding and margins explicitly using a global reset.\par
+\par
+In CSS, width and height refer to the width and height of the content area. Adding padding, borders, and margins will not affect the size of the content area but will increase the overall size of an element's box. If we want a box with a 10-pixel margin and a 5-pixel padding on each side to be 100 pixels wide, we would need to set the width of the content to be 70px.\par
+\par
+Paddings, border and margins can be applied to all sides of an element or individual sides. Margins can also be given a negative value and can be used in a variety of techniques.\par
+\par
+\ul\b IE and the box model\ulnone\b0\par
+Unfortunately, older versions of Internet Explorer, along with IE 6 in quirks mode, use their own, nonstandard box model. Instead of measuring just the width of the content, these browsers take the width property as the sum of the width of the content, padding and borders. This actually makes a lot of sense, because in real-world boxes have a fixed size, and the padding goes on the inside. The more padding we add, the less room there will be for the content. However, despite the logic, the fact that these versions of IE disregard the specification can cause significant problems. For instance, in the previous example the total width of the box would only be 90px in IE 5.x. This is because IE 5.x will consider the 5 pixels of padding on each side as part of the 70px width, rather than in addition to it.\par
+\par
+
+\pard\li720\sl240\slmult1 The CSS 3 box-sizing property allows us to define which box model to use, although this feature is unlikely to be widely used except in some very specific circumstances.\par
+
+\pard\sl240\slmult1\par
+Luckily, there are several ways we can tackle this issue, the details of which can be found in Chapter 9. However, by far the best solution is to avoid the problem altogether. We can do this by never adding padding to an element with a defined width. Instead, we could try adding padding or margins to the element's parent or children.\par
+\par
+\ul\b Margin collapsing\ulnone\b0\par
+Margin collapsing is a relativelz simple concept. In practice, however, it can cause a lot of confusion when we're laying out a page. Put simply, when two or more vertical margins meet, they will collapse to form a single margin. The height of this margin will equal the height of the larger of the two collapsed margins.\par
+\par
+When two elements are above one another, the bottom margin of the first element will collapse with the top margin of the second element.\par
+\par
+When one element is contained withing another element, assuming there is no padding or border separating margins, their top and/or bottom margins will also collapse together.\par
+\par
+It may seem strange at first, but margins can even collapse on themselves. Say we have an empty element with a margin but no border or padding. In this situation, the top margin is touching the bottom margin, and they collapse together. If this margin is touching the margin of another element, it will itself collapse.\par
+\par
+This is why a series of empty paragraph elements take up very little space, as all their margins collapse together to form a single small margin.\par
+\par
+Margin collapsing may seem strange at first, but it actually makes a lot of sense. Take a typical page of text made up of several paragraphs. The space above the first paragraph will equal the paragraph's top margin. Without margin collapsing, the space between all subsequent paragraphs would be the sum of their adjoining top and bottom margins. This means that the space between paragraphs will be double the space at the top of the page. With margin collapsing, the top and bottom between each paragrap collapse, leaving the spacing the same everywhere (given all the paragraphs have the same margin values).\par
+\par
+Margin collapsing only happens with the vertical margins of block boxes in the normal flow of the document. Margins between inline boxes, floated, or absolutely posiitoned boxes never collapse.\par
+\par
+\ul\b\fs28 Positioning recap\ulnone\b0\par
+\ul\b\fs22 The visual formatting model\ulnone\b0\par
+People often refer to elements such as p, h1 or div as block-level elements. This means they are elements that are visually displayed as blocks of content, or block boxes. Conversely, elements such as strong and span are described as inline elements because their content is displayed within lines as inline boxes.\par
+\par
+It is possible to change the type of box generated by using the display property. This means we can make an inline element such as an anchor behave like a block-level element by setting its display property to block. It is also possible to cause an element to generate no box at all by setting its display property to none. This box, and thus all of its content, is no longer displayed and takes up no space in the document.\par
+\par
+There are three basic positioning schemes in CSS: normal flow, floats and absolute positioning. Unless specified, all boxes start life being positioned in the normal flow. As the name suggests, the position of an element's box in the normal flow will be dictated by that element's position in the HTML. Block- level boxes will appear vertically one after the other; the vertical distance between boxes is calculated by the boxes' vertical margins.\par
+\par
+Inline boxes are laid out in a line horizontally. Their horizontal spacing can be adjusted using horizontal padding, borders, and amrgins. However, vertical padding, borders and margins will have no effect on the height of an inline box. Similarly, setitng an explicit height or width on an inline box will have no effect either. The horizontal box formed by a line is called a line box, and a line box will always be tall enough for all the line boxes it contains. There isanother caveat, though - setting the line height can increase the height of this box. Because of these reasons, the only way we can alter the dimensions of an inline box is by changing the line height or horizontal borders, padding or margins.\par
+\par
+Helpfully, CSS 2.1 allows us to se thte display property of an element to be inline-block. As the name suggests, this declaration makes the element line up horizontally as if it were an inline element. However, the contents of the box behave as though the box were a block-level, including being able to explicitly set widths, heights, vertical margins and padding. Historically, this property has been poorly supported. Thankfully it is now supported by most modern browsers, so it is probably going to be used a lot more now and in the future.\par
+\par
+In the same way that HTML elements can be nested, boxes can contain other boxes. Most boxes are formed from explicitly defined elements. However, there is one situation whre a block-level element is created even if it has not been explicitly defined - when we add some text at the start of a block-level element like div. Even though we have nor defined the text as a block-level element, it is treated as such. In this situation, the box is described as an anonymous block box, since it is not associated with a specially defined element.\par
+\par
+A similar thing happens with lines of text inside a block-level element. Say we have a paragraph that contains three lines of text. Each line of text forms an anonymous line box. We cannot style anonymous block or line boxes directly, even through the use of the :first-line pseudo class, which obviously has a limited use. However, it is useful to understand that everything we see on our screen creates some sort of box.\par
+\par
+\ul\b Relative positioning\ulnone\b0\par
+Relative positioning is a fairly easy concept to grasp. If we relatively position an element, it will stay exactly where it is. We can then shift the element relative to its starting point by setting a vertical or horizontal position. If we set the top position to be 20 pixels, the box will appear 20 pixels below the top of its original position. Setting the left position to 20 pixels will create a 20-pixel space on the left of the element, moving the element to the right.\par
+\par
+With relative positioning, the element continues to occupy the original space, whether or not it is offset. As such, offseting the element can cause it to overlap other boxes.\par
+\par
+\ul\b Absolute positioning\ulnone\b0\par
+Relative positioning is actually considered part of the normal flow-positioning model, as the position of the element is relative to its position in the normal flow. By contrast, absolute positioning takes the element our of the flow of the document, thus taking up no space. Other elements in the normal flow of the document will act as though the absolutely positioned element was never there.\par
+\par
+An absolutely positioned element is positioned in relation to its nearest positioned ancestor. If the element has no positioned ancestors, it will be positioned in relation to the initial containing block. Depending on the user agent, this will either be the canvas or the HTML element.\par
+\par
+As with relatively positioned boxes, an absolutely positioned box can be offset from the top, bottom, left or right of its containing block. This gives us a great deal of flexibility. We can literally position an element anywhere on the page.\par
+\par
+
+\pard\li720\sl240\slmult1 The main problem people have with positioning is remembering which type of positioning is which. Relative positioning is "relative" to the element's original position in the flow of the document, whereas absolute positioning is "relative" to nearest positioned ancestor or, if one doesn't exist, the initial container block.\par
+\par
+
+\pard\sl240\slmult1 Because absolutely positioned boxes are taken out of the flow of the document, they can overlap other elements on the page. We can control the stacking order of these boxes by setting a property calles z-index. The higher the z-index, the higher up the box appears in the stack.\par
+\par
+Positioning an absolutely positioned element in relation to its nearest positioned ancestor allows us to do some very interesting things. For instance, say we wanted to align a paragraph of text at the bottom right of a large box. We could simply give the container box a relative position and then absolutely position the paragraph in relation to this box.\par
+\par
+
+\pard\li720\sl240\slmult1 Absolutely positioning a box in relation to a relative positioned ancestor works well in most modern browsers. However, there is a bug in IE 5.5 and 6 on Windows. If we try to set the position of the absolutely positioned box relative to the right or bottom of the relatively positioned box, we need to make sure the relatively positioned box has some dimensions set. If not, IE will incorrectly position the box in relation to the canvas instead. We can read more about this bug and possible fixes in Chapter 9. The simple solution is to set the width and height of our relative box to avoid this problem.\par
+\par
+
+\pard\sl240\slmult1 Absolutely positioning can be a useful tool when laying out a page, especially if it is done using relatively positioned ancestors. It is entirely possible to create a esign solely using absolute positioning. For this to work, these elements need to have fixed dimensions, so we can position them where we want without the risk of overlapping.\par
+\par
+Because absolutely positioned elements are taken out of the flow of the document, they have no effect on boxes in the normal flow. If we were to enlarge an absolutely positioned box - by increasing the font size, for instance - the surrounding boxes wouldn't reflow. As such, any change in size can ruin our finely tuned layout by causing the absolutely positioned boxes to overlap.\par
+\par
+\ul\b Fixed positioning\ulnone\b0\par
+Fixed positioning is a subcategory of absolute positioning. The difference is that a fixed element's containing block is the viewport. This allows us to create floating elements that always stay at the same position in the window. An example of this is shown at the old snook.ca website. The weblog comment form has been given a fixed position to keep it anchored at the same place on screen when the page is scrolled. This really helps improve usability, and we don't have to scroll all the way to the bottom of the page to leave a comment.\par
+\par
+Unfortunately, IE 6 and below do not support fixed positioning. IE 7 partially supports this property, but the implementation is fairly buggy. To get around these problems, Jonathan Snook used JavaScript to replicate the effect in IE.\par
+\par
+\ul\b Floating\ulnone\b0\par
+The last visual formatting model is the float model. A floated box can either be shifted to the right or left until its outer edge touches the edge of its containing box or another floated box. Because floated boxes aren't in the normal flow of the document, block boxes in the regular flow of the document behave as if the floated box wasn't there.\par
+\par
+When we float a box to the right, it's taken out of the flow of the document and moved to the right until its edge touches the right edge of the containing block.\par
+\par
+When we float a box to the left, it is taken out of the flow of the document and moved to the left until its left edge touches the left edge of the containing block. Because it is no longer in the flow, it takes up "no space" and actually sits on top of elements that were supposed to be beneath it in the document, obscuring them from view. If we float all the boxes to the left, they will follow each other horizontally until no more boxes can fit in the screen, restarting in the next line.\par
+\par
+If the containing block is to narrow for all of the floated elements to fit horizontally, the remaining floats will drop down until there is sufficient space. If the floated elements have different heights, it is possible for floats to get "stuck" on other floats when they drop down.\par
+\par
+\ul\b Line boxes and clearing\ulnone\b0\par
+We learned in the previous section that floating an element takes it out of the flow of the document where it no longer exerts an effect on non-floated items. Actually, this isn't strictly true. If a floated element is followed by an element in the flow of the document, the element's box will behave as if the float didn't exist. However, the textural content of the box retains some memory of the floated element and moves out of the way to make room. In technical terms, a line box next to a floated element is shortned to make room for the floated element, thereby flowing around the floated box. In fact, floats were created to allow text to flow around images.\par
+\par
+To stop line boxes flowing around the outside of a floated box, we need ot apply a clear property to the element that contains those line boxes. The clear property can be left, right, both or none, and it indicates which side of the box should not be next to a floated box. When we clear an element, the browser adds enough margin to the top of the element to push the element's top border edge vertically down, past the float.\par
+\par
+Floated elements are taken out of the flow of the document and have no effect on surrounding elements. However, clearing an element essentially cleares a vertical space for all preceding floated elements.\par
+\par
+This can be a useful layout tool as it allows surrounding elements to make space for floated elements. This solves the problem we saw earlier with absolute positioning, where changes in vertical height do not affect surrounding elements and can break our design.\par
+\par
+When using a div to warp a paragraph and an image, the image being on the left of the text, because the floated elements are taken out of the flow of the document, the wrapper div takes up no space. In order to get the wrapper to enclose the floated element, we need to apply a clear somewhere inside that element.\par
+\par
+That gets the result we want, but at the expense of adding extraneous code to our markup. Often there will be an existing element we can apply the clear to, but sometimes we may have to bite the bullet and add meaningless markup for the purpose of layout.\par
+\par
+Instead of clearing the the floated text and image, we could choose to float the container div as well\par
+\par
+This creates the desired result. Unfortunately, the next element is now going to be affected by the float, To solve this problem, sime people choose to float nearly everything in a layout and then clear these floats using an appropriate meaningful element, often the site footer. This helps reduce or eliminate the need for extraneous markup. However, floating can be complicated, and some older browsers may choke on heavily floated layouts. As such, many people prefer to add that extra bit of markup.\par
+\par
+The overflow property defines how an element is supposed to behave if the enclosed content s too big for the stated dimensions. By default, the content will spill out of the box, overflowing into the neighboring space. One useful side-effect of applying an overflow property to hidden or auto is that it will automatically clear any floats contained within. So this can be a useful way of clearing an element without adding any extra markup. This method is not appropriate in all situations, since setting the box's overflow property will affect how it behaves. More specifically, this method can force scroll bars or clip content under certain circumstances.\par
+\par
+Then too, some people have taken to clearing floats using CSS-generated content or JavaScript. The basic concept for both methods is the same. Rather than addinga clearing element directly to the markup, we add it to the page dynamically. For both methods, we need to indicate where the clearing element goes, and this is usually done with the addition of a class name.\par
+\par
+Using the CSS method, we use the :after pseudo-class in combination with the content declaration to add new content at the end of the specified existing content. In this case, we're adding a period, as it is a fairly small and unobtrusive character. We don't want the new content to take up any vertical space or be displayed on the page, so we need to se the height to 0 and visibility to hidden. Because cleared elements have space added to their top margin, the generated content needs to have its display property set to block. Once this is done, we can then clear our generated content.\par
+\line This method works in msot modern browsers but fails in IE 6 and below. Various workarounds are available, many of which are documented at {{\field{\*\fldinst{HYPERLINK http://www.positioniseverything.net/easyclearing.html }}{\fldrslt{http://www.positioniseverything.net/easyclearing.html\ul0\cf0}}}}\f0\fs22  The most common of these involves using the Holly Hack (chapter 8) to trick IE 5 and 6 into applying "Layout" (Chapter 9) and incorrectly clearing the floats.\par
+\par
+However, due to its complexity this method may not be suitable for everybody so has been included primarly for historical reasons.\par
+\par
+An explanation of the JS method is beyond the scope of this book but is worth a brief mention. Unlike the previous method, the JS method works on all major browsers when scripting is turned on. However, if we use this method, we need to make sure that the content is readable when scripting is turned off.\par
+\par
+\par
+\ul\b Summary\ulnone\b0\par
+In this chapter, we've learned about the box model and how padding, margin, width and height affect the dimensions of a box. We also learned about the concept of margin collapsing and how this can affect our layouts. We were introduced to the three formatting models in CSS: normal flow, absolute positioning and floating. We learned the difference between inline and block boxes, how to absolutely position an element within a relatively positioned ancestor, and how clearing really works.\par
+\par
+Now that we are armed with this knowledge, we can start putting it to good use. In the following chapters, we will learn a number of core CSS concepts and we'll see how they can be used to create a variety of useful and practical techniques.\par
+}
+ 

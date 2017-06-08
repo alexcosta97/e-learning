@@ -1,0 +1,90 @@
+body{
+    margin: 0px;
+    margin-left: 12.5%;
+    width: 75%;
+    color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.Black, p{
+    color: #000000;
+}
+
+header{
+    margin-top: 0px;
+    height: 75px;
+    padding: 20px;
+    background-color: #abb8ce;
+}
+
+header h1{
+    max-width: 50%;
+    float: left;
+}
+
+header p {
+    margin-right: 20px;
+    text-align: right;
+    width: 50%;
+    float: right;
+    color: blue;
+}
+
+#workExperience{
+    padding: 20px;
+    background-color: #abb8ce;
+    width: 71.5%;
+    float: left;
+    margin: 5px;
+    margin-left: 0px;
+    height: auto;
+}
+
+#objective, #education, #Leadership{
+    padding: 10px;
+    background-color: #abb8ce;
+    width: 21.5%;
+    float: right;
+    margin: 5px;
+    margin-right: 0px;
+    text-align: justify;
+}
+
+#charity{
+    clear: right;
+    background-color: #abb8ce;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.details{
+    margin: 0px;
+    float: right;
+    width: 85%;
+    background-color: #abb8ce;
+    padding-left: 5px;
+}
+
+.year{
+    margin: 0px;
+    clear: right;
+    float: left;
+    padding-top: 5px;
+    width: 13%;
+    background-color: #abb8ce;
+}
+
+footer{
+    clear: both;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-align: center;
+    background-color: #abb8ce;
+}
+
+.sizeFix{
+    clear: both;
+}
