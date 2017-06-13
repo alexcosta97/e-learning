@@ -1,0 +1,204 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\ul\b\f0\fs28\lang9 Using Backgrounds for Effect\ulnone\b0\par
+\fs22 Now that we are all up to speed with the theory, it's time to start putting it into practice. Today's Web is a very visual medium. The humble image tag has allowed web designers to turn dull and uninspiring documents into graphically rich experiences. Graphic designers quickly seized on the image tag (originally intended as a way to add visual content to a website) as a way of visually embelishing the page. In fact, if it wasn't for the invention of the image tag, the profesion of web designer may naver have evolved.\par
+\par
+Unfortunately, we've used the image tag to clutter our pages with purely presentational images. Luckily, CSS gives us the ability to display an image on a page without it being part of the markup. This is achieved by adding an image as a background to an existing element. Through a series of practical examples, this chapter will show us how background images can be used to create a variety of interesting and useful techniques.\par
+\par
+In this chapter we will learn about:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 fixed- and flexible-width rounded-corner boxes\par
+{\pntext\f1\'B7\tab}The sliding doors technique\par
+{\pntext\f1\'B7\tab}Multiple background images and the border-radius property\par
+{\pntext\f1\'B7\tab}CSS drop shadows\par
+{\pntext\f1\'B7\tab}Opacity and RGBa\par
+{\pntext\f1\'B7\tab}Getting PNGs to work in older versions of Internet Explorer\par
+{\pntext\f1\'B7\tab}Parallax scrolling\par
+{\pntext\f1\'B7\tab}Image replacement\par
+
+\pard\sl240\slmult1\par
+\ul\b Background image basics\ulnone\b0\par
+Applying a background image is easy. Say we want our website to have a nive tiled background. We can simply apply the image as a background to the body element:\par
+\par
+body\{\par
+\tab background-image:url(/img/pattern.gif);\par
+\}\par
+\par
+The default browser behavior is to repeat background images horizontally and vertically so that the image tiles across the whole of the page. For more control we can choose whether our background image tiles vertically, horizontally, or not at all.\par
+\par
+Gradients are very fashionable at the moment, so we may want to apply a vertical gradient to our page instead. To do this, we would need to create a tall but narrow gradient gaphic. We can then apply this graphic to the body of the page and let it tile horizontally..\par
+body\{\par
+\tab background-image: url(/img/gradient.gif);\par
+\tab background-repeat: repeat-x;\par
+\}\par
+\par
+Because the gradient has a fixed height, it will stop abruptly if the content of the page is longer than the height of the image. We could choose to create a really long image, possibly one that fades to a fixed color. However, it is always difficult to predict how long a page will become. Instead, we can simply add a background color as well. Background images always sit on top of the background color, so when the image runs out the color will be displayed. If we choose a background color that is the same as the bottom of the gradient, the transition between image and background color will be seamless.\par
+\par
+body\{\par
+\tab background-image: url(/img/gradient.gif);\par
+\tab background-repeat: repeat-x;\par
+\tab background-color: #ccc;\par
+\}\par
+\par
+Tiling images can be useful in some situations. However, most of the time, we will want to added images to our page. For instance, say we want our web page to start with a large branding image. We could simply add the image directly into the page, and in many situations, this would be the correct thing to do. Yet if the image contains no information and is purely presentational, we may want to separate the image from the rest of our content. We can do this by creating a hook for the image in our HTML and applying the image using CSS. In the following example, we can add an empty div to the markup and give it an ID of branding. We can then set the dimensions of the div to be the same as the branding image, apply it as a background, and tell it not to repeat.\par
+\par
+#branding\{\par
+\tab width: 700px;\par
+\tab height: 200px;\par
+\tab background-image: url(/img/branding.gif);\par
+\tab background-repeat: no repeat;\par
+\}\par
+\par
+Last, it is possible to set the position of our background image. Say we want to add a bullet to every headline of our website, we could then do something like this:\par
+\par
+h1\{\par
+\tab padding-left: 30px;\par
+\tab background-image: url(/img/bullet.gif);\par
+\tab background-repeat: no-repeat;\par
+\tab background-position: left center;\par
+\}\par
+\par
+The last two keywords indicate the positioning of the image. In this case, the image will be positioned from the top-left corner of the element and vertically centered. As well as using keywords, we can set a background image's position using units such as pixels or percentages.\par
+\par
+If we set a background position using pixels or ems, the top-left corner of the iamge is positioned from the top-left corner of the element by the specified number of pixels. So if we were to specify a vertical and horizontal position of 20 pixels, the top-left corner of the image will appear 20 pixels from the top-left corner of the element. However, background positioning using percentages works slightly differently. Rather than positioning the top-left corner of the background image, percentage positioning uses a corresponding point on the image.  So, if we set a vertical and horizontal of 20 percent, we are actually positioning a point 20 percent from the top left corner of the image, 20 percent from the top left of the parent element.\par
+\par
+If we want to position the previous bullet example using percentages instead of keywords, setting the vertical position to 50 percent would vertically center the bullet image:\par
+h1\{\par
+\tab padding-left: 30px;\par
+\tab background-image: url(/img/bullet.gif);\par
+\tab background-repeat: no-repeat;\par
+\tab background-position: 0 50%;\par
+\}\par
+\par
+The specificatoin says that we are not supposed to mix units such as pixels or percentages with keywords. This seems like a nonsensical rule, and it's one that many modern browsers deliberately ignore. However, mixing units and keywords fails to work on certain browsers and will most likely invalidate our CSS. As such, it is best not to mix units with keywords at this time.\par
+\par
+To save time, CSS also provides a shorthand version of the background property. THis allows us to set all the properties on the go, rather than having to set them all individually.\par
+\par
+h1\{\par
+\tab background: #ccc url(/img/bullet.gif) no-repeat left center;\par
+\}\par
+\par
+While background images are a simple concept to grasp, they form the basis of many advanced CSS techniques.\par
+\par
+\ul\b Rounded-corner boxes\ulnone\b0\par
+One of the first criticisms leveled against CSS-based designs was that they were very square and boxy. To get around this, people started creating designs that incorporated more organic curved shapes. Rounded-corner boxes very quickly became one of the most sought-after CSS techniques around. There are various ways of creating rounded-corner boxes. Each approach has its strengths and weaknesses, and the one we choose depends largely on our circumstances.\par
+\par
+\ul\b Fixes -width rounded-corner boxes\ulnone\b0\par
+Fixed-width rounded-corner boxes are the easiest to create. They require only two iamges: one for the top of the box and one for the bottom. For example, say we want to create a box that would have a pastel color of green with rounded-corners. The markup for the box looks something like this:\par
+<div class="box">\par
+\tab <h2>Headline</h2>\par
+\tab <p>content</p>\par
+</div>\par
+\par
+In our favourite graphics package, we need to create two images that would contain the rounded corners and a little bit of space, one for the bottom and another for the top. We can then apply the top image to the heading element and the bottom iamge to the bottom of the box div. Because this box style just has a solid fill, we can create the body of the box by adding a background color to the box div:\par
+\par
+.box\{\par
+\tab width: 418px;\par
+\tab background: #effce7 url(/img/bottom.gif) no-repeat left bottom;\par
+\}\par
+\par
+.box h2\{\par
+\tab background: url(/img/top.gif) no-repeat left top;\par
+\}\par
+\par
+We will not want our content to butt up against the sides of the box, so we also need to add some padding to the elements inside the div:\par
+
+\pard\sl240\slmult1 .box\{\par
+\tab width: 418px;\par
+\tab background: #effce7 url(/img/bottom.gif) no-repeat left bottom;\par
+\tab padding-bottom: 1px;\par
+\}\par
+\par
+.box h2\{\par
+\tab background: url(/img/top.gif) no-repeat left top;\par
+\tab margin-top: 0;\par
+\tab padding: 20px 20px 0 20px;\par
+\}\par
+
+\pard\sl240\slmult1\par
+.box p\{\par
+\tab padding: 0 20px;\par
+\}\par
+\par
+This is great for a simple box with a solid color and no borders. But what if we want to create a fancier style, with shadows on the sides acting almost like a border?\par
+\par
+We can actually use the same approch, but this time, instead of setting a background color on the box, we can set a repeating background image. For this to work, we will need to apply the bottom curve image to another element. In this case, we can use the last paragraph element in the box:\par
+\par
+.box\{\par
+\tab width: 424px;\par
+\tab background: url(/img/tile.gif) repeat-y;\par
+\}\par
+\par
+.box h2\{\par
+\tab background: url(/img/top2.gif) no-repeat left top;\par
+\tab padding-top: 20px;\par
+\}\par
+\par
+.box .last\{\par
+\tab background: url(/img/bottom2.gif) no-repeat left bottom;\par
+\tab padding-bottom: 20px;\par
+\}\par
+\par
+.box h2, .box p\{\par
+\tab padding-left: 20px;\par
+\tab padding-right: 20px;\par
+\}\par
+\par
+<div class="box">\par
+\tab <h2>Headline</h2>\par
+\tab <p class="last">Content</p>\par
+</div>\par
+\par
+\ul\b Flexible rounded-corner box\ulnone\b0\par
+The previous examples will all expand vertically if we increase our text size. However, they do not expand horizontally, as the width of the box has to be the same as the width of the top and bottom images. If we want to create a flexible box, we will need to take a slightly different approach. Instead of the top and bottom curves consisting of a single image, they need to be made up of two overlapping images.\par
+\par
+As the boxes increase in size, more of the larger imamge will be revealed, thus creating the illusion that the box is expanding. This concept is sometimes referred as the sliding doors technique because one image slides over the other, hiding it from view. More images are required for this method to work, so we will have to add a couple extra, nonsemantic elements to our markup.\par
+\par
+<div class="box">\par
+\tab <div class="box-outter">\par
+\tab\tab <div class="box-inner">\par
+\tab\tab\tab <h2>Headline</h2>\par
+\tab\tab\tab <p>Content</p>\par
+\tab\tab </div>\par
+\tab </div>\par
+</div>\par
+\line This method requires four images: the top two images make up the top curve, and the bottom two images make up the bottom curve and the body of the box. As such, the bottom images need to be as tall as the maximum height of the box. We will name these images top-left.gif, top-right.gif, bottom-left.gif and bottom-right.gif.\par
+\par
+First, we apply the bottom-left.gif to the main box div and bottom-right.gif to the outer div. Next, we apply top-left.gif to the inner div and finally top-right.gif to the heading. Last, it is a good idea to add some padding space out the contents of the box a little.\par
+\par
+.box\{\par
+\tab width: 20em;\par
+\tab background: #effce7 url(/img/bottom-left.gif) no-repeat left bottom;\par
+\}\par
+\par
+.box-outer\{\par
+\tab background: url(img/bottom-right.gif) no-repeat right bottom;\par
+\tab padding-bottom: 1em;\par
+\}\par
+\par
+.box-inner\{\par
+\tab background: url(/img/top-left.gif) no-repeat left top;\par
+\}\par
+\par
+.box h2\{\par
+\tab background: url(/img/top-right.gif) no-repeat right top;\par
+\tab padding-top: 1em;\par
+\}\par
+\par
+.box h2, .box p\{\par
+\tab padding-left: 1em;\par
+\tab padding-right: 1em;\par
+\}\par
+\par
+In this example. we have set the dimensions of the box in ems, so increasing the text size in our browser will cause the box to stretch. We could, of course, set the width in percentages and have the box expand or contract depending on the size of the browser window. This is one of the main principles behind elastic and liquid layouts, something we will be covering later.\par
+\par
+
+\pard\li720\sl240\slmult1 The addition of a couple extra nonsemantic elements is not ideal. If we only have a couple of boxes, it is probably something we can live with. But if we are concerned we could always add the extra elements using JavaScript (and the DOM) instead. For more details we can see the article written by Roger Johansson of 456 Berea Street "Transparent custom corners and borders"\par
+\par
+
+\pard\sl240\slmult1\ul\b Mountaintop corners\ulnone\b0\par
+Mountaintop corners are a simple yet very flexible concept, first coined by Dan Cederholm of simplebits.com, author of the best-selling friends of ED book Web Standard Solutions. Suppose we want to create a variety of different-coloured rounder-corner boxes. Using the previous methods we would have to create different corner graphics for each color theme. This may be okay if we only had a couple of themes, but say we wanted to let our users create their own themes? We'd probably have to create the corner graphics dynamically on the server, which could get very complicated.\par
+\par
+Fortunately, there is another way.\par
+}
+ 

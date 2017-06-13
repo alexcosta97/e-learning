@@ -1,0 +1,325 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\ul\b\f0\fs28\lang9 1.2 The big three: HTML5, CSS and JavaScript\ulnone\b0\par
+\fs22 Twenty six years ago, a proposal was sent internally at CERN outlying a universal linked information system. Dubbed "Information Management: A proposal", the proposal was created by Sir Tim Berners-Lee and was sent to his boss Mike Sendall, who described it vague but exciting.\par
+\par
+Tim Berners-Lee's vision for universality enabled the development of a high-level network of content that allows any document to link ot any other document.\par
+\par
+The WWW was initially created to make it easier to share research papers. It is a system of interlinked hypertext documents that are accessed via the internet: in essence, an information space. While he did not invent hypertext systems, Berners-Lee proposed using them to link and access information of various kinds as a web of nodes in which the user can browse at will.\par
+\par
+His breakthrough was to link hypertext to the internet and he used three technologies to do this:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 HyperText Transder Protocol is the foundation of data communication for the web\par
+{\pntext\f1\'B7\tab}HyperText Markup Language is the main mark-up language for creating web pages and information that can be displayed on a Web browser.\par
+{\pntext\f1\'B7\tab}Web addresses or a Uniform Resource Locator (URL) are used to reference a web page.\par
+
+\pard\sl240\slmult1\par
+\ul\b HTML5, CSS and JS\ulnone\b0\par
+When people say HTML5 they usually mean a bit more than just the 5th version of HTML. Modern Web pages and Web applications are generally composed of at least three components, so what people often mean when they say HTML5 is the trio of languages: HTML5, CSS3 and JavaScript.\par
+\par
+The HTML part contains all the content, organized into a logical structure. This is the part an author might be most concerned with: the words, chapter headings, figures, diagrams, etc/\par
+\par
+While there have been numerous versions of HTML since its inception,our focus in this course is the most recent version, HTML5. HTML5 was developed to provide more powerful and flexible ways for developers to create dynamic Web pages.\par
+\par
+\b CSS\b0\par
+The CSS part is all about the presentation or style of the page, what it looks like without too much regard for the specific content. We'll be going into more detail on that later in this course, but for now, we need to think of it as the way we might specify a theme in a word processing document, setting fonts, sizes, identations and whatever else may apply to what it looks like.\par
+\par
+\b JavaScript\b0\par
+The JavaScript part is about the actions a page can take such as interaction with the user, and customizing and changing the page according to any number of parameters. This is what allows a Web page to be more than just a document, but potentially a Web application, with nearly unlimited possibilities. We will not be doing much with JavaScript in this course, but we should know that it is an important leg of the stool for modern Web pages.\par
+\par
+\ul\b Hypertext\ulnone\b0\par
+A fundamental key to the WWW is the concept of Hypertext. Hypertext is built on the idea of linking information together, not unlike using footnotes, except much easier and flexible. The idea was to mark up our document with links and define how to break it down into different segments (chapters, sections, paragraphs, tables, figures, etc.)\par
+\par
+That's why, in 1989, Tim Berners-Lee began to create a definition of HTML: Hypertext markup language, to provide a simple, unform way to incorporate Hyperlinks in a text document.\par
+\par
+He envisioned a technology that would facilitate throughly interconnected documents. He wanted authors to be able to connect an idea in one document to the souce of the idea in another, or connect a statement with the data that backs up that statement. Traditionally this kind of thing was done with footnotes and bibliographies, which can be cumbersome. This information should be easily transferable from one place to another, so that in reading one document, it is easy to access everything related (linked) to it. Tim Berners-Lee imagined a "Web" of interconnected documents.\par
+\par
+He used the metaphor of a Web to emphasize the importance of conenctions between documents. It was not just a long list of details, but rather a sea of information stretching out in all directions. This sea of information was navigated by a new tool called a "Browser".\par
+\par
+\ul\b The browser\ulnone\b0\par
+The Internet existed long before the Web came to fruition, and lots of organizations were connected to it, including schools, companies and government organizations. As things progressed through the 80's, the Internet was used for file transfers, newsgroups (a kind of open forum), email and other conveniences.\par
+\par
+At the time there were a number of different programs like "fetch", "gopher" and "archie" that were used to download, browse and search for files. Typically we might use one tool to search for the location of files of interest, then another to copy that file to a local machine. Then we still needed more tools to read the file. If it was text, we could use a text editor, if it was a formatted document we might need a word processor, if a picture we would need an image viewer and so on.\par
+\par
+Marc Andreesen conceived a solution that would put all the pieces together in one app, making it easy for users to browse all the different sorts of information and data on the World Wide Web. Together with others, he started the "Mosaic" project.\par
+\par
+Though not technically the first browser, Mosaic was the first one that many people experienced and played a big part in popularizing the concept of the World Wide Web and the Web browser. It provided a simple graphical way to access and browse the various resources on the Internet. Instead of using different tools to download and view information on the Internet, a simple click on a link would present the information in a graphical window. In many ways it is the ancestor of most modern browsers.\par
+\par
+\ul\b\fs28 1.3 - Elements, tags and attributes\ulnone\b0\par
+\ul\b\fs22 Putting the "M" in HTML\ulnone\b0\line So the M in HTML stands for Markup, but what does markup really mean? Essentially it means to annotate a document with extra information. Things like where different sections and paragraphs begin and end, which part is the title, which things should be emphasized and so on.\par
+\par
+There are many ways to markup a document, but HTML borrows a technique from an ancestor language, SGML (Standard Generalized Markup Language), which uses angle backets to separate annotations from the regular text. In HTML these annotations are called "tags".\par
+\par
+For example, let's look at the following HTML:\par
+<body>\par
+\tab <h1>A tale of Two Cities</h1>\par
+\tab <p>\par
+\tab\tab It as the best of times, it was the worst of times, ....\par
+\tab </p>\par
+</body>\par
+\par
+If we eliminated everything in between the angle brackets from the text, for most purposes it would still read the same:\par
+\par
+A Tale of Two Cities\par
+It was the best of times, it was the worst of times...\par
+\par
+Once we know that everything in angle brackets is "meta-information", it leaves a lot of flexibility. We can put a lot of different things in between those brackets without any of it showing up (directly) in our finished document. And, though we don't usually see directly what's in those angle brackets, they can often have a bid effect on what our Web page looks like as well as how it responds and interacts with us.\par
+\par
+\b Programming "Hello World"!\b0\par
+We need to open Intel XDk and create a new project, using the Blank template, being sure to choose the "Standard HTML5" version (not Cordova). We should then click on "Continue" and choose a name for our project. Nect we should see a "Success" dialog. Click on "OK" and we'll find ourself in Intel XDK's DEVELOP tab. This is where code is created and modified. In our case, we want to modify it so that it says "Hello World" instead of "Hello Intel XDK".\par
+\par
+The first thing we'll probably notice is an abundance of angle brackets and a bunch of stuff that looks unintelligible at first glance. This is mostly instructions and a basic template of code that most people will want in their project. For now, though, we're not worried about that, so on the first line that says <head>, htere is a little triagnel just to the left of <head>. We should click on that triangle to hide and unhide all that code. We can go ahead and hide that for now, it doesn't really concern us yet.\par
+\par
+Now we should see a line like <p>Hello, Intel XDK!</p>. Here is where we should replace Intel XDK by World.\par
+\par
+To see what it might look like on a laptop, tablet or some other device, we can click on the simulate tab and choose the device and operating system we wish to simulate using the pull-down menus at the top-left of the screen. For this example, we can use the default option "Samsung Galaxy Tab", and then we just need to press the play button to start the emulation.\par
+\par
+\ul\b Elements\ulnone\b0\par
+If we are sitting at a coffee shop next to a table of Web Developerd, we will probably hear three words quite a bit: 'Tags' 'attributes' and 'elements'.\par
+\par
+Elements are the pieces themselves, i.e.  paragraph is an element, or a header is an element, even the body is an element. Most elements can contain other elements, as the body element would contain header elements, paragraph elements, in fact pretty much all of the visible elements of the DOM.\par
+\par
+The html element contains the entire content of the html file. Of we click, we'll find that it contains two components, a head and body. Clicking on each of those will reveal their respective contents. This structure is what computer scientists call a tree. Any given element (except for the outermost 'html' element) is wholly contained inside another element, referred ot as the parent element. Not surprisingly, the element that a given element contains are its child elements. And yes, children of a common parent are often referred to as 'siblings'.\par
+\par
+Thus in the example above, the top element is the html element, which contains just two elements, the head and body. The head element contains a title element and the body contains an h1 element and a p element. In a more typical example, the body would contain many more children, but for our purpose this is enough.\par
+\par
+That may be a great picture, but how do we represent such a structure in a text file? Well, that's where tags come in.\par
+\par
+\ul\b Tags\ulnone\b0\par
+Tags are what we use to organize a text file (which is jsut a long string of characters) such that it represents a tree of elements that make up the html document. Tags are not the elements themselves, rather they're bits of text we use to tell the computer where an element begins and ends. When we mark up the document, we generally don't want those extra notes that are not really part of the text to be presented to the reader. HTML borrows a techninque from an other language, SGML, to provide an easy way for a computer to determine which parts are markup and which parts are the content. By using angle brackets, HTML can indicate the beginning and the end of a tag.\par
+\par
+What ever that tag does, it applies to the content following the tag. Unless we want that to be the entire rest of the document, we need to indicate when to stop using that tag and do something else. Since elements are typically nested within other elements, the browser needs to be able to distinguish between the end of the current tag or the beginning of a new tag(representing a nested element). This is done by adding a / right after the opening bracket of the tag. To indicate the beginning and end of a paragraph we do the following:\par
+<p>This is a paragraph</p>\par
+\par
+The browser sees the letters <p> and recognizes that this is the beginning of a new paragraph and then when it sees the </p> it knows that it is the end of said paragraph.\par
+\par
+More tags have open and close versions, but there are a few "strange" ones. We'll learn more about these later, but we generally refer to the "strange" ones as self closing tags. Usually these tags represent an element that is completely discribed by its attributes, and thus there is no need for other content. An example of this is the image tag:\par
+<img src="link to the picture" alt="text in case the image isn't displayed"/>\par
+\par
+\ul\b Comments\ulnone\b0\par
+Computers are great at reading computer languages, but it's not always easy for humans. Comments are a way of adding some explanatory text for human readers.\par
+\par
+Every programming language has some way of representing comments. HTML is no exception. If we want to add something in our file that we want the browser to ignore, there is a special tag for that:\par
+<!-- This is a comment -->\par
+\par
+Unlike most other things in HTML, comments cannot be nested. And, like most other tags it can span multiple lines in our source file.\par
+\par
+Comments are also commonly used in development to block our bits of code, whether for testing or leaving unfinished business in the file.\par
+\par
+It's important to remember that just as HTML, CSS and JavaScript are three different languages, they each have their own way of writing comments. This might seem confusing, but it's actually kind of important that are HTML comments, at least differ from the other. As for the exact form of those comments, we'll cover that in good time.\par
+\par
+\ul\b Attributes\ulnone\b0\par
+Most of what we'll cover about atttributes will come later,  but we can introduce the idea briefly. Basically, a given element on our webpage can be distinguished by any number of unique or common attributes. We can identify it uniquely with an 'id' attribute, or group it with a class of other elements by setting the 'class' attribute.\par
+\par
+Attributes in HTML are written inside the opening tag like this:\par
+<p id="paragraph-1" class="regular-paragraphs">Bla bla bla</p>\par
+\par
+The paragraph above has a unique identifier, "paragraph-1" and is part of a class of "regular-paragraphs". The letters inside the quotes have no meaning to the computer, they just need to be consistent. They are actually strings, which as we will soon learn, if we want to have another paragraph in this class, ti has to say "regular-paragraphs".\par
+\par
+Again, the fact the computer does not care what we put in those strings (except for some restrictions" means we can use them to convey meaning to a human developer (I didn't know machine developers existed..). We could jsut as easily say any other thing on our id, like x or y, but anyone looking at that would have no hint what the significance of those are. Best practice is to name these things to increase clarity, consistency and brevity.\par
+\par
+\ul\b All together now!\ulnone\b0\par
+One key to understand HTML, or any computer language, is to be sure that we avoid ambiguity, because computers generally are not good at judgement calls. For example, we could streamline HTML so that whenever we see a <p> tag, we start a new paragraph, no close tag needed. That might work most of the time, but that would prevent us from nesting one element inside another, as the computer could not know if we meant the new element to be nested or a successor.\par
+\par
+A human designer might be able to tell what we meant from the context, and knowing that mistakes happen choose the one they think is best suited for the case. A computer, on the other hand, has difficulty with a task like that, so it is helpful to use a close tag that matches the open tag to make things absolutely clear.\par
+\par
+On the other hand, we might think that since a computer always knows exactly what tag it is working with (eidetic memory), we could provide a sort of "universal close tag" that doesn't specify the type that it's closing. It would know to close the current tag. While that's technically true, it's handy to have the close tag there for people reading the code. It makes it easier to remember what tag it is closing. We humans can get confused trying to remember that kind of detail.\par
+\line But there are other ambiguities to consider. For example, when a browser receives a file, it may know that it's receiving an HTML file, but it won't know which version of HTML is used. That's why the first thing we need in any HTML file is a tag to tell what type of HTML file it is:\par
+\par
+<!DOCTYPE html>\par
+\par
+In other words, the first thing the browser sees is the declaration "This is an HTML5 file, in case you were wondering". It may seem tedious to put this at the top of every file, but it used to be worse.\par
+\par
+\b Everything in HTML\b0\par
+It may seem redundant, but the next bit tells the computer where the actual HTML code begins, using the html tag.\par
+\par
+Nearly every HTML document has two parts. The 'body' is the main content of the page, containing text, images, tables and so on. The 'head' comes before the 'body'. It is where we put information about the document that does not really go in the body,  AKA 'meta-' information. Things like what kind of character set it is using, where it can find style rules and what is the tile of the page as the browser sees it (which might be different from the title the user reads) all go in the <head>.\par
+\par
+\ul\b\fs28 1.4 - Character encoding\par
+\fs22 Character encoding\ulnone\b0\par
+A character can be any letter, digit or symbol that makes up words and languages. English alphabets and digits a-z, A-Z, 0-9 are all considered characters. Other examples of characters include letter with accents, and any other language related character etc. A character set is a collection of characters (letters and symbols) in a writing system.\par
+\par
+Each character is assigned a particular number called a code point. These code points are stored in computer memory in the form of bytes. In technical terms, we say the character is encoded using one or more bytes.\par
+\par
+Basically, all the characters are stored in computer language and a character encoding is the awesome dictionary that is going to help us decode this computer language into something we can understand. In technical terms, it is what is used as a reference to map code points into bytes to store in computer memory; then we use a character in our HTML, the bytes are then read back into code points using the character encoding as a reference.\par
+\par
+Examples of character encodings include:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 ASCII: contains letter, characters and a limited set of symbols and punctuation for the English language.\par
+{\pntext\f1\'B7\tab}Windows-1252 (Latin 1): Windows character set that supports 256 different code points\par
+{\pntext\f1\'B7\tab}ISO-8859-6: contains letters and symbols based on the Arabic script\par
+{\pntext\f1\'B7\tab}Unicode: contains characters for most living languages and scripts in the world\par
+
+\pard\sl240\slmult1\par
+When we code in HTML, we must specify the encoding we wish our page to use. Providing no encoding or the wrong one is pretty much like providing the wrong dictionary to decode. It can display our text incorrectly or cause our data not to be read correctly by a search engine. A character encoding declaration in our HTML is also important to process unfamiliar characters entered in forms by users, URLs generated by scripts etc.\par
+\par
+We should always use the Unicode character encoding UTF-8 for our web pages, and avoid legacy encodings such as ASCII, Windows-1251 and IDO-8859-6 mentioned above. We shouldn't use UTF-16 either.\par
+\par
+It is important to nota that it is not enough to simply declare our encoding at the top of the web page. We have to ensure that our editor saves the file in UTF-8 also. Most editors will do that these days, but we should still check.\par
+\par
+\ul\b Declaring the encoding of the page: the <meta> tag\ulnone\b0\par
+We use the <meta> element with the charset attribute in our HTML page to indicate to the browser the character enncoding we will be using in the page.\par
+<meta charset="utf-8">\par
+\par
+Alternatively, we can also use the http-equiv and content attributes:\par
+<meta http-equiv="Content-type" content="text/html; charset="utf-8">\par
+\par
+We recommend using the first one because it is much less complicated.\par
+\par
+\b Where to place it?\par
+\b0 The meta declaration belongs inside the <head> element, and should be specified within the first 1024 bytes of our page. So the earlier it is mentioned in our code, the better.\par
+\par
+W3C recommend placing it immediately after the opening <head> tag.\par
+\par
+\ul\b HTML character references\ulnone\b0\par
+Before we learn what HTML character references are, let's look at how the need for them came about.\par
+\par
+If we put a '<html>' inside the text of a paragraph on a HTML document, it will be missing in the output. In this case, the browser mixed it up with an actual tag, although it was meant to be a part of the sentence as text.\par
+\par
+Because of this kind of confusion, HTML reserves certain characters. If we want to use these characters in our HTML, we need to use character references to display them.\par
+\par
+\b How to use character references\b0\par
+All HTML character references can be written using either a name or number.\par
+\par
+If we want to use a named character reference inour source code, we use an ampersand symbol '&', followed by the name and semi-colon. Names are case sensitive. For example, the following represents a no-break space:\par
+\tab &nbsp;\par
+\par
+There are two types of numeric character reference: ones that use decimal numbers and ones that use hexadecimal numbers. In each case, the number represents the code point number of the character in Unicode.\par
+\par
+If we are using a decimal number, we should use an ampersand symbol, followed by the hash, then a decimal number and a semi-colon.\par
+\tab &#160;\par
+\par
+If we are using a hexadecimal number, we should then use a ampersand, followed by a hash and a x, then a hexadecimal number and a semi-colon:\par
+\tab &#x00A0;\par
+\par
+\b Protecting characters used for HTML syntax\b0\par
+The five special characters listed in the table below should always be written as character references if we want them to appear on our page when viewed by a reader:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 < : &lt; or &#60;\par
+{\pntext\f1\'B7\tab}>: &gt; or &#62;\par
+{\pntext\f1\'B7\tab}&: &amp; or &#38;\par
+{\pntext\f1\'B7\tab}Non breaking space: &nbsp; or &#160;\par
+{\pntext\f1\'B7\tab}Quotes: &quot; or &#34;\par
+
+\pard\sl240\slmult1\par
+We do not want these special characters to be processed by the browser as HTML code. Instead, we want it to be displayed to the user.\par
+\par
+Some tolerant browsers will allow using the '&' character directly but not all. So we should use its character reference.\par
+\par
+While it might be tempting not to use one of these character references when we notice that the browser produces the expected result anyway, it is best practice to use character references for these five special characters at all times. This is because we can never be sure what browser or application will be used to view our code, and how that will behave.\par
+\par
+The &quot; character reference is particularly useful for quotation marks within attribute values. Let's say we want to add a title attribute to an abbreviation to provide an expansion of the abbreviation. If we try the code below in a browser and hover our mouse pointer on the text HTML5, it will show the title text. The title text in the source code includes quotes (around the number 5) like this:\par
+<abbr title="Hypertext Markup Language &quot;5&quot;">HTML5</abbr>\par
+\par
+\ul\b Character references for other characters\ulnone\b0\par
+It is also possible to use character references to represent other character in our page. This is useful when we are unable to type the character itself, or when we can't tell what the character is by looking at it (for example, a no-break space, or an invisible formatting character).\par
+\par
+There are predefined, named character references in HTML for several categories, these include:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 currency symbols\par
+{\pntext\f1\'B7\tab}copyright, trademark and registered symbol\par
+{\pntext\f1\'B7\tab}general punctuation\par
+{\pntext\f1\'B7\tab}arrows\par
+{\pntext\f1\'B7\tab}mathematical symbols\par
+{\pntext\f1\'B7\tab}Greek letters\par
+
+\pard\sl240\slmult1\par
+For a list of named character references available in HTML, we can visit: {{\field{\*\fldinst{HYPERLINK https://dev.w3.org/html5/html-author/charref }}{\fldrslt{https://dev.w3.org/html5/html-author/charref\ul0\cf0}}}}\f0\fs22\par
+\par
+Any Unicode character can be represented using a numeric character reference.\par
+\par
+Apart from the characters used for HTML syntac (described in the previous unit), there is usually no need to use character references to represent characters. All browser are built using Unicode internally, which means they are capable of handling all prossible characters defined by Unicode. So, the best practice for symbols like copyright, currency symbols, math and arrows is to simply type them directly into the source code.\par
+\par
+We can do this directly in the code. There is no need for the &copy; or &euro; HTML character reference if we are able to type the character itself.\par
+\par
+\ul\b\fs28 1.5 Best practices\par
+\fs22 The wisdom\ulnone\b0\par
+Children can be great at asking questions about things most adults take for granted, and like to challenge assumptions. While it's a great sign of a curious and reasoning mind, it can be overwhelming, and we can't really learn (or teach) everything at once. Some things are better to be taken on faith in the short term, until we fully understand the issue.\par
+\par
+That brings up a term we'll be hearing quite a bit in this course. Best practice. It's often said that bad programs can be written in any language, and we've found that to be true (at least in every language we've seen). Over time, developers learn that some habits are better than others, in other words that some habits, like avoiding redundancy and repetition, tend to make a program more clear and easier to understand and maintain than other habits, like using goto statements. It could also be about performance, i.e. in a given language doing a task one way may be feaster than another.\par
+\par
+A carpenter will tell us that if we want to hammer a nail, it's best to do it in as few strikes as possible. That may not be obvious to non-handy people, but we've been told that's the best way by people with a lot more experience than us, so we'll take it on faith (at least for a moment).\par
+\par
+There are sometimes arguments about which are the best practices. New techniques are discovered, new ideas are born, and sometimes, fashions change. For our purposes and the duration of this course, we'll trust that it is "best practice" when so is said, even though we may not be able to explain it at that point in the course, so we'll want to make it a habit.\par
+\par
+\ul\b Do's and don'ts\ulnone\b0\par
+The history of web pages is such that browsers tend to be very forgiving of certain types of mistakes. If we miss a closing tag, it will often still work the way we expect it to. It probably won't crash, or ignore the document, or give up completely, but it might not appear quite the way we meant it to. Or maybe it does look like how we want it to, but we do not want to depend on that. In general Best Practice would be to do it properly, and not depend on the browser to patch it for us.\par
+\par
+Because an HTML file essentially represents a tree structure, the open and close tags should always match, and there should not be any overlap with other elements. That is, we can have an element that is enclosed in another element, or we can have two elements side by side, but we can never have a situation in which part if an element is another, but the other isn't.\par
+\par
+What happens in that case is what we call "undefined". That just means that there is no telling how the browser will decide to handle it. It might decide to automatically close the tag when it sees another close tag, or it could complain about an unexpected close tag. Then it might complain again when there is now yet another unexpected close tag (the last opened tag).\par
+\par
+If we played around with the minimal HTML file from the previous section, we might have noticed that we can get more minimal thant that. For example, if we take out the head section completely, the browser will still render the page without complain. In fact, we can even take out the body open and close tags and it will still work as expected. Not only that, if we take out the <!DOCTYPE> statement, it still works.\par
+\par
+What's actually happening is that the browser knows roughly what to expect in an HTML page, so if it sees a file ending with .html, it will automatically stick some stuff in it if it is not there already. It will typically make basic assumptions like: It is an HTML5 file, everything in there is content, so it goes in the <body> section, the <head> section is empty. If we right-click  on an element and choose inspect, we will see that the browser has included the <html> section containing the <head> and <body> sections, even though it wasn't there in our file.\par
+\par
+We should note that what was said here was that it happens typically. The current behaviour of most browsers will handle this, but it is "undefined" so there is no guarantee that next weeks update won't break it. To be correct and complete, we need the <!doctype" section and the <html> section with <head> and <body>. In any case, it is a good idea (best practice).\par
+\par
+Proper indentation is one way to make our code clearer and easier to understand, since it gives a sense of structure to the document. By using indentation effectively, we can make ir more clear, showing the nesting of elements.\par
+\par
+Consistent quoting of strings is also helpful, in part to avoid potential problems that can arise when we think something does not need quotes but it actually does.\par
+\par
+Often projects will have coding styles that everyone is expected to use so that everything looks consistent and developers can more easily read others code. If we are creating a project, we can decide what the rules are (how many spaces to indent, single or double quotes, etc.) but unless there is a good reason to change away from typical practices, it is usually best to adopt them.\par
+\par
+\ul\b White space and other niceties\ulnone\b0\par
+We might notice that code is not always consistent in how a given tag is written. We may say <h1> in one spot and <H1> in another. In this case, they are exactly the same kind of tag. Tag names are "case insensiitive" meaning that it does not matter whether we use capital or lower case letters in writing them. In fact, we couls write our body tag as <bOdY>, but that's not generally considered a good practice. On the other hand, there are places where we want the computer to be "case sensitive", meaning the computer will distinguish between upper and lower case characters. Obviously, we usually don't want our text (that the user reads) to be case insensitive. We want our sentences and proper names to start with Capital letter, but most other characters to be lower case. We generally don't want the browser to mess with that. We would probably be unhappy if the browser turned all our letters into lower case. And people might think we're quite tightly wound if the browser converted everything to Upper case.\par
+\par
+\b Don't worry about too many white spaces\b0\par
+On the other hand, we usually do not want to worry about the amount of white space (spaces, tabs and returns) in between words and lines and paragraphs. In HTML, most extra white space will be ignored. By 'extra', we mean more than one space or tab consecutively. There are many places where we need to be sure to separate ine thing from another with a space, but it generally doesn't matter if we put more spaces in there, our result will look the same.\par
+\par
+It may seem confusing at first, but this rule about white space is actually pretty convenient. The third option might be a bit too cramped for our taste, while the second might seem to take up too much room in our source code. Because it doesn't matter to the browser how much white space there is, we can use white space to make our code more visibly organized and easier to read.\par
+\par
+Given that tag names are case insensitive, we might think that everything between the angle brackets is case unsensitive, which is not true (ids, classes and other attributes are indeed case sensitive, especially because they are inside quotes).\par
+\par
+\b Any kind of quotes for strings\b0\par
+Finally, it will eventually be important to know about strings. Strings are just a series of characters. They could be any characters. They can even contain spaces. Because they are so widly variable, the computer needs us to indicate where a string begins and ends, which is typically done with quotation marks, either single or double. HTML tries to be helpful here. We will find that in places where HTML is expecting certain types of strings (i.e. w/o spaces), even if we do not use the quotation marks it will essentially insert them for us, thus we can use (or not use) any type of quotation marks we want.\par
+\par
+It is also important to know that, in HTML, single and double quotes are almost interchangeable, but they have to match. If we start a string with a double quote, the computer will not end until it sees another double quote. Any single quotes in the middle will be happily considered part of the string, which is handy if we need quotation marks in our string. Because of this, if we create a string as '"quote"', our string will have letters "-q-u-o-t-e-" (with double quotes in the string) as opposed to "quote" which will just have q-u-o-t-e. Nevertheless, best practice is to be consistent in our quotes, so it's best to quote them all the same way, even if the browser would understand it anyway.\par
+\par
+\ul\b\fs28 1.6 - More on tags\par
+\fs22 Tags we have already used\ulnone\b0\par
+Now we can create a simple, empty, HTML page, and we know what tags are, though we have not said a lot about specific tags, what they mean, how many there are, etc. We will start with the ones we have already seen:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 <!doctype> - This tag is special. In fact, many folks don't even consider it a tag, as it is officially the DTD - Document Type Declaration. Unlike most tags, it has no closing tag, not even a / at the end. It is there to declare exactly what type of HTML the computer will find in this file.\par
+{\pntext\f1\'B7\tab}<html> - The html open and close tags wrap around nearly everything in out html file (except the doctype tag). This essentially contains all of the HTML code in the file, which is generally everything (one big html element). Next week we will learn about attributes and we will learn that we should always add a lang attribute to the html opening tag, to identify the default language of our page\par
+{\pntext\f1\'B7\tab}<head> - The head element is where we put information that does not really appear in the body of the work. For example, the <title> of the page, which typicallt appears on the window containing the page, is defined in the head section.\par
+{\pntext\f1\'B7\tab}<body> - The body section contains all of the content of our page, essentially what the user sees. This could be text, pictures, links, videos, tables and so on. In addition to the content, the body usually contains lots of other elements, each indicated by their own tags.\par
+{\pntext\f1\'B7\tab}<h1> - There are a whole collection of 'h' tags, all the way up to h6. They're generallt used the same way we would use chapter or section headings in a book. An <h1> tag might be used as the title of the document, or to indicate the outermost level in a group of nested sections.\line Though we theoretically should not think about what it looks like, it will typically appear as large, possibly bold text in our document, to mark a separation or beginning of some new section. <h2> is usually a bit smaller, and <h3> smaller yet and so on. This allows logical nesting of sections though they should not be nested too deeply.\par
+{\pntext\f1\'B7\tab}<p> - P is for paragraph, which is how much of our text information might be arranged. Depending on the styl we are using, text wrapped in a <p> tag may be indented or have extra vertical white space before starting. when rendered on the web page, a p element will typically be a new line.\line We might notice that when discussing how these different elements are rendered we will find words like "typically", "possibly" and "generally". It is a little picky: as we will soon learn, it is possible to change the styling of one element to look just like about any other element. We could style a <p> element so that it looks like an <h1>, though best practice would be not to do that.\par
+
+\pard\sl240\slmult1\par
+\ul\b A few new tags to learn\ulnone\b0\par
+There are a lot more tags, but we will just cover a few more for now, mostly because they are straightforward to use and we can see the effect in our web page when we use them:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 <q> - the q tag is for quotes. This has no relationship to the somethat confusing single and double quote characters, rather it's used when we want to quote a person or written work in our web page. It is customarily displayed using quotation marks, again unrelated to strings.\par
+{\pntext\f1\'B7\tab}<blockquote> - if we want to quote a larger passage, we may want to use \b\i blockquote\b0\i0 , which will typically set the quoted text apart from the surronding text and indent it, to make clear that it is quoted text.\par
+{\pntext\f1\'B7\tab}<ul>, <ol> - these two tags are used to indicate a list of things. The only different is that <ol> is an "ordered" list, meaning the elements are in a particular order, and it might be a good idea to number them. The "u" in <ul> stands for "unordered" and is used for a list of things where the order doesn't really matter, so it is usually rendered as a bulleted list, or something else without numbers\par
+{\pntext\f1\'B7\tab}<li> - The li element is a list item, i.e. one item in the list. As we might expect, this element only really makes sense when nested inside a list. In the final rendering, each li element would typically be preceded by a number or bullet, or something similar.\par
+
+\pard\sl240\slmult1\par
+There are a couple more tags that we want to bring forward at this point, but first a disclaimer. We have been emphasizing the general rule that HTML is the logical structure of our content, not what it looks like. Well, nothing is perfect, including this goal. There are some HTML elements that are primarily used to satisfy certain formatting requirements.\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 <hr> - This one might be debatable. HR originally stood for "Horizontal Rule", i.e. a horizontal like across the width of the text. It's still there in HTML5, but now is officially supposed to represent a "thematic break" in the content.\par
+{\pntext\f1\'B7\tab}<br> This one signifies a line break. It is used for any number of purposes. For example it can be an easy way to make sure that lines of poetry break where they're supposed to. Essentially, it helps break the "white space" rule, where spaces and carriage returns are generally treated the same, the <br> tag is trated as a required carriage return. Because it's an empty tag (doesn't contain any text or anything, just indicates a particular point in the text), it doesn't really need a close tag, so it can be written as <br>, though <br /> is also acceptable. Oddly, in the browsers we tried, by using an opening and closing tah in this element, the close tag is interpreted as a regular br tag, thus we get two line breaks in a row. One other thing to remember is that the <br> tag implies a break even if there is no break in the text containing it.\par
+{\pntext\f1\'B7\tab}<pre> - This is another tag that helps us break the white space rule. PRE stand for preformatted text, meaning "I've set this up just the way I want it, don't mess with it". It generally implies a monospace font, and none of the spaces, tabs or carriage-returns are ignored. It is very handy for illustrating bits of program code, or other "typewritten" material.\par
+
+\pard\sl240\slmult1\par
+\ul\b Activity - Our first web page\ulnone\b0\par
+For our first web page, it is proposed that we:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 quote some poetry, preserving the "line oriented" format\par
+{\pntext\f1\'B7\tab}Find a word that has at least 3 different definitions, list them in any order\par
+{\pntext\f1\'B7\tab}Try out some different tags to see the effect they have on our web page\par
+
+\pard\sl240\slmult1\par
+\ul\b Recipe project - Module 1\ulnone\b0\par
+Throughout this course, we will be building a simple project, adding to it with what we've learned in each module. This project will be a simple Web application that will allow us to browse different recipes.\par
+\par
+For now, we'll start off with a simple first draft using what we've just learned about HTML using tags we've covered. We want to have the following components:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 A large title for the app, something like "My Favorite Recipes", or whatever\par
+{\pntext\f1\'B7\tab}A description of a recipe, just some plain text explaining what the recipe is and any other pertinent information\par
+{\pntext\f1\'B7\tab}A set of steps to follow, numbered in order\par
+}
+ 
