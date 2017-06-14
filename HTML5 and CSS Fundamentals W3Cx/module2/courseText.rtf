@@ -1,0 +1,353 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\ul\b\f0\fs28\lang9 2.1 - Introduction to Module 2\ulnone\b0\par
+\ul\b\fs22 Meaningful Web pages\ulnone\b0\par
+Tags and elements are building blocks of HTML5. However, they can be made so much more exciting with attributes. Let's take a simple element like list. We know how to add one to our page but can we change the order of our list? Or change it to an alphabetically ordered list instead of a numerical list? Can we display our list in reverse order? Yes, we can do all this and more using attributes.\par
+\par
+Apart from exploring attributes for elements, we will continue to add life to our Web page by adding images and hyperlinks and learning about how to use and place them properly in our Web page.\par
+\par
+This week we will also look at creating meaningfull Web pages. Imagine we are the Web page designer of an online magazine. We want to have a central article, some aside commentary, captions, a summary of our article, addresses and citations. We will also want to provide more detailed information such as, 'This sentence is really important and you need to convey that to the reader'.\par
+\par
+If we just use <p> tags and header tags, <h1> to <h6>, visually it might look like what we want, but only a human will be able to read and understand the page. To a browser, there is very little information except that there is text and headings in our page. How can a search engine know what is important? Does a visually impaired person have to listen to the entire page, or can just jump to the article?\par
+\par
+It is very imporant to style our web pages for search engines to improve our SEO rankings and for visually impaired people who access our web page using assistive technology like screen readers. Semantic markup enables all of this and more.\par
+\par
+\ul\b\fs28 2.2 - Attributes\ulnone\b0\par
+\ul\b\fs22 Introduction to attributes\ulnone\b0\par
+We learned a little bit about what attributes are in the previous module. Let's look into it in more depth, by using examples.\par
+\par
+Here is an ordered list:\par
+<ol>\par
+\tab <li>Lights</li>\par
+\tab <li>Camera</li>\par
+\tab <li>Action</li>\par
+</ol>\par
+\par
+The list would usually start at one and increase from there. If we wanted the list to start with the number 5 instead of one, we would then have to do:\par
+<ol start="5">\par
+\tab <li>Lights</li>\par
+\tab <li>Camera</li>\par
+\tab <li>Action</li>\par
+</ol>\par
+\par
+Here, using the start attribute, we made our list start with 5 instead of 1. Like start, we have many useful attributes we will see in this section that can affect our element. Attributes are a significant part of HTML. Tags and attributes make up the language.\par
+\par
+\b Syntax:\b0\par
+Attributes are used in tags to further define the tag:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 It is used inside the opening tag it is applied to and should be added after a space from the tag name: <ol start="5"> The start attribute is used inside the <ol> tag\par
+{\pntext\f1\'B7\tab}start="5" - Attribute name, equal sign, opening quotes, attribute value, closing quotes\par
+{\pntext\f1\'B7\tab}Attributes are a name-value pair\par
+{\pntext\f1\'B7\tab}The only exception to the name-value pair is if the attribute is a boolean attrbute. These attributes ahve only two types of value - true or false. But instead of writing true or false, for its value, we add the attribute name to indicate true and omit it to indicate false. An example is the reversed attribute in an ordered list. Adding this attribute is an indication that the list order should be reversed.\par
+{\pntext\f1\'B7\tab}A tag can have multiple attributes\par
+
+\pard\sl240\slmult1\par
+\b Example 1: the 'id' attribute\b0\par
+Imagine we have two paragraphs in our HTML page. Our task is to make the text color of the first paragraph red and the other blue. How do we do that? We add styling to our HTML document through CSS. CSS is a style sheet language where we add any presentation related information for our HTML document. We will learn about this in the next chapter. In this case, we will have to write code in our style sheet to inform that it needs ot change the text colors respectively.\par
+\par
+But to identify each paragraph, we need to give them each a name first so we can instruct our style sheet to make X red and Y blue. This unique name we give each element is called an ID. This is very similar to our school or corporate ID that is unique to us. No one else in our company will have the same ID as us. id is an attribute. It should be unique to the element because we know that two people having the same ID will just cause a lot of confusion.\par
+\line\b Example 2: the 'class' attribute\b0\par
+A similar attribute is class. class like id is a very useful attribute and one we will be using very frequently. Let's assume we are an author of a book. We like poems and want to include at least 20 of them in our new book. We add IDs for them. We want our poems to look differently from our other text, but all of them have the same requirements.\par
+\par
+If we use id attribute, we can instruct the stylesheet to style each poem in a particular way. It will look something like asking 20 times, one for each poem, to make it look like the way we want it to.\par
+\par
+The stylesheet would look super repetitive if we had to instruct it to do the same thing 20 times for different poem IDs. HTML makes it easier by allowing us to use a single class attribute that will apply for all of the poems.\par
+\par
+\ul\b Global and non-global attributes\ulnone\b0\par
+We have seen a few examples of attributes now: start, id and class. All HTML elements have attributes. There are two types of elements:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Global\par
+{\pntext\f1\'B7\tab}Non-global\par
+
+\pard\sl240\slmult1\par
+\b Global attributes\b0\par
+Global attributes can be applied to all tags. They are common attributes. Examples of those are id and class. There are many more global attributes. Here is a list of all global attributes and the values they accept: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/wiki/HTML/Attributes/_Global }}{\fldrslt{https://www.w3.org/wiki/HTML/Attributes/_Global\ul0\cf0}}}}\f0\fs22\par
+\par
+So attributes like id and class can be applied to any HTML tag.\par
+\par
+\b Non-global attributes\b0\par
+Non-global attributes are attributes applied to a specific instance of a tag. It can be applied to one or more tags. For example, start is an attribute for the <ol> tag and cannot be applied on the <p> or <h1> tags, it is specific to only ordered lists. Another attribute specific to the <ol> tag is reversed, which we learned in the last unit as an example of a boolean attribute. The non-global attribute width can be applied to several tags such as <img>, <input> and <video>\par
+\par
+\b More examples:\b0\par
+The image <img> and hyperlink <a> elements, which we will be learning about shortly, have many non-global attributes of their own:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 <img> - src, alt, etc\par
+{\pntext\f1\'B7\tab}<a> - href, target, download, etc.\par
+
+\pard\sl240\slmult1\par
+Other than the common global attributes, if we wish to learn about the supported non-global attributes for any element, we can visit the W3C HTML5 recommendation or the HTML attribute reference at MDN.\par
+\par
+\ul\b Global attributes: examples\ulnone\b0\par
+Like we saw in the previous unit, there are many attributes available for our HTML. To understand attributes, we considered an example of usage id and class. We are going to look at it in depth here and discuss another global attribute title.\par
+\line The id attribute gives our element a unique identifier. In our HTML document, that ID value can only be used in one element. Naming rules for id attributes:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Must be of at least one character\par
+{\pntext\f1\'B7\tab}Should not contain any spaces\par
+{\pntext\f1\'B7\tab}Values are case-sensitive. This means "QuestioN" and "question" are not the same. That does not mean we should use two different IDs that only differ by case. They are different and so legal but extremely confusing.\par
+
+\pard\sl240\slmult1\par
+id is primarily used for:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Styling our element. We can specify the style we want for the element in our style sheet by referencing the 'id'\line Using CSS, we can specify code that will give different styles to different IDs\par
+{\pntext\f1\'B7\tab}Specifying a link target. We will learn about hyperlinks later in this section. We can link to a section of our HTML page using the 'id' of the section. We should reference the 'id' value with a has preceding it\par
+{\pntext\f1\'B7\tab}In JavaScript, 'id' can be used to manipulate an html element. Using the id of the element, we can write JavaScript code to make it perform an action, i.e. change the text within paragraph tags.\par
+
+\pard\sl240\slmult1\par
+\b Global attribute: 'class'\b0\par
+The class attribute, while similar to id, groups a set of elements in the same class. It's name-value pair is class="className". Unlike id, which is unique to the element, the same class name can be assigned to more than one element.\par
+\par
+Both paragraphs on the course page above are grouped under the class named "question". An element can have one or more class names. If we also want the seconf question under the 'html' class because it is a html related question, we can add two class names by separating them by space.\par
+\par
+Naming rules for class attribute:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Must begin with a letter\par
+{\pntext\f1\'B7\tab}First letter can be followed by a letter, digit, hyphen or underscore\par
+{\pntext\f1\'B7\tab}Values are case-sensitive\par
+
+\pard\sl240\slmult1\par
+class is primarily used for:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Style our elements. We can specify the style we want for all the elements that belong to the class in our stylesheet\par
+{\pntext\f1\'B7\tab}In JavaScrpit, class can also be used to manipulate html elements of the same class.\par
+
+\pard\sl240\slmult1\par
+In our CSS, we can include code to style our classes like this:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 'question' class: text color is black and text is bold\par
+{\pntext\f1\'B7\tab}'answer' class: text color is green\par
+{\pntext\f1\'B7\tab}'html' class: text color is red\par
+
+\pard\sl240\slmult1\par
+\b Global attribute: 'lang'\b0\par
+The lang attribute indicates the language of the text in the element to which it is attached. Identifying the language of content is increasingly important, as browsers adapt styling and other aspects of the user's experience according to the language of the content.\par
+\par
+For example, if we create a page in Japanese, the browser will automatically apply a font that produces Japanese shapes for the characters, rather than Chinese shapes - but only if we have told it our content is in Japanese. Various presentational aspects also require knowledge of the language of the content: for example, CSS will style content differently for line-breaking, hyphenation, and text-transforms depending on the declared language. Other features, such as spell-checking and voice-browsers for visually-challenged people, also work differently accoring to which language the content is in.\par
+\par
+The value of a lang attribute must be a language tag that is composed of one or more subtags defined in the IANA Language Subtag Registry. Multiple subtags are separated by hypens.\par
+\par
+We should always declare the language of our page in the <html> tag. We can also declare the language of content within the page by attaching a lang attribute to an element that surrounds it.\par
+\par
+For example:\par
+<html lang="en-GB"></html>\par
+<p>In French we'd say <span lang="fr">On voit souvent des chats sur le Web.</span></p>\par
+\line The first example above shows us how we can qualify the language with a region subtag to specify British English. This distinction can be useful for spellchecking our source. We can also add other subtags, such as scripts and variant labels for further refine the language. However, the golden rule is to always keep the lang value as short as possible, and only use additional subtags when we have a good reason.\par
+\par
+The second example shows us how we could specify a change of language within the document. This would help a voice browser pronounce French words correctly.\par
+\par
+\b Global attribute: 'title'\b0\par
+A message that appears when we point our cursor at something is called a tooltip. Be it a paragraph, header, image or any element, the title attribute is used to provide additional information about it. It is very useful to elaborate abbreviations or add some context. For images, we must use an alt attribute as there is no guarantee that the title attribute is presented to assistive technology users. The title can be of any text value.\par
+\par
+\ul\b Activity - Attributes\ulnone\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Find the list of supported attributes for the area tag\par
+{\pntext\f1\'B7\tab}Create two paragraphs with the same id and run the code. We can view our output in a Chrome window. What happens? Run the same code through the W3C Markup Validator\par
+{\pntext\f1\'B7\tab}Create an ordered list starting with the number 11. Then, reverse the list. Give it the title 'Activity List'\par
+
+\pard\sl240\slmult1\par
+\ul\b\fs28 2.3 - Semantic meaning\par
+\fs22 Separating content & style\ulnone\b0\par
+When writing in hypertext language, it is important to separate content and style. Style should be kept tucked away in CSS.\par
+\par
+Let's look at a few interesting tags that lived as exception to this rule and were eventually corrected in HTML5. <i>, <b>, <em> and <strong>.\par
+\par
+It seems redundant for two tags to do the same thing in HTML. While <b> and <strong>, <i> and <em> seem no different in a regular Web browser, there is an important difference between them.\par
+\par
+\b Semantic vs Style tags\b0\par
+The four tags we saw above can be categorized into style and semantic tags. Style tags in HTML4, focused purely on presentation and design. It only talked about how the text should look like on the screen.\par
+\line Semantic refers to the meaning of words in a language. Semantic tags said something about the semantic of the tag. It offered meaning.\par
+\par
+\b <b> vs <strong>\b0\par
+Bold is a style that makes letters thicker so it stands out among other text but it has no semantic meaning, for example for voice browsers, screen readers, and other types of ways to access the Web. A device like Kindle Paperwhite that renders text differently, might not pick up the bold.\par
+\par
+Strong is an indication of how something should be. It looks like bold in a browser, but it could mean 'speak with urgency or seriousness' when reading text aloud. It is semantic in the sense that we instruct it to be stronger than the text it surrounds which is different form giving instructions on how the text should look in the case of <b>. It represents importance, seriousness, or urgency for its contents.\par
+\par
+\b <i> vs <em>\b0\par
+Italics slants text. We usually italicize names of magazine books, TV shows etc. Just like the bold tag, since it is meant purely for presentation purposes, it means nothing to someone who cannot read the text.\par
+\par
+Emphasis is used to stress emphasis of its contents. The word in a sentence we wmphasize can change the whole meaning.\par
+\par
+\b Changes in HTML5\b0\par
+So far, we have looked at how these tags were in HTML4. In the beginning of this unit, we learned that content and style should be kept separate and that styling should be kept tucked away in CSS. So how did <i> and <b>, purely style elements, make the cut?\par
+\line They were initially deprecated, however, in HTML5, they were brought back. This time, with semantic meaning.\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 <i>  - Apart from itali text, it is now also used for text in a different mood or voice, such as foreign words, a thought or technical terms\par
+{\pntext\f1\'B7\tab}<b> - Apart from bolded text, it is now also used as a stylistic offset such as keywords in a document, product names or action words without making them as important. It can also be used as headings in list items\par
+
+\pard\sl240\slmult1\par
+As of HTML5, <em> is now also used for words and sentences we would pronounce differently. It is not used to convey important. For that we should use <strong>/\par
+\par
+We can nest both <em> and <strong>. Two <em> means higher level of stress/emphasis on the content than one <em>\par
+\par
+We should also bear in mind that <b> and <i> may not produce appropriate styling for some parts of the world. For example, Chinese chararcters are so complicated that they often prefer something such as underlining to bold, because bold makes it too difficult to read the text.\par
+\par
+If we do use <b> or <i> tags, the HTML5 specification recommends that we also use class attributes to identify the semantic intention of the markup. This can be particularly important for pages that get translated, since styling doesn't necessarily map to the same semantic categories across different cultures.\par
+\par
+\ul\b Introduction to semantic elements\ulnone\b0\par
+Semantic HTML is HTML that concentrates on the meaning of information in webpages instead of its presentation or look.\par
+\par
+\b What are semantic elements?\b0\par
+If we want to add a paragraph, we would use the paragraph tag. If we want to add a heading, we would use any of the heading tags, and to add an image, we would use the image tag. All these tags along with their id and class attributess are semantic because they suggest the purpose of the content within the tags. <i> and <b> suggest nothing about the content and this is why they were not considered semantic enough and initially deprecated.\par
+\par
+\b Using the right tags\b0\par
+From a semantic HTML perspective, using the right tags is important. We should use <blockquote> to wrap a quote and not use a paragraph tag and then style it to look like a quote. We should use <em> to emphasize a part of our content, not just italicize text. For presentation purposes, we can achive the same using CSS. How something looks has very little to ddo with what it means. This is why in HTML, we separate content and style.\par
+\par
+\b Why is it important?\b0\par
+Semantic elements are beneficial to both the developer and browser. They convey much more information about our HTML document's content and structure. There is a tag called header in semantic HTML. When we see a heading like <h1> or <h2>, we know this is likely the start of a new sub-section or topic. Communication is always welcome in any programming language.\par
+\par
+This additional communication is useful for a developer who can understand the markup structure better (when we come back to our code after a year or pass it on to a colleague, this is going to help us and them a lot). For the browser, it can better differentiate different types of data which results in better display of content in different devices. Assistive technoloy, such as a screen reader, will read content and convey information about the content depensing on the semantic meaning, for example, identifying headers and reading them in a different tone.\par
+\par
+Since its establishment, it is an ongoing effort on part of W3C to make HTML as semantic as possible. HTML5 brought with it a slew of new semantic elements.\par
+\par
+\b Web page structure\b0\par
+Let's look at a typical webpage structure:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Header - can be a starting point for the whole document or individual sections. Typically contains the introduction\par
+{\pntext\f1\'B7\tab}Nav - refers to the navigation. it could contain a set of navigation links, such as a table of contents of a book\par
+{\pntext\f1\'B7\tab}Section - Refers to sections in a document. For example, a document about plants could contain several sections under headings\par
+{\pntext\f1\'B7\tab}Article - refers to independent content. If an article is extracted out of the document, it should make sense all by itself. Articles, blog posts, faq are all examples of independent content\par
+{\pntext\f1\'B7\tab}Aside - the aside refers to content that is apart from the main content. For example, in an article about a young architect from the Umbria region of Italy, the aside might be a small sidebar with information about Umbria, things like geographical details and population\par
+{\pntext\f1\'B7\tab}Footer - contains typical footer information such as authoring, copyrights and contact information\par
+
+\pard\sl240\slmult1\par
+Tags such as <article>, <section>, <header>, <nav> and <footer> were specifically introduced in HTML5 to define the Web page structure. These new semantic elements give meaning to different parts of a webpage. When we do a Google search, the search engine automatically processes millions of HTML pages to scan and offers you the most appropriate content.\par
+\par
+The use of these semantic elements improves the automated processing of documents. When it scans a <nav> tag, it automatically knows it includes content related to page navigation or a header indicates introductory content. It provides the structure and consistent behaviour across many webpages providing simpler and more direct information to browsers making like easier for them. It also improves the accessibility of webpages. Assistive technologies depend on the structure of the document to present information to the users. If a screen reader can correctly determine the structure of a document, it reads the document more seamlessly and avoid irrelevant information for reparing content.\par
+\par
+\ul\b New HTML5 semantic elements\ulnone\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 <header> - Introduction for the whole page or individual sections. Typically contains site name, logo, navigation. Does not have to be at the beginning of page\par
+{\pntext\f1\'B7\tab}<footer> - Includes typical footer information\par
+{\pntext\f1\'B7\tab}<nav> - Navigation links for the document. A page can have more than one nav element like a table of contents, horizontal navigation in header and footer navigation\par
+{\pntext\f1\'B7\tab}<section> - Defines sections in the document such as chapters, headers, etc. Typically used on content that cannot make sense on its own.\par
+{\pntext\f1\'B7\tab}<article> - Defines independent content that should make sense on its own outside of the document such as newspaper articles, blog posts, etc.\par
+{\pntext\f1\'B7\tab}<aside> - Side content other than main content, like a sidebar. These are not considered as part of the main page outline.\par
+{\pntext\f1\'B7\tab}<details> - A way to provide additional information that the user can show or hide. Content that is shown to use by default. Other content is hidden and can be expanded to view.\par
+{\pntext\f1\'B7\tab}<figcaption> - Provides a caption (explanation) of an image. To be used with <figure>\par
+{\pntext\f1\'B7\tab}<figure> - Contains an image and can be used to group with an image's caption\par
+{\pntext\f1\'B7\tab}<mark> - Defines a part of a text we want to highlight. The highlight styling is specified in CSS\par
+{\pntext\f1\'B7\tab}<summary> - Used within the <details> tag. Specifies the visible content. The rest of the content in details is shown/hidden by user.\par
+
+\pard\sl240\slmult1\par
+\b <details> element\b0\par
+The <details> tag is very cool. It is used in conjunction with a nested <summary> tag and some other content. The result is that the summary is shown with a disclosure triangle alongside it, and the other content is initially hidden. By clicking the triangle, the other content is displayed to the user. This requires no JavaScript and is a simple way to get powerful and desirable feature. However, the details tag only works in Chrome and Safari.\par
+\par
+\b <figcaption> element\b0\par
+This element is used to provide a caption or explanation of the image (figure). While the alt attribute explains the image for assistive technology, <figcaption> can be used to provide additional information for all users.\par
+\par
+\b <mark> element\b0\par
+This element is used to specify content that we want to highlight.\par
+Most browsers will display mark element with a yellow background to black text by default, however, if it doesn't, we can specify the styling in CSS.\par
+\par
+\b Effect of semantic elements\b0\par
+If we have had a chance to try the examples of the semantic elements discussed above, we will notice that semantic elements are not visually promising in general. Only a few sematic elements such as <mark>, <em>, <strong> and <code> provide some kind of visual change to the document. The rest don't do anything except providing the structure for our document.\par
+\par
+A good example is <aside>. The <aside> element is used for side content other than the main content, such as a sidebar, but it does not actually create a sidebar in our page. Sidebar is a user interface element and must be styled to achieve the look of a sidebar. The following code will only create structure to our document, not any visual change.\par
+\par
+\b Lesser known semantic elements (OPTIONAL)\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 <code> : Used to represent short computer code in a sentence. It displays code in default monospace font.\par
+{\pntext\f1\'B7\tab}<abbr>: Used to indicate the occurence of an abbreviation\par
+{\pntext\f1\'B7\tab}<br>: Used to introduce a line break in our HTML document\par
+{\pntext\f1\'B7\tab}<address>: Used to supply contact information for its nearest <article> or <body> ancestor\par
+{\pntext\f1\'B7\tab}<hr> : Used to introduce a horizontal line in our HTML document.\par
+
+\pard\sl240\slmult1\par
+\ul\b Differentiating semantic elements\ulnone\b0\par
+Now, we have learned the semantic elements available and their syntax. When we try to apply it pratically, there are some common problems we might run into. For example, when should we use a <header> tag or a <h1> - <h6> tag? Can we use semantic elements like header, footer, and nav multiple times? Should we use <article>, <section>, or <div>?\par
+\par
+\b <header> vs <h1> - <h6>\par
+\b0 <header> is simply an area to add any introductory content about our page. It can contain headings, paragraphs, tables, images, logos and even navigation. <h1> to <h6> are headings we learned early on this course. <h1> is for the most important heading and importance decreases with the higher the number.\par
+\par
+For a sample HTML page, we will use the W3C HTML5 specification. We can view the page's source code on a browser.\par
+\par
+If we view the source on the W3C specification and do a search for <header>, we will be able to view the contents of the header element. We can then notice that indeed it contains headings inside of it. It is a frequent thing in websites.\par
+\par
+We should also note that headings are extremely helpful as a navigation tool for assistive technology users. While it is valid to skip header levels, it is not a good practice. Assistive technology often relies on the semantics of headings to understand our document's structure.\par
+\par
+Assistive technology uses heading markup to identify headings in a document. By using them to define the document's structure, a screen reader than parses our web page will in some manner indicate the heading level, either by raising its voice or announcing it. They can also navigate through the headings quicker making it easier for the user to navigate contents of the web page.\par
+\par
+\b Can we have more than one <header>, <footer> and <nav>?\b0\par
+There is a common misconception that a web page can only have one header at the start, one footer at the end and one main navigation section to maneuver the site.\par
+\par
+\b Multiple headers and footers\b0\par
+Header and footer elements are for the parent element (section, article, division or body) that they are used in. If we have multiple sections or articles, then we can have one header and footer for each.\par
+\par
+\b Global header & footer\b0\par
+Header and footer elements can also be used site-wide at the top and bottom of the body of the web page. This type of header will typically include authoring information, references and other links, copyright information etc.\par
+\par
+Sometimes, the header of a Web page comes form a template file. This template file is used thorughout the site as a global header.\par
+\par
+\b Multiple navigation menus\b0\par
+So we know we can have the nav element in the header. In the Intel XDK example above, we have one in the global header with menu items development, tools and resources. We also have another one in the footer with menu items support, terms of use etc. We can definitely have more than one navigation menu in our web page because there are so many different types of menus calling the need for multiple <nav> tags. Using <nav> also helps assistive technology. Screen readers now know exactly where page navigation lies to it can provide options for the user to either skip reading its contents or to make it immediately available.\par
+\par
+\ul\b <article> and <section> elements\ulnone\b0\par
+An article element as we know is stand-alone content. If we pick an article out of a web page, it should make sense all by itself.\par
+One article element can be nested inside another. For example, if we have a blog post and we want to include a forum post or newspaper article in it, we can nest it in another <article> tag.\par
+\par
+If the content doesn't look like it can stand on its own, we shouldn't seperate it into two different articles. The section element is used to section a page. For example, chapters in a book, sections in a thesis or splitting an 'about me' page into introduction, interests and skills. Sections can be used in a page or within an article. In fact, all content within the body element is considered to be within one section. Sections can be nested (one section in another). Sections can also be part of an article, aside or nav elements.\par
+\par
+\ul\b <div> and <span> elements\ulnone\b0\par
+The <div> tag is one we will likely see sprinkled all over an HTML document. It is used to define a division or a section of the document. Div is not a semantic element, however, it is commonly used when there isn't a better semantic assignment for it.\par
+\par
+It is like a generic container that can hold a variety of elements such as paragraphs, images, links, tables,etc. It can be used to group elements for styling purposes. We can do this by assigning an id or class attribute to the div element and then apply styles which will affect all elements in the div container.\par
+\par
+It should only be used if we cannot use any other semantic element in its place.\par
+\par
+\b The <span> tag\b0\par
+While we are at the topic of the <div> tag and semantic elements, one more important element that comes in handy is <span>. Span and <div> are so similar yet so different that there is an entire wikipedia dedicated to it.\par
+\par
+\b Usage\b0\par
+What happens when we do not find an appropriate tag to use to change the style inside a paragraph? That's when you use span with an id or a class.\par
+\par
+\b When can <span> be used?\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 To add styling to part of a sentance (inline)\par
+{\pntext\f1\'B7\tab}Manipulate part of a sentence using JavaScript\par
+{\pntext\f1\'B7\tab}When no other HTML element is applicable, we can use <span> (and <div>) to add attributes such as class and id.\par
+
+\pard\sl240\slmult1\par
+Like <div>, <span> is not a semantic element. We should only use <span> if no other semantic element is appropriate. <div> and <span> serve the same purpose but should be applied at different levels. <div> is a block level element (for a block of space) while <span> is an inline element (for within a line or phrase).\par
+\par
+\ul\b Activities - Semantic meaning\ulnone\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 How are <header> and <h1> related? What is the difference between them?\par
+{\pntext\f1\'B7\tab}Create a well structured HTML page using as many semantic elements as we can\par
+{\pntext\f1\'B7\tab}Write a short HTML page that uses the <div> and <span> tags.\par
+
+\pard\sl240\slmult1\par
+\ul\b\fs28 2.4 - Images\par
+\fs22 Introduction to images\ulnone\b0\par
+In this age of visual culture, pictures and images make everything more interesting and engaging. Here is the most basic <img> tag:\par
+<img src="example.png" alt="Example Tutorial Image">\par
+\par
+The image tag has several attributes out of which only src and alt are required. The rest are useful but optional attributes.\par
+\par
+\b Image: 'src' attribute\b0\line The source attribute from the <img> tag tells us where to fetch the image from. There are two different types of URLs we can give for source:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Path to an image file within our web sote\par
+{\pntext\f1\'B7\tab}Path to an image file that resides elsewhere on the web\par
+
+\pard\sl240\slmult1\par
+The type of image file format we should use does not depend on the img element in HTML5 but on the browser that renders the content. Some formats like png, jpeg, gif and bmp are widely supported by browsers and so they are recommended when using images in our website.\par
+\par
+Here is a list of things to keep in mind when using the src attribute:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 do not include spaces in our image path\par
+{\pntext\f1\'B7\tab}make sure our image path matches the capitalization of the actual path. Our images directory in our web project might be Images/ but our path might say images/ missing capitalization in I. Mismatched capitalization might work in some places but not all. Recommended practice: use lower case for all directories, file names and file extensions\par
+{\pntext\f1\'B7\tab}Use Unix / path name separator instead of Windows \\ style. This might work on Windows but will fail elsewhere. The path should be images/example.png not images\\example.png\par
+{\pntext\f1\'B7\tab}When our web page loads, it is always going to look at the location we specified in src for the image. We need to ensure the image resides in the right location or the user is going to get a broken link. This is even more crucial when we use a relative path.\par
+{\pntext\f1\'B7\tab}Absolute paths are not recommended to use because essentially, we are hardcoding the entire URL. The URL contains parts to it before the actual path. Whereas, relative URLs start with a path. The base URL here comes from where our HTML document is disployed. This is easier to maintain. It will work on localhost or if we switch domain names without requiring any changes\par
+
+\pard\sl240\slmult1\par
+\b Image: Formats\b0\par
+Before we begin using images in our web site, we are advised to get an understanding of the most common image file types such as jpeg, gif, bmp, tiff, and png, their pros and cons, operating system compatibility, when to use which format, etc.\par
+\par
+When using images in our HTML5, there are a few image format related information to be aware of:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Image data: most images, especially jpeg, contain a lot more data than is needed for a browser and are too often overly large and slow. We can reduce the size of the image using photo editing software that allows us to re-sample an image to reduce its pixel data and in turn reducing image size. However, once we re-sample an image, we shouldn't make any changes to its size to make it larger as it will  become pixelated and blurry.\par
+{\pntext\f1\'B7\tab}JPEG (Joint Photographic Experts Group) images compress well and are the standard for photos. But they don't support any sort of animation or transparency\par
+{\pntext\f1\'B7\tab}PNG (Portable Network Graphics) images support transparency and alpha channels. This makes them useful for non-rectangular images that may need to overlay different background colors or other elements on the page. To make PNG images, a user would need graphics editing software like GIMP, Photoshop or others. It is a W3C standard.\par
+{\pntext\f1\'B7\tab}SVG (Scalable Vector Graphics) are defined mathematically and support animation. Also, since they are defined mathematically they scale to any size without worrying about pixels, resolution or image data. This makes SGV images an excellent format to use, if possible. SVG is great for charts, graphs, maps geometric shapes, and line based illustrations. SVG is also a markup language in its own right and is very similar to HTML. Typically, it is created with vector graphic software like Inkscape, Illustrator and others, but some people write markup by hand. SVG 1.1 is a W3C Web Standard\par
+}
+ 
