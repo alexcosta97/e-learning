@@ -349,5 +349,154 @@ When using images in our HTML5, there are a few image format related information
 {\pntext\f1\'B7\tab}JPEG (Joint Photographic Experts Group) images compress well and are the standard for photos. But they don't support any sort of animation or transparency\par
 {\pntext\f1\'B7\tab}PNG (Portable Network Graphics) images support transparency and alpha channels. This makes them useful for non-rectangular images that may need to overlay different background colors or other elements on the page. To make PNG images, a user would need graphics editing software like GIMP, Photoshop or others. It is a W3C standard.\par
 {\pntext\f1\'B7\tab}SVG (Scalable Vector Graphics) are defined mathematically and support animation. Also, since they are defined mathematically they scale to any size without worrying about pixels, resolution or image data. This makes SGV images an excellent format to use, if possible. SVG is great for charts, graphs, maps geometric shapes, and line based illustrations. SVG is also a markup language in its own right and is very similar to HTML. Typically, it is created with vector graphic software like Inkscape, Illustrator and others, but some people write markup by hand. SVG 1.1 is a W3C Web Standard\par
+
+\pard\sl240\slmult1\par
+\ul\b Attribute: alt\ulnone\b0\par
+alt stands for alternate text for an image. Using this attribute, we can provide a short description of what the image is about. This description should convey information about the image or its function in the page. The alt is an important attribute because it is the text alternative to the image for users who are unable to see the image, instead using assistive technology like screen readers that rely on the alt text. It is also useful to provide relevant information for search engines.\par
+\par
+\b Importance of the 'alt' attribute\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 If we add alt to our image, screen readers will typically announce that there is an image and read out the contents of the alt attribute\par
+{\pntext\f1\'B7\tab}Our image will not display if the path in our source attribute is wrong, if we have a slow internet connection, or if the image has been relocated or renamed. It will show a broken link. It is useful to have the alternate text display so the user can make sense of the missing image\par
+{\pntext\f1\'B7\tab}Search engines do not 'see' images. They rely on the alt attribute to find out what the image is about. If we use our target keyword in alt, it will optimize the search\par
+{\pntext\f1\'B7\tab}To consume less data, some mobile users turn off images. They need the alt attribute to find out what the image is about\par
+
+\pard\sl240\slmult1\par
+alt also contributes to semantic meaning - it offers meaning to the image and suggests the purpose of the image content. If the image is purely for presentation or decoration purposes, we should leave alt empty. Assistive technology will then ignore this content.\par
+\par
+\b Purpose of the image\b0\par
+We can use images for various reasons in our web page like:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 represent a concept, illustration or just a photograph that provides information\par
+{\pntext\f1\'B7\tab}background for a button or link\par
+{\pntext\f1\'B7\tab}display a quote or message in the form of text in an image\par
+{\pntext\f1\'B7\tab}decorative images\par
+
+\pard\sl240\slmult1\par
+Depending on the category the image fits into, the alt text differs. This W3C WAI Images Tutorial ({{\field{\*\fldinst{HYPERLINK https://www.w3.org/WAI/tutorials/images/ }}{\fldrslt{https://www.w3.org/WAI/tutorials/images/\ul0\cf0}}}}\f0\fs22 ) is an excellent resource for deciding the catogory of our image and for learning how to write proper alt text for that category.\par
+\par
+\ul\b Attributes: title, height and width\ulnone\b0\par
+title is a global attirbute we have seen before but worth mentioning again because it is very useful in an <img> tag. If we have a complicatred image that could use a tooltip or description, we will want to use the title attribute.\par
+\par
+The alt attribute is meant to be an alternate source of information while the title attribute should provide additional information about the image. For images, we must use an alt attribute as there is no guarantee that the title attribute is presented to assistive technology users. The title attribute should not be relied upon for important information, and it should not be used in place of the alt attribute.\par
+\par
+\b The height and width attributes\b0\par
+Not all our images come in the right size for our Web page. The width and height attributes can be used to resize the image in pixels without using an external editor.\par
+\par
+The width and height attributes work with pixels. We can just specify either height and width and the aspect ratio will be adjusted.\par
+\par
+The use of these attributes really depends on how we are using the image. If it part of an image grid or a list with multiple images of the same size, it is best achived with CSS. So we don't have to bother adding the same dimensions to every image and it will be repetitive. Plus it is generally bad practice to encode dimensions directly into the HTML.\par
+\par
+However, if we are adding the image into some content and it needs ot be a certain size for the visual flow of the reader, then it is best to add it to HTML using the height and width attributes. This is to avoid cluttering our CSS with a style for every image in our page. This is also useful if we are changing or removing the image: we can just remove it from our HTML and not deal with remembering to remove it from our CSS too.\par
+\par
+\ul\b Decorative images\ulnone\b0\par
+A significant part of images on the Web are not used for any meaning. They merely serve a decoration purpose and fall under the presentation categoy. How do we identify these images? Well, if we have nothing relevant to put in our alt attribute or if we feel like it is not important to our or the prospective reader, it should not be in our HTML.\par
+\par
+We know we should keep content and style separate in HTML. Then how de we move these images out of content? Well, we don't add them using the <img> tag in HTML but using CSS instead.\par
+\par
+Examples of such images:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 background images\par
+{\pntext\f1\'B7\tab}fancy border graphics\par
+{\pntext\f1\'B7\tab}banner graphics\par
+{\pntext\f1\'B7\tab}pictures of landscapes or textures that are being used as elements behind or surrounding the content.\par
+
+\pard\sl240\slmult1\par
+Some pages, especially for video games, fancy magazines, etc) have a lot of eye-candy imagery that is not core to any of the semantic meaning of the page.\par
+\par
+\ul\b Activities - Images\ulnone\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Create a simple Web page that talks about our day using only text and images. We should include at least three images and add the alt and title attributes.\par
+{\pntext\f1\'B7\tab}Look thorugh the Web and our favourite Web sites and identify those that we think use a lot of decorative images.\par
+{\pntext\f1\'B7\tab}Create a HTML page and add the following types of images\line - Informative image that represents concepts and information\line - Decorative text\line - Images of text\par
+
+\pard\sl240\slmult1\par
+Use the alt attribute to provide alternate text for the images above\par
+\par
+\ul\b\fs28 2.5 - Hyperlinks\par
+\fs22 Introduction to hyperlinks\ulnone\b0\par
+Hyperlink is any text or image we can click and it will take us to another page. This page can be:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 another web page\par
+{\pntext\f1\'B7\tab}a bookmark (specific part of the web page)\line We learned about using the id attribute as a link target in the unit about attributes earlier. If we have a section in our page, we can link to that section using the value of its id attribute, preceded by the number sign\par
+{\pntext\f1\'B7\tab}a local link (another part of the same website)\par
+{\pntext\f1\'B7\tab}an email\par
+
+\pard\sl240\slmult1\par
+\b Why we should use text over image links\b0\par
+When it comes to hyperlinks, we should try to use text intead of images when possible.\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Images are not as well understood or recognized as text\par
+{\pntext\f1\'B7\tab}Text is better for accessibility\par
+{\pntext\f1\'B7\tab}If we have text in an image like the buy now button, search engines do not recognize text in images\par
+
+\pard\sl240\slmult1\par
+\b Best practices\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Apply hyperlinks to short phrases. it is unusual to see the link tag used around the whole paragraph\par
+{\pntext\f1\'B7\tab}Make link phrase meaningful. Aboid phrases like 'Click here' or 'Read More'. Click here to get help is redundant when we can create a link around the phrase 'get help'. The link is an indication that it should be clicked\par
+{\pntext\f1\'B7\tab}Don't use short link text. It is easy to miss the 'blue' hyperlink if it is used on one word or character and is hard for users to click using touch screen\par
+{\pntext\f1\'B7\tab}Appearance - links have a default appearance in most browsers, blue and underlined. We should ensure no other text in our page is underlined so as to avoid confusing the user. They might get frustrated trying to click text that they think is a link.\par
+{\pntext\f1\'B7\tab}If we choose to have image links, it should have alt text that descripbes the purpose of the link instead of the image being used - describe the target link\par
+
+\pard\sl240\slmult1\par
+\b Anchor element\b0\par
+The hyperlink tag element is simply <a>, and it is called the anchor element. Here is how it is used:\par
+<a href="webpage.html">Bla bla link text</a>\par
+\par
+The anchor element should not be confused with the <link> tag. The <link> tag is used to define a link between a document and an external resource like an external style sheet. We will learn more about the <link> tag in the next chapter.\par
+\par
+If the link has not been clicked, it will be blue and underlined. Now, if we click on the link and then come back to where we were at the start we will see that a visited link looks purple and underlined. Apart from unvisited and visited links, there is also a status called active link. A link becomes active when the user is clicking on it. During this time, the link will be red and underlined.\par
+\par
+The a tag can surround text or an image. We can even use the anchore element to add our email address under the contacts section of our webpage. Nevertheless, we shold probably avoid using hyperlinks for email addresses:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 The email address usually opens up on the default email client on the user's computer which they might not use.\par
+{\pntext\f1\'B7\tab}Providing our email address in  our web page directly as text or a hyperlink will expose it. Bots or spam crawlers can be used to search the Web to pick up email addresses for spam. We should avoid this if possible and use contact forms instead.\par
+
+\pard\sl240\slmult1\par
+\ul\b Attributes: href and target\ulnone\b0\par
+\b The href attribute\b0\par
+The only attribute we have seen thus far in this chapter of hyperlinks is href. href points to the URL that the link should jump to. Though it is an optional attribute, without it, the <a> tag will not be a hyperlink because it has obviously no idea where to jump to. The href attribute takes a URL. This URL can be in the form of:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 a link to an external Web site\par
+{\pntext\f1\'B7\tab}a link to a page or file within the same web site\par
+{\pntext\f1\'B7\tab}link to an element on the same page. The element, is referenced using its ID.\par
+{\pntext\f1\'B7\tab}protocols such as mailto: -> for email addresses.\par
+
+\pard\sl240\slmult1\par
+\b The target attribute\b0\par
+target specified the destination where the linked URL in href should be opened. It can take a variety of different values, but for our purposes we'll focus on the two below:\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 _self -> in the same view where the link resides. If no target is spcified, this is the default behaviour.\par
+{\pntext\f1\'B7\tab}In a new window or tab. This is very convenient if we want to link the user to a web page without having the current one disappear. By clicking on the previous window or tab, they can redirect to the page where the link is.\par
+
+\pard\sl240\slmult1\par
+\ul\b Attributes: media and download\b0\par
+\ulnone\b The media attribute\b0\par
+The media attribute was introduced in HTML5. We will look at it briefly here. It is used to specify what kind of media or device the URL we link to in hred is optimized for. The URL could be targeted for special devices like projectors, speech synthesizers or pages meant to be printed. It is useful if we want to cater our target document that the URL points to a particular device type.\par
+\par
+Imagine we have a page scattered with multipole images and we want to display this page on a handheld device. Handheld devices are known to have small screen and reduce the size of images. So the media attribute allows us to tell the anchor element that this page is targeted for handheld devices. We do this by providing a value for the attribute. This value could be any media query and is a combination of device type and media rendering values.\par
+\par
+Let's look at another example - we could create a print link to a long content heavy page that will redirect us to a print version of the same. We want this print version to be formatted into one page ideal for printing and with resolution of 250 dpi. Here is how the HTML5 code would look like:\par
+<a href="blabla" media="print and (resolution:250dpi)">Bla bla</a?\par
+\par
+\b The download attribute\b0\par
+The download attribute is also new in HTML5 and it makes a link download a file insted of navigate to another location. It takes in the filename as value but the value is optional. So the download attribute can be specified in the following ways:\par
+<a href="/assets/hello.txt" download>\par
+\par
+If we do not specify a value for download, it will download the file with name unchanged. Else it will download the file with file name modified according to value specified.\par
+\par
+\ul\b Activities - Hyperlinks\ulnone\b0\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Test the Anchor element by providing broken or invalid links\par
+{\pntext\f1\'B7\tab}Create a simple contact me page and include the following using hyperlinks where possible:\line - Short introduction (not more than three lines) about ourselves\line - Social media information\line - Email\line\line In the same page, add navigation at the start for parts of our page like Introduction, Social Media and Email. Use hyperlinks and the id attribtue to link each section from nav\par
+{\pntext\f1\'B7\tab}Create an HTML page with a link that utilizes the download atttribute. Try our code on Internet Explorer and Google Chrome\par
+{\pntext\f1\'B7\tab}Can we think of different scenarios where we would use target values '_self' and '_blank'\par
+
+\pard\sl240\slmult1\par
+\ul\b Recipe project - module 2\ulnone\b0\par
+We are now going to continue uilding on the recipe project we started on the previous module.\par
+\par
+We can apply some of what we've learned this week to improve our page, both in terms of looks or structure. Also, we can add couple more recipes, so we have a more realistic situation. We should try to make good use of semantic elements, images and hash links to get something that looks decent.\par
 }
  
