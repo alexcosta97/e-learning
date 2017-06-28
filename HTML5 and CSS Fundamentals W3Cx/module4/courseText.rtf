@@ -1,0 +1,197 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\ul\b\f0\fs28\lang9 4.2 Debugging Tools\ulnone\b0\par
+\ul\b\fs22 Tools\ulnone\b0\par
+It's hard to overestimate the value of tools for programming languages. There are tools for creation, testing, debugging and even measuring performance of a program. HTML pages are really programs, in specific programming languages, so we need tools for those as well.\par
+\par
+One tools that we should, bu now, be very familiar with, is the editor. While traditional text editors allow us to enter and edit text, modern editors can actually help us detect and avoid errors, visualize our program more clearly and even stick in bits of text for us if it thinks it knows what we need.\par
+\par
+Some of the most uniquitous tools are in the browser itself, which is handy because everyone seems to have one. We might have even seen this ourself is we've ever tried the show source button, but perhaps the most important tool that we have yet to explore is the debugger activated when we "Inspect Element".\par
+\b\par
+Accessibility\b0\par
+While it's important that our page looks and acts the way we intend, there are other considerations as well. One important aspect is "accessibility". When talking about Web pages, accessibility means designing our page with various disabilities in mind. For example, for someone with impaired vision, we'd want to make sure our page is zoomable, or make sure that it makes it easy for screen-readers. Just as wheelchair ramps are a benefit for many users, making our website accessible can be a benefit for many users.\par
+\par
+Fortunately, there are a number of tools available to help evaluate the accessibility of our site. We can evaluate the overall accessibility of our page, see how it looks to a screenreader and even figure out how well our background and foreground colors interact. For a good list of such tools, we should check the following link out: {{\field{\*\fldinst{HYPERLINK https://www.w3.org/WAI/ER/tools/ }}{\fldrslt{https://www.w3.org/WAI/ER/tools/\ul0\cf0}}}}\f0\fs22\par
+\par
+\b Debugging\b0\par
+When we're using a traditional programming language, like JavaScript, debugging is primarily concerned with values of variables, what path is being taken through the code, and whether the program crashes, usually resulting in everything after the crash not happening at all. JavaScript is what we could call a "Procedural language", in that things follow a procedure in order described by the program. Just think of how we might direct a small child to do things in a certain order. It can be a bit tedious, but then we've got a better chance that the end result will be accomplished.\par
+\par
+HTML and CSS are not procedural languages, they're "declarative". We declare what we want, and the computer makes it happen. We say "this is the header, here's a paragraph, I want this to be large, that to be red". We don't proscribe exactly how it's done, just what we want the result to be. Now we're dealing with something more like a teenages. Less tedious, just sometimes it's a bit tricky to get exactly what we're hoping for.\par
+\par
+In either case, we might need some help. With a small child, we might rely on an older sibling reporting exactly what happened, so we can correct any unexpected variations that might occur. For teenagers we can usually listen at some distance and figure out what's happening (or not).\par
+\par
+Since we are focusing in HTML and CSS, let's consider what sort of info may be helpful. There are several things that can go wrong with our programs. Some text might be missing. Some things will be in the wrong place. Some things may be too close together, while other too far apart. We thought we had everything right, but it doesn't quite look right. In order to figure out where the problem is it's when we have to use development tools.\par
+\par
+Every browser is quite different, but most of them have ways to examine the various elements and their properties. It probably began as a way to see what's going on with particular elements of the HTML page, at least or so it seems as "Inspect Element" seems to be common to most browsers. We'll be using the debugging facilities in the Intel XDK, but most of what we'll cover uses the "Chrome Developers Tools" which is the same tool we get when we "Inspect" an element on Chrome. Other browsers are likely to have similar capabilities, but the user interface may be a bit different.\par
+\par
+\ul\b Debugging with Intel XDK\b0\par
+\ulnone\b Opening the debugger\b0\par
+One way to debug our HTML5 code is to use the facilities available in the XDK. The emulator provides a great debugging tool that is built on the Chrome Debugging Tools, so most of what we learn here will be applicable if we use Chrome to debug our page.\par
+\par
+To start debugging, we have to switch to the "Emulator" tab, and we should see these controls in the upper left part of the window.\par
+\par
+Under the little folder symbol and the word "Projects" there are 3 buttons. The second one, with the two curved arrows in a circle is the "Reload button", we can hit that when we want to start over, for example if we've made some changes and we want to restart with the initial conditions.\par
+\par
+The third button is the one we will be talking about the most, that's the "Debugger" button which will open and close the debugger.\par
+\par
+\b Displaying Elements\b0\par
+When we open the Debugger by clicking on the Debug button, a second window should pop up containing CDT (Developer Tools, including the debugger). This window will appear above the Intel XDK window, so we may want to rearrange the two windows so that neither is blocking the other. Once we set up the size and position of the debugger window, the emulator should remember and bring it up the same way the next time we use it.\par
+\par
+We'll notice there are quite a few tabs in the "Developer Tools" window. It's technically more than just a debugger, but for simplicity we'll usually refer to it as the debugger window. The tab that we'll be using primarly is the "Elements" tab. This tab enables us to explore the relationships between our code and what's displayed on our resulting page.\par
+\par
+\ul\b Identifying HTML5 elements\ulnone\b0\par
+Remember that elements are the intangible parts of our web page, which are described by the text in tags and are rendered on the screen of whatever device we're looking at our web page with. The two things (the text code and the pixels on the screen) correspond to each other, but it's not always obvious which bit of the screen corresponds to which bit of text.\par
+\par
+There are two opposite directions in which we might need to figure out in these two different things that both correspond to an element. We might have some HTML5 code that we've written and want to find out where on the web page that code shows up. The other direction can be needed as well, given a praticular part of the page, what part of our code produced it?\par
+\par
+When we hover over an element in the debugger window, the corresponding element on the displayed page is highlighted. The blue highlighted section on the right shows the rectangle corresponding to the light blue third <li> element that we're hovering on the left panel. The little box with the arrow gives the dimensions in pixels of that element.\par
+\par
+This highlighting not only tells us the correspondance between the two (source code and rendered page), it also shows us the extent of the rendered element. We can see how big it is, whether it goes all the way accross the screen or just part of it and so on. In addition to the highlighting there is a small rectangle with an arrow with the dimensions in pixels of the element, giving us exact information about the size of the element.\par
+\par
+We probably notice that there is another highlighted element on the left, that is the currently active element, made active by clicking on it. While it's not highlighted in the display window on the right, it's important is that changes in the style panel will affect that element.\par
+\par
+It is also possible to go the other direction, click on a point on the screen and it will highlight the code in the source that corresponds to that element. This is helpful when we want to figure out where something came from and what might be affecting it's styling (size, color, font, any number of other charecteristics). To do that in the Intel XSK debugger we need to use the "Magnifying Glass" button in the upper left corner of the debugger window. In other browsers, this essentially corresponds to the "Inspect" button.\par
+\par
+When we click on the little magnifying glass, it should turn gray (lighter than normal) then when we go to the emulated window. We may need to click on it once to make it the active window on our machine, then when we hover over any given pixel it will highlight the lowest level (smallest) element. We will stay in this magnifying glass mode until we click on a pixel, or if we go back and click on the magnifying glass symbol again. When we click on a pixel, it will select the code for that element back in the debugger, opening up any parents if necessary.\par
+\par
+\ul\b Modifying HTML5 elements\ulnone\b0\par
+Another handy feature of the debugger is the ability to make temporary modifications to ur code to try out different things and see what works the way we want it to. When we have a visible element selected in the elements tab, we can make style changes in the styles panel, or use the computed panel to see the values for each property and how they are determined.\par
+\par
+It's possible to chagne things a few different ways. If we double click on an element in our HTML5 source code, we can change the source code. For exaple we could click on an attirbute to modify it or its value, or we can change the type of tag or even the contents of an element.\par
+\par
+We can use this same approach to add a "Style" attribute to a particular element, which should override any other settings, there is also an easier way to do that. In the panel just to the right of the elements panel is the another panel with tabs including styles and computed and a few others. Most of the time we'll want the "styles" tab activated. Once we do that, we can modify CSS properties of the current element by adding them to the element.style box at the top of the styles panel.\par
+\par
+Just click in between the two curly braces on the element.style rule at the top of the styles panel. After clicking we should see a little text entry box with which we can type property value pairs that will affect the currently active element.\par
+\par
+It's important to know that any changes we make in the debugger will have no effect ont he original web page. They only affect that particular instance of that page and come back, we'll need ot make the same changes again if we want to get back to where we were. It's not that easy to break the web.\par
+\par
+\ul\b\fs28 4.3 - Debugging and the CSS box model\ulnone\b0\par
+\ul\b\fs22 CSS Box model\ulnone\b0\par
+Before we get too far into debugging, it's helpful to understand a couple of things about CSS more deeply.\par
+\par
+The placement of elements on a web page can be fairly complicated. One of the most basic features that influence where things go on a web page is the CSS Box Model. The Box Model governs 3 important spacing features of CSS. We learned about margins previously as the space between elements. There are two other similar notions, padding and borders.\par
+\par
+Perhaps the best way to understand is with a picture. All elements in an html document end up being treated as rectangles somewhere in the window. The content of each rectangle corresponds to the innermost rectangle in the image below. Just outside the content is the padding. This is kind of like an internal margin, meaning that it separates the contents from the border. The border essentially traces the sides of the padding rectangle.\par
+\par
+It's important to note that the border goes around the content and the padding. There are sometimes visible things associates with an element that are not technically part of the content of the element. One such example is the list item.\par
+\par
+The box does not include the bullets because it is outside of the content. Sometimes when we see that it might be a bit confusing, especially because it also affects the padding (which is inside the border). There is a list-style option, list-style-position, which can be used to include the bullet as part of the content. (list-style-position: inside;)\par
+\par
+Now the bullet is inside the border, and padding affects the bullet as well as the text. The border property has a lot more options than the padding or margin. Imagine using a pen to draw the edges of a rectangle. We can choose how thick the pen is, and whether we draw a solid line or dotted line. We can even choose how we go around the corners, whether it's a sharp turn or a more gradual circular shape. All of these characteristics can be controlled by CSS properties, like border-width, border-style or border-radius.\par
+\par
+While all of these border properties have default values, there are three that we'll see most often when specifying a border: border-width, border-style and border-color. In fact, these are so commonly specified that there is a shorhand syntax to set all three in one line.\par
+\par
+There are many other shortcuts to learn but this one is fairly common. To draw a border we need to know the width, style and color. There are defaults for these values, so we technically don't need to specify all of them, but it is the minimal info needed and is quite common.\par
+\par
+The margin, as we learned earlier, specifies the position of the element relative to whatevver is adjacent to it, either to the right or left, or top or bottom. The margin is always transparent, and each side can be set individually. The unique thing about the margin is that the values for any of the sides can be negative, even if that means that it overlaps with another element on the page. This can be useful when we want to control where an element is placed on a page. In the following pictures, the black rectangles encompass the content.\par
+\par
+On the left, we see three blocks with no margins between them. On the right are the same 3 blocks, but now block 2 has a positive margin-left, creating space between blocks 1 and 2. Block 3 has a negative margin-left, causing its left side to overlap with block 2.\par
+\par
+The border may be easier to comprehend because it is often visible, though it doesn't have to be. Unlike the margin (or the padding), there are many more options controlling the size, shape, color and style of the border. We can even create a completely or partially transparent border, or we can match the color of the border to the color of the background, essentially rendering it invisible. It's still there, though, taking up some space on the page and influencing the placement of elements displayed in the browser. The width of the border controls its size (thickness), so it only makes sense to accept numbers greater than or equal to 0. What the browser does if the border width is less than 0 is undefined and shouldn't be relied on.\par
+\par
+Inside the border is the padding. This controls the amount of space between the elements content and the border box (whether it's visible or not). If we have no padding, then the contents of the element (maybe text or image) would be right up against the border, which could be awkward if we have a visible border.\par
+\par
+Like the margin and the border, all four sides can be independently set. The background of the padded area matches the background of element, so the effective visible size of the element includes the padding.\par
+\par
+Here we've got a thin border directly around the content to delineate where the content ends and the padding begins. Again, the contents are affected by the width of the padding, but now the background of the padding is the same as the background of the content. This makes it look more like the contents have been expanded. If we add a thin border to these, we see that the padding is reflected by empty space betwene the contents and the border.\par
+\par
+All of these can have a width of 0, which is equivalent to not having them, this margin 0 is the same as margin: none. Each can be controlled individuallt with relative or absolute lengths. While the padding and borders require non-negative widths, margins can be either positive or negative.\par
+\par
+Using these settings in combination provides quite a bit of flexibility in terms of spacing and drawing borders. If we have padding and a visible border, we can control how close the border comes to the contents. By setting the margin we can control how close the border comes to surrounding elements. We can even give our border rounded corners using the border-radius setting.\par
+\par
+\ul\b Debugging with the box model\b0\par
+\par
+\ulnone In the debugger, when we're in the elements tab, in the styles panel we've probably seen an image of many enclosed in one another boxes.\par
+\par
+This is a diagram of the box model information for the currently active element. The innermost box gives the dimensions of the element, outside of that is that is the padding, then the border around which is the margin. On each side of each corresponding rectangle is the width in pixels of that side, with - when it's non-existent. Also, when we hover over one of the rectangles, that portion of the element is highlighted on the rendered page, so we can see exactly where the margin, the border, the padding and the element are.\par
+\par
+Note that this same box model is proposed by many other browsers.\par
+\par
+\ul\b\fs28 4.4 - Debugging CSS precedence\par
+\fs22 CSS precedence\ulnone\b0\par
+As we've learned in the last module, in order for the computer to decide which of several rules may apply to a given element in a particular context, there is a well defined "precedence" to define which rule should apply. Theoretically, we should be able to always figure out which rule applies by using the precedence tules, but in practice, it can be quite complicated, especially when conflicting rules are in different .css files.\par
+\par
+Nevertheless, that can cause problems when we have different rules that could apply to the same element. Considering the example provided on the course page:\par
+\par
+Looking at the style rules we see there are three different possibilities for the size and color of an <h1> element. In this case the application of the rules seems pretty intuitive. The outermost heading is neither in an Article or a Section, so it is blue and the largest of the three. The one that's in the Article, but not in the section is black and of medium size.\par
+\par
+Finally the heading in the section is the smallest and shows up as grey.\par
+\par
+However, if we rearrange the rules, the result will be different because a rules applying to the same element but displayed later will "win".\par
+\par
+\ul\b Debugging CSS precedence\ulnone\b0\par
+In the right panel of the debugger are several tabs, the first two being styles and computed. Both of these are helpful in sorting out where a particular style setting is coming from. We saw in a previous section that we can add or change CSS settings in the styles panel, however, there is much more information there.\par
+\par
+There is a sequence of the panels under style that helps understand just where a prticular CSS rule is coming from. Starting at the top, we have rules that apply specifically to the currently active element. In fact changes in this top panel are mirrored as settings in the style attribute of the element.\par
+\par
+Under that ther are more panels which show where CSS properties for the other elements come from. Under the top panel, which corresponds to inline style settings, we find properties for this elemenet that came from the rules with the selector. This may seem odd at first because the h1 element that we're examining is inside a section, so we'd think that the section h1 selector would take precedence.\par
+\par
+If we keep going down, we find the overriden rule that applies to all h1 elements, and then thre are two grayed-out section with the label user agent stylesheet. These are basically the defaults, the values that the browser will use if nothing else is specified. Any rule we provide should override the corresponding rule in the user agent stylesheet.\par
+\par
+Back to our quandary, why does article h1 take precedence over section h1? Let's take a look at the first version we tried, before rearranging, which did what we wanted.\par
+\par
+Here we see just the opposite of what we saw before, now "section h1" takes precedence over "article h1". What's going on?\par
+\par
+Our intuition in this case is deceiving us. We think of section as being more specific than article, but that's just because we've organized it that way. In fact, we could decide that section consists of multiple articles, then we'd want the opposite behaviour.\par
+\par
+As far as precedence calculations are concerned, though the computer sees tag-type-tag-type which is more than just one tag-type, but no more specific than any other tag-type-tag-type combination. Since article h1 and section h1 are of equal precedence, the tie is broken by whichever rule came last. When we rearrange the rules, we change which of the two comes last, thus causing the change in the section headers.\par
+\par
+We could fix it by jsut make sure things are in the right order (which is important) but a more robust solution might be to make use of the fact that the way we're using <section? in fact is more specific than <article>. We can make this explicit by changing the selector to "article section h1" so that now the smaller lighter color will be used only on a section that is inside a article, which is really what we want.\par
+\par
+\ul\b Cloud images\ulnone\b0\par
+We're working on a Web page about clouds and we have some beautiful pictures we'd like to use: one for the top of the page, and others as examples of differents types of clouds. We include the pictures but the result is unwiedly.\par
+\par
+We zoomed out so we could see what it looks like. However, when we see the pictures, the text is so small it's unreadable. The other option is to leave it un-zoomed, scroll back and forth to see all the parts of the pictures. Clearly we have a solution for this. We can just specify the width of <img> elements in our custom.css file. We can use the debugger to try different sizes, modifying it in the styles panel, in order to give a much more reasonable page.\par
+\par
+So far so good, but we want our top image to be a bit bigger without changing the other images. In this special case, we can use the width attribute of the img tag to make it the only image that it's bigger.\par
+\par
+\b Debugging image size\b0\par
+We open up our debugger and choose the <img> tag corresponding to our first picture then we see that the width attribute isn't the one applied by the browser.\par
+\par
+The specialized width setting that we added as an img attribute isn't quite the same as setting the style. Any style setting the img width will take precedence over the attribute setting, so ou img settings intended for the other images will change that one too. We could fix this by adding an inline "style" attribute, but that's generally discouraged. It's better so sit back and think for a moment. The images below are in a list, and we want smaller pictures there so we can scan the list easily. The banner picture at the top should be big for more visual impact. One reasonable way to address this would be to special case the smaller pictures, and use a larger width by default. This would recognize that we really want small images when they are list elements, otherwise they should be bigger. So we can change our code like this:\par
+img\{\par
+\tab width: 25rem;\par
+\}\par
+\par
+li img\{\par
+\tab width: 10rem;\par
+\}\par
+\par
+There is still the issued of things not being laid out nicely, we'll learn more about that int he module 6.\par
+\par
+\ul\b Shrinking Text\ulnone\b0\par
+The main content of the project on the page is an outline for an essay and it should looke something like the codepen presented on the page.\par
+\par
+As with the cloud pictures, we want the listed items a bit smaller than the regular text, so we add this styling:\par
+\par
+section\{\par
+\tab font-size: 24px;\par
+\}\par
+\par
+section h1\{\par
+\tab font-size: 28px;\par
+\}\par
+\par
+li\{\par
+\tab font-size: 0.5em;\par
+\}\par
+\par
+The outermost level is fine, the next level is almost readable but the innermost level is ridiculously small. Back to the debugger to see what's wrong:\par
+\par
+\b Computed tab\b0\par
+Looking into the style settings in the debugger, at first glance we don't see anything unusual. The font-size is .5em as expected. One odd thing is that below the user agent stylesheet panels is the overriden font-size identical to the current one, i.e. .5em on <li> elements.\par
+\par
+The styles panel doesn't tell us a lot about the actual font-size in absolute terms. To determine that we can use the computed tab.\par
+\par
+The computed tab contains the values of all the CSS properties that apply to the current element. There are a lot of them, and they're listed in alphabetical order. Since the computer considers the character'-' as coming before 'a' in the alphabet, the first thing we'll see is a long list of properties starting with -webkit. We're going to scroll down past those to font-size which reveals this: font-size: 3px;\par
+\par
+This tells us that the font-size on the innermost list item is only 3px; No wonder it's unreadable.\par
+\par
+When we click on the triangle we can expand the details on font-size, which makes a little more clear what's going on. We see that the font-size on the body is 24px, but there are several repetitions of the li .5em\par
+\par
+If we look at the next outer list item, we see that the font-size is 6px, and one outside of that is 12px. This doubling makes it clear what's happening. Each nested <li> element has a font-size 1/2 the size of its parent, because the em unit is relative measurement, depending on the current font-size.\par
+\par
+Now that we know what's happening, we can fix it in a few different ways. We could use an absolute unit like px or pt, but a better solution would be rem. This would make the size relative to the html font-size and not it's surroundings.\par
+}
+ 
