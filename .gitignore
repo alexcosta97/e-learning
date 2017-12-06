@@ -286,3 +286,7 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+AngularCourse/docs/.pdf/main.synctex
+AngularCourse/docs/.pdf/main.pdf
+AngularCourse/docs/.pdf/main.aux
+AngularCourse/.vscode/spellright.dict
