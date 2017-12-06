@@ -1,0 +1,37 @@
+\chapter{Structure of Angular Apps}
+\section{e2e Folder}
+e2e stands for End-To-End and this is where we write end-to-end tests for our application.
+
+\section{node modules}
+This is where we store all the third-party libraries that our application depends upon. It is only for development, so when the app is compiled, parts of the third-party libraries are put in a bundle and are deployed into the server. The whole folder doesn't go into the server.
+
+\section{src}
+This is where the source code of the application resides. Inside this folder we have many folders and files, such as the index.html, that contains our application. In this file there is no references for a JS or CSS file.
+
+Then we have main.ts. This file is the starting point of our application.
+
+The polyfills file is a file that imports some scripts that are required to load angular. This file serves to fill the gaps between the features that Angular needs and the features that are supported by current browsers.
+
+The styles file is where we add the global styles for our application.
+
+Then we have test.ts that is used to set our testing environment.
+
+\subsection{app}
+Inside this module we have a module and a component. All projects have at least one module and one component.
+
+\subsection{assets}
+The assets folder is where we store the static assets of our app such as images, text files and icons.
+
+\subsection{environments}
+This is where we store configuration settings for different environments, such as the production environment and the development environment.
+
+\section{package.json}
+This is a standard file that every Node project has. It has some basic settings such as the name and version of the application. It also lists the dependencies for the application, which determines the libraries that our application is dependent upon. We have many libraries listed, but there are some that we may want to delete or add.
+
+Then there is another section called devDependencies, which are the libraries that are needed to develop the application.
+
+\section{tsconfig.json}
+This is the files that has the settings for the TypeScript compiler. It looks at the settings and then compiles the TypeScript code into JS that the browsers can understand.
+
+\section{tslint.json}
+This file includes a load of settings for TSLint, which is a static analysis tool for TS code for readability, maintainability and functionality errors.

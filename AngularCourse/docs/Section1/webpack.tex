@@ -1,0 +1,10 @@
+\chapter{Webpack}
+When opening app.component.ts, we find loads of different code.
+
+In the AppComponent class, we can change the value of title from 'App' to 'Angular App'.
+
+After saving the file, the message: webpack: Compiled successfully appears.
+
+Angular uses Webpack. It is a build automation tool. It gets all of our styles and scripts, puts them in a bundle and minifies the bundle. A few bundles are polyfills.bundle.js, main.bundle.js, styles.bundle.js, vendor.bundle.js and inline.bundle.js. Webpack automatically rebuild the project as soon as the files are saved, and also refreshes the browser. This feature is called Hot Module Replacement.
+
+If we look at the source of the index page, all the bundles were linked to the page by script tags added after the app-root tag.
