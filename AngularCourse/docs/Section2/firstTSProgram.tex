@@ -1,0 +1,12 @@
+\chapter{First TypeScript Program}
+
+\section{Install TypeScript}
+In order to install TypeScript, we open the command prompt and run the command npm install -g typescript
+
+In order to check the version of the TypeScript compiler we run: tsc --version. Note that tsc stands for TypeScript compiler.
+
+We can write some plain vanilla JS in a TypeScript file for starters and then run the compiler onto it. We compile files with: tsc name-of-file.ts. After the compiler does its thing, we can see that a JS file of the same name as the TS file has been added to the folder.
+
+When building an Angular app, the code transpilation occurs autometically and under the hood. In the JS file, because the TS code was just plain JS, the code appears exactly the same.
+
+We can then run TypeScript files that we have compiled by using node file-name.js

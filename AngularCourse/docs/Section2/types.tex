@@ -1,0 +1,19 @@
+\chapter{Types}
+\section{Trying to change the type}
+Let's suppose we've declared, in TS, a variable with an integer using the keyword let and then later on decided that we could try to give it a value of type string. The editor would straight away rise an error message saying something along the lines of: "Type value is not assignable to type declared-type". That would be something possible in JS, but it would not be valid in TS.
+
+This would probably create bugs later on the road when changing variables on-the-fly like that and that is why is it better to write the code in TypeScript first and then render it back to JavaScript.
+
+When hovering above the numerical value, IntelliSense would straight away give the type of the variable, which in this case would be number, but, even when using let, without giving an initial value to a variable, the variable will be declared as an any type, which, in the end, ends up being the same as declaring the variable with a var.
+
+When we don't know in advance what value to give to the value, we can then use type annotations, that will allow us to give a type to our variable and then enforce typing. We do that by adding a colon and then the name of the type after the name of the variable when declaring it to assigning a type to it.
+
+In TypeScript we have the following types:
+\begin{itemize}
+    \item number: any numerical interger or floating value
+    \item boolean: true or false
+    \item string
+    \item any
+    \item array: number[], or any[]
+    \item enum nameoftenum and values in curly brackets
+\end{itemize}

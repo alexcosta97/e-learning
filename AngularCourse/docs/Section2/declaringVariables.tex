@@ -1,0 +1,10 @@
+\chapter{Declaring Variables}
+\section{How to declare variables}
+In TS, there are two ways to declare a variable. Either by using the var or the let keyword.
+
+\subsection{How the let keyword works}
+When declaring variables with var, the variable is still accepted outside of the block in which it was built, which can cause major problems with different variables. With languages such as C# or Java, the variable is scoped to the nearest block.
+
+When declaring a variable with let, the same won't happen since it declares that the variable should only be visible within its scope.
+
+This also allows us to explore the fact that the editor, after declaring the variable with let, does underline the i in the last console.log in red, meaning that that might cause a compile-time error. When hovering the mouse above the error, it allows the user to know what caused the error, which would be great for debugging. In some cases, TSC will show compile errors, such as the one that would happen when trying to compile the code above with the let declaration, but will still render valid JS code, since the let keyword doesn't exist in the currently supported by all browsers JavaScript version, so it will be replaced by var.
