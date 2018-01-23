@@ -18,12 +18,21 @@ Then we have test.ts that is used to set our testing environment.
 
 \subsection{app}
 Inside this module we have a module and a component. All projects have at least one module and one component.
+\begin{itemize}
+    \item app/app.component. : Defines the AppComponent along with an HTML template, CSS stylesheet, and a unit test.
+    It is the root component of what will become a tree of nested components as the application evolves
+    \item app.module.ts: Defines AppModule, the root component that tells Angular how to assemble the application.
+    Right now it declares only the AppComponent. Soon there will be more components to declare.
+\end{itemize}
 
 \subsection{assets}
 The assets folder is where we store the static assets of our app such as images, text files and icons.
 
 \subsection{environments}
-This is where we store configuration settings for different environments, such as the production environment and the development environment.
+This folder contains one file for each of our destination environments, each exporting simple
+configuration variables to use in our application. The files are replaced on-the-fly when we build
+our app. We might use a different API endpoint for development than we do for production or maybe different
+analytics tokens. We might even use some mock services. Either way, the CLI has us covered.
 
 \section{package.json}
 This is a standard file that every Node project has. It has some basic settings such as the name and version of the application. It also lists the dependencies for the application, which determines the libraries that our application is dependent upon. We have many libraries listed, but there are some that we may want to delete or add.
@@ -35,3 +44,26 @@ This is the files that has the settings for the TypeScript compiler. It looks at
 
 \section{tslint.json}
 This file includes a load of settings for TSLint, which is a static analysis tool for TS code for readability, maintainability and functionality errors.
+
+\section{index.html}
+The main HTML page that is served when someone visits the site. Most of the time we'll never need to edit it. The CLI automatically adds all the js and css files when
+building our app so we never need to add any script of link tags manually.
+
+\section{main.ts}
+The main entry point for our app. Compiles the application with the JIT compiler and
+bootstraps the application's root module (AppModule) to run in the browser. We can also use
+the AOT compiler without changing any code by appending the --aot flag to the ng build and
+ng serve commands.
+
+\section{polyfills.ts}
+Different browsers have different levels of support of the web standards. Polyfills help
+normalize those differences. We should be pretty safe with core-js and zone.js, but be sure to
+check the Browser Support guide for more information.
+
+\section{styles.css}
+Our global styles go here. Most of the time we'll want to have local styles in our components
+for easier maintenance, but styles that affect all of our app need to be in a central place.
+
+\section{test.ts}
+This is the main entry point for our unit tests. It has some custom configuration that might be
+unfamiliar, but it's not something we'll need to edit.
