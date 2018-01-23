@@ -1,0 +1,40 @@
+\chapter{The Hero Editor}
+The application now has a basic title. Next, we will create a new component to display hero information and place that component in the application shell.
+
+\section{Create the heroes component}
+Using the Angular CLI, generate a new component names heroes.
+
+ng generate component heroes
+
+The CLI creates a new folder, src/app/heroes, and generates the three files of the HeroesComponent. The HeroesComponent class file is as follows:
+
+\begin{lstlisting}{language=JavaScript}
+    import { Component, OnInit } from '@angular/core';
+
+    @Component({
+    selector: 'app-heroes',
+    templateUrl: './heroes.component.html',
+    styleUrls: ['./heroes.component.css']
+    })
+    export class HeroesComponent implements OnInit {
+
+    constructor() { }
+
+    ngOnInit() {
+    }
+
+    }
+
+\end{lstlisting}
+
+We always import the Component symbol from the Angular core library and annotate the component class with @Component.
+
+@Component is a decorator function that specifies the Angular metadata for the component.
+The CLI generated three metadata properties:
+\begin{itemize}
+    \item selector - the components CSS element selector
+    \item templateUrl - the location of the component's template file
+    \item styleUrls - the location of the component's private CSS styles.
+\end{itemize}
+
+The CSS element selector matches the name of the HTML element that identifies this component within a parent component's template.
