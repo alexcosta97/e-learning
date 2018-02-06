@@ -49,4 +49,211 @@ A common work around is to use an IIFE - an Immediately Invoked Function Express
 
 This odd-looking pattern is actually pretty common. The i in the parameter list actually shadows the i declared in the for loop, but since we named them the same, we didn't have to modify the loop body too much.
 
-\section{lst declarations}
+\section{let declarations}
+By now we've figured out ,that var has some problems, which is precisely why let statements were introduced. Apart from the keyword used, let statements are written the same way var statements are.
+
+The key difference is not in the syntax, but in the semantics, which we'll dive into.
+
+\subsection{Block-scoping}
+When a variable is declared using let, it uses what some call lexical-scoping or block-scoping. Unlike variables declared with var whose scopes leak out to their containing function, block-scoped variables are not visible outside of their nearest containing block or for-loop.
+
+Variables declared in a catch clause also have similar scoping rules. Another property of block-scoped variables is that they can't be read or written to before they're actually declared. While these variables are "present" throughout their scope, all points up until their declaration are part of their temporal dead zone. This is just a sophisticated way of saying we can't access them before the let statement, and luckily TypeScript will let us know that.
+
+Something to note is that we can still capture a block-scoped variable before it's declared. The only catch is that it's illegal to call that function before the declaration. If targeting ES2015, a modern runtime will throw an error; however, right now TypeScript is permissive and won't report this as an error.
+
+\subsection{Re-declarations and Shadowing}
+With var declarations, we mentioned that it didn't matter how many times we declared your variables; you just got one, meaning that if we declare the same variable twice or more times, we end up always refering to the same single variable. This often ends up being a source of bugs. Thankfully, let declarations are not as forgiving, and will throw an error if you try to declare the same variable twice. The variables don't necessarily need to both be block-scoped for Typescript to tell us that there is a problem:
+
+\begin{lstlisting}
+    function f(x){
+        let x = 100; //error: interferes with parameter declaration
+    }
+
+    function g(){
+        let x = 100;
+        var x = 100; //errir: can't have both declarations of 'x'
+    }
+\end{lstlisting}
+
+That's not to say that block-scoped variable can never be declared with a function-scope variable. The block-scope variable just needs to be declared within a distinctly different block:
+
+\begin{lstlisting}
+    functiom f(condition, x){
+        if(condition){
+            let x = 100;
+            return x;
+        }
+
+        return x;
+    }
+
+    f(false, 0); //returns '0'
+    f(true, 0); //returns '100'
+\end{lstlisting}
+
+The act of introducing a new name in a more nested scope is called shadowing. It is a bit of a double-edged sword in that it can introduce certain bugs on its own in the event of accidental shadowing, while also preventing certain bugs. For example:
+
+\begin{lstlisting}
+    function sumMatrix(matrix: number[][]){
+        let sum = 0;
+        for(let i = 0; i < matrix.length; i++){
+            var currentRow = matrix[i];
+            for(let i = 0; i < currentRow.length; i++){
+                sum += currentRow[i];
+            }
+        }
+        return sum;
+    }
+\end{lstlisting}
+
+This version of the loop will actually perform the summation correctly because the inner loop's i shadows i from the outer loop. Shadowing should usually ne avoided in the interest of writing cleaner code. While there are some scenarios where it may be fitting to take advantage of it, we should use our best judgement.
+
+\subsection{Block-scoped variable capturing}
+When we first touched on the idea of variable capturing with var declaration, we briefly went into how variables act once captured. To give a better intuition to this, each time a scope it run, it creates an "environment" of variables. That environment and its captured variables can exist even after everything within its scope has finished executing.
+
+\begin{lstlisting}
+    function theCityThatAlwaysSleeps(){
+        let getCity;
+        if(true){
+            let city = "Seattle";
+            getCity = function(){
+                return city;
+            }
+        }
+        return getCity;
+    }
+\end{lstlisting}
+
+Because we've captured city from within its environment, we're still able to access it despite the fact that the if block finished executing. Recall that with our earlier setTimeout example, we ended up needing to use an IIFE to capture the state of a variable for every iteration of the for loop. In effect, what we were doing was creating a new variable environment for our captured variables. That was a bit of a pain, but luckily, you'll never have to do that again in TypeScript.
+
+let declarations have drastically different behaviour when declared as part of a loop. Rather than just introducing a new environment to the loop itself, these declarations sort of create a new scope per iteration. Since this is what we were doing anyway with out IIFE, we can change our old setTimeout example to just use a let declaration.
+
+\section{const declarations}
+const declarations are another way of declaring variables. They are like let declarations but, as their name implies, their value cannot be changed once they are bound. In other words, they have the same scoping rules as let, but we can't re-assign to them. This should not be confused with the idea that the values they refer to are immutable.
+
+\begin{lstlisting}
+    const numLivesForCat = 9;
+    const kitty = {
+        name: "Aurora",
+        numLives: numLivesForCat
+    }
+
+    //error
+    kitty = {
+        name: "Danielle",
+        numLives: numLivesForCat
+    };
+
+    //all "okay"
+    kitty.name= "Rory";
+    kitty.name= "Kitty";
+    kitty.name = "Cat";
+    kitty.numLives--;
+\end{lstlisting}
+
+Unless we take specific measures to avoid it, the internal state of a const variable is still modifiable. Fortunately, TypeScript allows us to specify that members of an object are readonly.
+
+\section{let vs. const}
+Given that we have two types of declarations with similar scoping semantics, it's natural to find ourselves asking which one to use. Like most broad questions, the answer is: it depends.
+
+Applying the principle of least privilege, all declarations other than those we plan to modify should use const. The rationale is that if a variable didn't need to get written to, others working on the same codebase shouldn't automatically be able to write to the object, and will need to consider whether they really need to reassign to the variable. Using const also makes code more predictable when reasoning about flow of data.
+
+Use your best judgement, and if applicable, consult the matter with the rest of your team.
+
+\section{Destructing}
+Another ECMAScript 2015 feature that TypeScript has is destructing.
+
+\subsection{Array destructing}
+The simplest form of destructing is array destructing assignment:
+
+\begin{lstlisting}
+    let input = [1,2];
+    let [first, second] = input;
+    console.log(first); //outputs 1
+    console.log(second); //outputs 2
+\end{lstlisting}
+
+This creates two new variables named first and second. This is equivalent to using indexing, but it is much more convenient. Destructing works with already-declared variables as well, and with parameters to a function:
+
+\begin{lstlisting}
+    //swap variables
+    [first, second] = [second, first];
+
+    function f([third, forth]: [number, number]){
+        console.log(third);
+        console.log(forth);
+    }
+
+    f([1, 2]);
+\end{lstlisting}
+
+We can create a variable for the remaining items in a list using the syntax ...VariableName. Of course, since this is JavaScript, we can just ignore trailing elements we don't care about, or other elements:
+\begin{lstlisting}
+    let [first]= [1, 2, 3, 4];
+    console.log(first); //outputs 1
+
+    let[, second, , forth] = [1, 2, 3, 4];
+\end{lstlisting}
+
+\subsection{Object destructing}
+We can also destructure objects:
+\begin{lstlisting}
+    let o = {
+        a: "foo",
+        b: 12,
+        c: "bar"
+    };
+
+    let {a, b} = o;
+\end{lstlisting}
+
+This creates new variables a and b from o.a and o.b. Notice that we can skip c if we don't need it. Like array destructuring, we can have assignment without declaration. Notice that we need to surround the statement with parentheses. JavaScript normally parses a \{ as the start of a block.
+
+We can create a variable for the remaining items in an object using the syntax ...variableName.
+
+\subsection{Property renaming}
+We can also give different names to properties:
+\begin{lstlisting}
+    let{a: newName1, b: newName2} = o;
+\end{lstlisting}
+
+Here the syntax starts to get confusing. We can read a : newName1 as "a as newName1". The direction is left-to-right, as if we had written:
+\begin{lstlisting}
+    let newName1 = o.a;
+    let newName2 = o.b;
+\end{lstlisting}
+
+Confusingly, the colon here does not indicate the type. The type, if we specify it, still needs to be written after the entire destructuring:
+\begin{lstlisting}
+    let {a, b}: {a: string, b: number} = o;
+\end{lstlisting}
+
+\subsection{Default values}
+Default values let us specify a default value in case a property is undefined:
+\begin{lstlisting}
+    function keepWholeObject(wholeObject: {a: string, b?: number}){
+        let{a, b=1001} = wholeObject;
+    }
+\end{lstlisting}
+
+keepWholeObject now has a variable for wholeObject as well as the properties a and b, even if b is undefined.
+
+\subsection{Function declarations}
+Destructuring also works in function declarations. For simple cases this is straightforward:
+\begin{lstlisting}
+    type C = {a: string, b?: number}
+    function f({a, b}: C): void{
+        // ...
+    }
+\end{lstlisting}
+
+But specifying defaults is more common for parameters, and getting defaults right with destructuring can be tricky. First of all, we need to remember to put the pattern before the default value:
+
+\begin{lstlisting}
+    function f({a, b} = {a: "", b: 0}) : void{
+        // ...
+    }
+    f(); // ok, default to {a: "", b: 0}
+\end{lstlisting}
+
+Then, we need to remember to give a default for optional properties on the destructured property instead of the main initializer. Remember that C was defined with b optional.
