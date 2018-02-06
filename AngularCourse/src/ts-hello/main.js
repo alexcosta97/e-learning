@@ -1,7 +1,14 @@
-function doSomething() {
-    for (var i = 0; i < 5; i++) {
-        console.log(i);
+var Student = /** @class */ (function () {
+    function Student(firstName, middleInitial, lastName) {
+        this.firstName = firstName;
+        this.middleInitial = middleInitial;
+        this.lastName = lastName;
+        this.fullName = firstName + " " + middleInitial + " " + lastName;
     }
-    console.log('Finally: ' + i);
+    return Student;
+}());
+function greeter(person) {
+    return "Hello, " + person.firstName + " " + person.lastName;
 }
-doSomething();
+var user = new Student("Jane", "M.", "User");
+document.body.innerHTML = greeter(user);

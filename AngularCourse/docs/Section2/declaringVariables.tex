@@ -1,10 +1,52 @@
 \chapter{Declaring Variables}
-\section{How to declare variables}
-In TS, there are two ways to declare a variable. Either by using the var or the let keyword.
+let and const are two relatively new types of variable declarations in JavaScript. let is similar to var in some respects, but allows users to avoid some of the common "gotchas" that users run into in JavaScript. const is an audmentation of let in that it prevents re-assignment to a variable.
 
-\subsection{How the let keyword works}
-When declaring variables with var, the variable is still accepted outside of the block in which it was built, which can cause major problems with different variables. With languages such as C# or Java, the variable is scoped to the nearest block.
+With TypeScript being a superset of JavaScript, the language naturally supports let and const. Here will be more elaboration on these new declarations and why they're preferable to var.
 
-When declaring a variable with let, the same won't happen since it declares that the variable should only be visible within its scope.
+\section{var declarations}
+Declaring a variable in JavaScript has always traditionally been done with the var keyword. We can also declare a variable inside of a function and we can also access those same variables within other functions.
 
-This also allows us to explore the fact that the editor, after declaring the variable with let, does underline the i in the last console.log in red, meaning that that might cause a compile-time error. When hovering the mouse above the error, it allows the user to know what caused the error, which would be great for debugging. In some cases, TSC will show compile errors, such as the one that would happen when trying to compile the code above with the let declaration, but will still render valid JS code, since the let keyword doesn't exist in the currently supported by all browsers JavaScript version, so it will be replaced by var.
+\subsubsection{Scoping rules}
+var declarations have some odd scoping rules for those used to other languages. var declarations are accessible anywhere within their containning function, module, namespace or global scope - all which we'll fo over later on - regardless of the containing block. Some people call this var-scoping or function-scoping. Parameters are also function scoped.
+
+These scoping rules can cause several types of mistakes. One problem they exacerbate is the fact that it is not an error to declare the same variable multiple times:
+\begin{lstlisting}
+    function sumMatrix(matrix: number[][]){
+        var sum = 0;
+        for(var i = 0; i < matrix.length; i++){
+            var currentRow = matrix[i];
+            for(var i = 0; i < currentRow.length; i++){
+                sum += currentRow[i];
+            }
+        }
+        return sum;
+    }
+\end{lstlisting}
+
+Maybe it was easy to spot out for some, but the inner for-loop will accidentally overwrite the variable i because i refers to the same function-scoped variable. As experienced developers know by now, similar sorts of bugs slip thorugh code reviews and can be endless source of frustration.
+
+\subsubsection{Variable capturing quirks}
+With the next piece of code in mind, try to guess what the output will be:
+\begin{lstlisting}
+    for(var i = 0; i < 10; i++)
+    {
+        setTimeout(function(){console.log(i);}, 100 * i);
+    }
+\end{lstlisting}
+
+For those unfamiliar, setTimeout will try to execute a function after a certain number of milliseconds (thorugh waiting for anything else to stop running). The output of this code will be 10 times the number 10 being displayed rather then the list of numbers between 0 and 9. This is because every function expression we pass to setTimeout actually refers to the same i from the same scope. setTimeout will run a function after some number of milliseconds, but only after the for loop has stopped executing: By the time the for loop has stopped executing, the value of i is 10. So each time the given function gets called, it will print out 10.
+
+A common work around is to use an IIFE - an Immediately Invoked Function Expression - to capture i at each iteration:
+\begin{lstlisting}
+    for(var i = 0l i < 10; i++){
+        //capture the current state of 'i'
+        //by invoking a function with its current value
+        (function(i){
+            setTimeout(function() {console.log(i); }, 100 * i);
+        })(i);
+    }
+\end{lstlisting}
+
+This odd-looking pattern is actually pretty common. The i in the parameter list actually shadows the i declared in the for loop, but since we named them the same, we didn't have to modify the loop body too much.
+
+\section{lst declarations}
