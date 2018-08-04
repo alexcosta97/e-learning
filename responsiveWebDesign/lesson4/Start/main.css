@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5 {
   margin: 0; 
 }
 
-header, nav, footer, section, article, div {
+header, footer, section, article, div {
   box-sizing: border-box;
 }
 
@@ -72,8 +72,26 @@ ul {
   margin: 0.5em 0.25em;
   display: inline-block;
   color: #212121;
+  width: 65%;
 }
 
+/* Set the anchor decorations and positioning inside the header
+* right. Placing the hamburger icon in the vertical centre and
+* colated to the right by setting the margin properties to auto
+* and placing it in the right with a fixed margin so when the
+* viewport gets larger, the icon still stays fixed to the right
+* of the screen. */
+.header__menu{
+  text-decoration: none;
+  font-size: 3em;
+  color: #212121;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 10px;
+  height: fit-content;
+  width: 10%;
+}
 
 /*
  *
@@ -82,9 +100,19 @@ ul {
  */
 
 .nav {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  -webkit-transform: translate(-300px, 0);
+  transform: translate(-300px, 0);
+  transition: transform 0.3s ease;
+}
+
+nav.open{
+  -webkit-transform: translate(0,0);
+  transform: translate(0,0);
+  z-index: 1;
+  background-color: white;
 }
 
 .nav__list {
@@ -95,7 +123,6 @@ ul {
 
 .nav__item {
   box-sizing: border-box;
-  display: inline-block;
   width: 24%;
   text-align: center;
   line-height: 24px;
