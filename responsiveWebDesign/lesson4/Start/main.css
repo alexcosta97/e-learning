@@ -405,3 +405,84 @@ footer a {
   text-decoration: none;
   color: #333;
 }
+
+
+/*
+* Medium viewport @ 750px
+* - Activate Flexbox on the content class
+* - Place the top news at 33% on the right of the first column
+*/
+@media screen and (min-width: 750px){
+  .content{
+    display: flex;
+    display: -webkit-flex;
+    flex-flow: row wrap;
+  }
+
+  .hero, .weather{
+    width: 60%;
+  }
+
+  .top-news, .scores{
+    width: 40%;
+  }
+
+  .hero{
+    order: 1;
+  }
+  .weather{
+    order: 3;
+  }
+  .top-news{
+    order: 2;
+  }
+  .scores{
+    order: 4;
+  }
+  .recent-news{
+    order: 5;
+  }
+}
+
+/*
+* Largest viewport: 950px
+* - Redo all the settings from the previous breakpoint
+* - Set the maximum width for the main and margin-left
+* and margin-right to auto
+*/
+@media screen and (min-width: 950px){
+  .content{
+    display: flex;
+    display: -webkit-flex;
+    flex-flow: row wrap;
+  }
+
+  .hero, .weather{
+    width: 60%;
+  }
+
+  .top-news, .scores{
+    width: 40%;
+  }
+  
+  .hero{
+    order: 1;
+  }
+  .weather{
+    order: 3;
+  }
+  .top-news{
+    order: 2;
+  }
+  .scores{
+    order: 4;
+  }
+  .recent-news{
+    order: 5;
+  }
+  main{
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
