@@ -52,6 +52,12 @@
     width: 32px;
     fill: #E0E0E0;
   }
+  .hero p{
+    font-size: 14px;
+  }
+  .scores__location{
+    display: none;
+  }
 }
 
 @media screen and (min-width: 550px) {
@@ -59,9 +65,28 @@
     order: 0;
     width: 60%;
   }
+  .hero p{
+    font-size: 11px;
+  }
   .weather {
     order: 1;
     width: 40%;
+  }
+  body{
+    font-size: 14px;
+  }
+  
+}
+
+@media screen and (min-width: 600px){
+  .hero p{
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 790px){
+  .hero p{
+    font-size: 14px;
   }
 }
 
@@ -79,6 +104,9 @@
   }
   .weather {
     order: 3;
+  }
+  .scores__location{
+    display: none;
   }
 }
 
